@@ -1,0 +1,71 @@
+# Stage 1 — Continued Pre-Training on raw Crystal source.
+#
+# Teaches the model the token distribution of Crystal code (which names cluster
+# with which `require`s, what the stdlib actually exports). SFT alone can't do
+# this — SFT teaches "how to answer questions about Crystal", CPT teaches
+# "Crystal exists." Output of this stage is the base for stage 2 (SFT).
+
+base_model: Qwen/Qwen3-Coder-30B-A3B-Instruct
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+trust_remote_code: false
+
+adapter: lora
+bf16: true
+tf32: true
+
+# Use legacy merge: target_parameters (fused MoE experts) writes a non-empty
+# rank_pattern into adapter_config.json, which the memory-efficient merger
+# misidentifies as AdaLoRA. Legacy uses peft's merge_and_unload() directly.
+merge_method: legacy
+
+datasets:
+  - path: /workspace/data/cpt.jsonl
+    type: completion
+    field: text
+
+dataset_prepared_path: /workspace/cache/cpt
+val_set_size: 0.02
+output_dir: /workspace/output_cpt
+dataset_processes: 16
+
+sequence_len: 2048
+sample_packing: true
+pad_to_sequence_len: true
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+lora_target_parameters:
+  - experts.gate_up_proj
+  - experts.down_proj
+
+gradient_accumulation_steps: 4
+micro_batch_size: 2
+num_epochs: 1
+optimizer: paged_adamw_8bit
+lr_scheduler: cosine
+learning_rate: 5.0e-6
+warmup_ratio: 0.05
+weight_decay: 0.0
+
+flash_attention: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+
+logging_steps: 10
+saves_per_epoch: 1
+save_total_limit: 1
+evals_per_epoch: 2
+
+special_tokens:
+  pad_token: <|endoftext|>

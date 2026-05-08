@@ -1,0 +1,71 @@
+# Stage 3 — Direct Preference Optimization on Ruby→Crystal divergence pairs.
+#
+# Wrong→right pairs of Ruby vs Crystal code. SFT teaches the right form once;
+# DPO actively suppresses the wrong one. This is what kills Ruby-isms like
+# `attr_accessor`, `Thread.new`, `Class<T>`, RSpec syntax, etc.
+#
+# base_model is rewritten by the pipeline orchestrator to point at the
+# SFT-merged checkpoint.
+
+base_model: __PIPELINE_BASE__
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+trust_remote_code: false
+
+adapter: lora
+bf16: true
+tf32: true
+
+# Use legacy merge: lora_target_parameters (fused MoE experts) trips the
+# memory-efficient merger's AdaLoRA false-positive. Legacy uses peft's
+# merge_and_unload() directly.
+merge_method: legacy
+
+rl: dpo
+
+datasets:
+  - path: /workspace/data/dpo.jsonl
+    type: chatml.default
+
+dataset_prepared_path: /workspace/cache/dpo
+output_dir: /workspace/output_dpo
+dataset_processes: 8
+
+sequence_len: 2048
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+lora_target_parameters:
+  - experts.gate_up_proj
+  - experts.down_proj
+
+gradient_accumulation_steps: 4
+micro_batch_size: 1
+num_epochs: 1
+optimizer: paged_adamw_8bit
+lr_scheduler: cosine
+learning_rate: 5.0e-7
+warmup_ratio: 0.1
+weight_decay: 0.0
+max_grad_norm: 1.0
+
+flash_attention: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+
+logging_steps: 2
+saves_per_epoch: 1
+save_total_limit: 1
+
+special_tokens:
+  pad_token: <|endoftext|>
