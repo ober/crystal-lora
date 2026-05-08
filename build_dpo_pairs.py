@@ -291,6 +291,290 @@ PAIRS = [
                  "`Tuple(Int32, Int32)` and unpacks. Destructuring an `Array` doesn't work because "
                  "the size isn't statically known.",
     },
+
+    # ── Spec framework: matchers and lifecycle ─────────────────────────
+    {
+        "src_lang": "Ruby/RSpec",
+        "wrong": 'expect(user.name).to eq("Ada")\nexpect(user.age).to be > 18',
+        "correct": 'user.name.should eq("Ada")\nuser.age.should be > 18',
+        "notes": "Crystal `Spec` flips the syntax: `value.should matcher`, not `expect(value).to matcher`. "
+                 "Matchers like `eq`, `be`, `be_a`, `be_nil`, `be_truthy`, `contain` are available.",
+    },
+    {
+        "src_lang": "Ruby/RSpec",
+        "wrong": 'expect { risky! }.to raise_error(IO::Error)',
+        "correct": 'expect_raises(IO::Error) do\n  risky!\nend',
+        "notes": "`expect_raises(ErrorClass)` is the Crystal Spec idiom — it's a top-level helper, not "
+                 "a matcher chained off `expect`.",
+    },
+    {
+        "src_lang": "Ruby/RSpec",
+        "wrong": 'before(:each) do\n  @repo = Repo.new\nend\n\nafter(:each) do\n  @repo.close\nend',
+        "correct": 'repo = uninitialized Repo\n\nbefore_each do\n  repo = Repo.new\nend\n\nafter_each do\n  repo.close\nend',
+        "notes": "Crystal Spec uses `before_each` / `after_each` (no `:each` symbol). State is held in "
+                 "local variables in the enclosing `describe` block, not in `@`-instance vars on the "
+                 "example group.",
+    },
+    {
+        "src_lang": "Ruby/RSpec",
+        "wrong": 'let(:user) { User.new("Ada") }\n\nit "has a name" do\n  expect(user.name).to eq("Ada")\nend',
+        "correct": 'describe User do\n  it "has a name" do\n    user = User.new("Ada")\n    user.name.should eq("Ada")\n  end\nend',
+        "notes": "Crystal Spec has no `let` / `subject`. Build the value inline in each `it` block, or "
+                 "share via `before_each` writing to a local variable.",
+    },
+
+    # ── Time / Date ─────────────────────────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'now = Time.now\nputs now',
+        "correct": 'now = Time.local\nputs now\n\n# UTC variant:\nputs Time.utc',
+        "notes": "Crystal has no `Time.now`. Use `Time.local` (system timezone) or `Time.utc`. Both "
+                 "return a `Time` value with sub-second precision.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'Date.today\nDate.parse("2024-01-15")',
+        "correct": 'Time.local.date\nTime.parse_iso8601("2024-01-15T00:00:00Z")',
+        "notes": "Crystal has no separate `Date` class; `Time` covers it. For ISO 8601 strings use "
+                 "`Time.parse_iso8601`; for other formats use `Time.parse(str, format, location)`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '5.minutes.ago\n3.days.from_now',
+        "correct": 'Time.local - 5.minutes\nTime.local + 3.days',
+        "notes": "Crystal has no ActiveSupport-style `5.minutes.ago` shortcut. The `5.minutes` part "
+                 "exists (returns a `Time::Span`); subtract or add it from a `Time` explicitly.",
+    },
+
+    # ── HTTP / Process / File / ENV ─────────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'require "net/http"\nbody = Net::HTTP.get(URI("https://example.com"))',
+        "correct": 'require "http/client"\n\nresponse = HTTP::Client.get("https://example.com")\nbody = response.body',
+        "notes": "Crystal's HTTP client is `HTTP::Client` (in `http/client`). It returns an "
+                 "`HTTP::Client::Response`; the body is on `.body`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'output = `ls -la`\nsystem("git status")',
+        "correct": 'output = `ls -la`\nProcess.run("git", args: ["status"], output: STDOUT, error: STDERR)',
+        "notes": "Backticks work and capture stdout. For full control use `Process.run` with explicit "
+                 "args (no shell interpolation, safe by default) and explicit IO routing.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'home = ENV["HOME"]\nputs home.upcase',
+        "correct": 'home = ENV["HOME"]?\nif home\n  puts home.upcase\nelse\n  puts "$HOME unset"\nend',
+        "notes": "`ENV[key]` raises if missing; use `ENV[key]?` for the nilable form, then narrow with "
+                 "`if`. Calling `.upcase` on a `String?` is a compile error.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'File.open("data.txt", "r") do |f|\n  f.each_line { |l| puts l }\nend',
+        "correct": 'File.open("data.txt") do |f|\n  f.each_line { |l| puts l }\nend\n\n# Or one-shot:\nFile.read("data.txt").each_line { |l| puts l }',
+        "notes": "`File.open` defaults to read mode; the second arg is optional. For small files, "
+                 "`File.read(path)` (whole file as `String`) or `File.each_line(path)` are simpler.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'Dir["**/*.cr"].each { |path| puts path }',
+        "correct": 'Dir.glob("**/*.cr").each { |path| puts path }\n\n# Or, equivalently:\nDir["**/*.cr"].each { |path| puts path }',
+        "notes": "`Dir[pattern]` and `Dir.glob(pattern)` both work in Crystal. They return "
+                 "`Array(String)`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'rand(100)\nsrand(42)',
+        "correct": 'rand(100)\nRandom::DEFAULT.new_seed(42_u64)\n\n# Or a private generator:\nrng = Random.new(42_u64)\nrng.rand(100)',
+        "notes": "`rand(n)` works in Crystal. Seeding the global RNG uses "
+                 "`Random::DEFAULT.new_seed`; for a private seedable RNG, construct `Random.new(seed)`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'require "optparse"\nOptionParser.new do |opts|\n  opts.on("-v", "--verbose") { @v = true }\nend.parse!',
+        "correct": 'require "option_parser"\n\nverbose = false\nOptionParser.parse do |opts|\n  opts.on("-v", "--verbose", "Verbose output") { verbose = true }\nend',
+        "notes": "Crystal's parser is `option_parser` (snake_case `require`), and the entry point is "
+                 "`OptionParser.parse do |opts| ... end` — no `.parse!` call.",
+    },
+
+    # ── Iteration / Enumerable ──────────────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'arr.detect { |x| x > 10 }',
+        "correct": 'arr.find { |x| x > 10 }',
+        "notes": "Crystal has `find` (aliased on `Enumerable`); there is no `detect`. Returns "
+                 "`T?` — `nil` if no element matches.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '[1, 2, 3].inject(0) { |sum, x| sum + x }',
+        "correct": '[1, 2, 3].reduce(0) { |sum, x| sum + x }',
+        "notes": "Crystal uses `reduce` (also accepts no-initial-value form). `inject` is not the "
+                 "primary name in Crystal stdlib.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'arr.group_by { |x| x.kind }\n   .transform_values { |xs| xs.size }',
+        "correct": 'arr.group_by { |x| x.kind }\n   .transform_values { |xs| xs.size }',
+        "notes": "Both work in Crystal — but the block return type drives the resulting "
+                 "`Hash(K, Array(T))` types, so a block that mixes return types causes inference to "
+                 "widen to a union. Annotate the block if you need a specific key type.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'people.min_by(&:age)',
+        "correct": 'people.min_by(&.age)',
+        "notes": "Crystal's short-block syntax is `&.method`, not `&:method`. It's a proc that calls "
+                 "the named method on its argument.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '[3, 1, 2].sort { |a, b| b <=> a }',
+        "correct": '[3, 1, 2].sort { |a, b| b <=> a }',
+        "notes": "Same syntax, but in Crystal the block must return an `Int32` (or "
+                 "`Comparable::Result`), not a generic `<=>` value. Sorting `Float` requires "
+                 "`sort_by(&.itself)` because `NaN`-vs-`<=>` returns nilable.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'h = {a: 1, b: 2}\nh.each { |k, v| puts "#{k}=#{v}" }',
+        "correct": 'h = {a: 1, b: 2}              # NamedTuple(a: Int32, b: Int32)\nh.each { |k, v| puts "#{k}=#{v}" }\n\n# For a real Hash:\nh2 = {"a" => 1, "b" => 2}     # Hash(String, Int32)\nh2.each { |k, v| puts "#{k}=#{v}" }',
+        "notes": "`{a: 1}` is a `NamedTuple` in Crystal (compile-time keys), *not* a `Hash`. For "
+                 "string-keyed runtime hashes, use `=>`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'data.dig(:user, :address, :city)',
+        "correct": 'data.dig?("user", "address", "city")',
+        "notes": "`#dig?` returns the nilable form (`nil` on missing key). `#dig` raises. Keys are the "
+                 "actual hash keys — symbols only when the hash is `Hash(Symbol, _)`.",
+    },
+
+    # ── Numeric / type traps ────────────────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'big = 10 ** 20',
+        "correct": 'require "big"\n\nbig = BigInt.new(10) ** 20',
+        "notes": "Crystal's primitive `Int64`/`UInt64` *overflow*. For arbitrary precision use "
+                 "`BigInt` from `require \"big\"`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'avg = total / count',
+        "correct": 'avg = total / count        # Float64 if either operand is Float\navg_int = total // count   # truncated integer division (when both are Int)',
+        "notes": "`Int / Int` returns `Float64` in Crystal (a divergence from Ruby and most other "
+                 "static-typed languages). For integer division use `//`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'def transform(x)\n  if x.is_a?(Integer)\n    x * 2\n  else\n    x.to_s\n  end\nend',
+        "correct": 'def transform(x : Int32 | String) : Int32 | String\n  case x\n  when Int32  then x * 2\n  when String then x.to_s\n  else             raise "unreachable"\n  end\nend',
+        "notes": "Crystal's `case ... when Type` narrows the type inside each branch (no `is_a?` "
+                 "needed). Annotate the union explicitly so callers know what comes in.",
+    },
+
+    # ── Blocks, procs, and short-block syntax ───────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'doubler = ->(x) { x * 2 }\nputs doubler.call(5)',
+        "correct": 'doubler = ->(x : Int32) { x * 2 }\nputs doubler.call(5)',
+        "notes": "Proc literals in Crystal need types on the parameters. The result is a "
+                 "`Proc(Int32, Int32)`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '[1, 2, 3].map(&:to_s)',
+        "correct": '[1, 2, 3].map(&.to_s)',
+        "notes": "The Crystal short-block is `&.method`. The Ruby `&:symbol` form does not work for "
+                 "method calls.",
+    },
+
+    # ── Macros / compile-time hooks ─────────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'class Logger\n  def self.included(base)\n    base.extend(ClassMethods)\n  end\nend',
+        "correct": 'module Logger\n  macro included\n    extend ClassMethods\n  end\nend',
+        "notes": "`included`, `inherited`, and `extended` are macro hooks in Crystal — they run at "
+                 "compile time. Use them inside a `module` or `class`.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'class Base\n  def self.inherited(sub)\n    REGISTRY << sub\n  end\nend',
+        "correct": 'class Base\n  REGISTRY = [] of Base.class\n\n  macro inherited\n    Base::REGISTRY << {{@type}}\n  end\nend',
+        "notes": "Use the `inherited` macro and `{{@type}}` to refer to the inheriting class at "
+                 "compile time. The registry must be typed.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '[:get, :post, :put].each do |verb|\n  define_method(verb) { |path, &block| ... }\nend',
+        "correct": '{% for verb in %w(get post put) %}\n  def {{verb.id}}(path : String, &block)\n    # ...\n  end\n{% end %}',
+        "notes": "Compile-time codegen uses `{% for %}` ... `{% end %}` blocks with `{{ }}` "
+                 "interpolation. Macro `id` strips the quotes around a string literal so you can "
+                 "splice it as a method name.",
+    },
+
+    # ── Object identity / introspection ─────────────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'a.equal?(b)\na.object_id',
+        "correct": 'a.same?(b)\na.object_id   # exists, but only on Reference (not Value types)',
+        "notes": "Reference identity is `same?` in Crystal. `object_id` exists on `Reference` but not "
+                 "on `Value` (struct/Int/Float etc.) because value types have no stable identity.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'a.is_a?(String) && a.length > 0',
+        "correct": 'if a.is_a?(String) && a.size > 0\n  # `a` is narrowed to String here\nend',
+        "notes": "`is_a?` works the same way; in an `if`/`&&` chain it narrows the variable's type. "
+                 "Note: it's `.size` (not `.length`) on `String` and most collections.",
+    },
+
+    # ── String / collection method-name traps ───────────────────────────
+    {
+        "src_lang": "Ruby",
+        "wrong": 'name.length',
+        "correct": 'name.size',
+        "notes": "Crystal uses `size` on `String`, `Array`, `Hash`, etc. `length` is not a method on "
+                 "`String` (`bytesize` is the byte count).",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": '"abc"[1]   # => "b"',
+        "correct": '"abc"[1]   # => \'b\' (Char, not String)\n"abc"[1, 1]   # => "b" (substring)\n"abc"[1..1]   # => "b"',
+        "notes": "`String#[]` with a single `Int` returns a `Char`, not a one-character `String`. "
+                 "Use the `(start, length)` or range form for substring slicing.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'arr.delete(item)\narr.compact!',
+        "correct": 'arr.delete(item)        # returns the deleted element or nil\narr.reject!(&.nil?)     # in-place compact\n\n# Or non-mutating:\narr2 = arr.compact      # Array(T) without nils, requires nilable element type',
+        "notes": "Crystal's `compact` requires the element type to be nilable. There's no in-place "
+                 "`compact!` per se — use `reject!(&.nil?)` for the in-place variant.",
+    },
+
+    # ── FFI / Pointer / Slice ──────────────────────────────────────────
+    {
+        "src_lang": "Ruby/C",
+        "wrong": 'lib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = "hello"\nLibFoo.process(buf, buf.size)',
+        "correct": 'lib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = "hello"\nLibFoo.process(buf.to_unsafe, buf.bytesize)',
+        "notes": "Pass `String` to a `UInt8*` parameter via `.to_unsafe`. Use `.bytesize` (bytes), "
+                 "not `.size` (UTF-8 character count). Same applies to `Bytes` and `Slice`.",
+    },
+    {
+        "src_lang": "Ruby/C",
+        "wrong": 'arr = [1_u8, 2_u8, 3_u8]\nLibFoo.process(arr, arr.size)',
+        "correct": 'slice = Slice[1_u8, 2_u8, 3_u8]\nLibFoo.process(slice.to_unsafe, slice.size)',
+        "notes": "For a contiguous fixed-size buffer, use `Slice(T)` (or `Bytes` = `Slice(UInt8)`); "
+                 "`.to_unsafe` gives a `Pointer(T)` you can pass to FFI.",
+    },
+    {
+        "src_lang": "Ruby",
+        "wrong": 'value.not_nil!',
+        "correct": 'if value\n  value.something\nelse\n  raise "expected non-nil"\nend\n\n# Only when you really, truly know it is non-nil:\nvalue.not_nil!',
+        "notes": "`not_nil!` raises on `nil`. Prefer narrowing with `if value` so the compiler "
+                 "knows the type. Reserve `not_nil!` for cases where the invariant is enforced "
+                 "elsewhere and you want a fail-fast check.",
+    },
 ]
 
 
