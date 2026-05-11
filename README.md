@@ -32,6 +32,18 @@ What changed v1 → v2 → v3:
 
 See [`EVAL_VERDICT.md`](EVAL_VERDICT.md) for the v1 post-mortem, [`TRAINING_FIX_PLAN.md`](TRAINING_FIX_PLAN.md) for the corrective plan that became v3, and [`v4.md`](v4.md) for what's left on the table.
 
+### Known caveat: Q8 vs Q4_K_M quantization confound
+
+The eval table above pits v3 at **Q8_0** against base at **Q4_K_M** — some of the +30 total / +5 compile-pass gap is potentially attributable to less quantization noise rather than to the LoRA. The cheapest v4 task is to republish v3 at Q4_K_M and re-measure on equal footing:
+
+```bash
+./convert_to_gguf.sh runpod-pipeline-merged-v3 crystal-qwen-v3 Q4_K_M crystal-qwen-v3-q4
+python3 eval_holdout.py    --models crystal-qwen-v3-q4 qwen3-coder:30b --out eval_holdout_v3_q4.json
+python3 eval_similarity.py --models crystal-qwen-v3-q4 qwen3-coder:30b --out eval_similarity_v3_q4.json
+```
+
+~10 min of local compute + an eval re-run. Either confirms v3 wins on equal footing (strong signal for the training pipeline) or exposes the compile-gate edge as quant-noise (important to know before promising users v3 is meaningfully better). See [`v4.md`](v4.md) for the full v4 list — this is the top item.
+
 ## Quick Start
 
 ```bash
