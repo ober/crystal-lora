@@ -1,158 +1,39 @@
-# Crystal LoRA Training — Together AI
+# Crystal LoRA — v3 Retrain Status
 
-## Status
+Current focus: re-run the full CPT → SFT → DPO pipeline on RunPod with the corrected hyperparams + v3 data, eval-gate, and publish to **Hugging Face (hf.co)**.
 
-- [x] Scaffold scripts (forked from jerboa-lora)
-- [x] Generate training data (5,430 entries from stdlib doc-comments, spec, samples, divergence, convention, docs)
-- [ ] Upload training data to Together AI
-- [ ] Start fine-tuning job (Qwen3-Coder-30B-A3B-Instruct, LoRA r=16, α=32, 1 epoch)
-- [ ] Wait for training to complete (~10–15 min expected)
-- [ ] Deploy to RunPod serverless (`./deploy_runpod.sh jaimef21/crystal-qwen-30b`)
-- [ ] Verify model with `verify_model.py`
-- [ ] Connect to OpenCode (`./configure_opencode.sh runpod <ENDPOINT_ID>`)
-- [ ] (Optional) Download merged model and run via Ollama locally
-- [ ] (Optional) Push to Ollama registry (`./push_ollama.sh jaimef`)
+## Status (2026-05-09)
 
----
+### Data (v3)
+- [x] Scrape top 500 Crystal GitHub repos → `cpt_corpus_v3.jsonl` (29,633 `.cr` files)
+- [x] Harvest Crystal book + RFCs + website + awesome-crystal + stdlib docs → `cpt_docs.jsonl` (1,659 entries)
+- [x] Cross-file SHA-dedupe + merge → `cpt_corpus_v3_merged.jsonl` (31,292 records, ~31.6M tokens, 120 MB)
+- [x] Expand DPO from 37 → 374 pairs (74 hand + 187 v2 rules + 113 new v3 rules); 235/374 compile-validated
+- [x] Build SFT miner with parallel compile-gate (`build_sft_v3.py`, 14 workers)
+- [x] Build LLM-augment backup (`build_sft_llm.py`, Claude Haiku 4.5 via OpenRouter, lenient missing-shard gate)
+- [x] SFT mining run → `sft_v3_mined.jsonl` (1,774 stdlib + 9 readme + merged with v1)
+- [x] LLM-augment SFT via Claude Haiku 4.5 → +3,813 pairs from 3,000 sampled corpus files
+- [x] Merge mined + LLM-augmented + v1 with SHA-dedup → **9,958 final compile-gated SFT pairs** (~$8 spent)
 
-## Training Data
+### Training
+- [x] Update axolotl YAMLs: r=64/α=128, CPT lr=2e-5/2 ep, SFT lr=1e-4/2 ep, DPO lr=5e-6/3 ep
+- [x] Point `runpod_train.py` at v3 datasets (`cpt_corpus_v3_merged.jsonl`, `sft_v3_mined.jsonl`, `dpo_pairs_v3.jsonl`)
+- [ ] Run full v3 retrain on RunPod (single A100 80GB)
+- [ ] Pull merged checkpoint → `runpod-pipeline-final/`
+- [ ] Terminate pod
 
-Generated **5,430 training entries** in `~/mine/crystal-lora/`:
+### Eval gate (mandatory before publishing)
+- [x] Held-out Crystal coding eval (`eval_holdout.py`)
+- [x] Full 74-pair similarity eval (`eval_similarity.py`)
+- [x] **Verdict reversed**: with corrected hyperparams + v2 data, trained beats base (`+0.357` vs `+0.124` tok-lean; `36` vs `9` held-out total)
+- [ ] Re-run both evals on the v3-trained checkpoint; require trained > base on both
 
-| File                           | Format                 | Size   |
-|--------------------------------|------------------------|--------|
-| `training_data_together.jsonl` | Together AI (messages) | 9.4 MB |
-| `training_data.jsonl`          | ChatML/ShareGPT        | 9.6 MB |
-| `training_data_alpaca.jsonl`   | Alpaca JSONL           | 5.1 MB |
+### Publish
+- [ ] Convert merged checkpoint → GGUF (Q8_0) via `llama.cpp/convert_hf_to_gguf.py` + `llama-quantize`
+- [ ] Upload to **Hugging Face** (`hf upload jaimef/crystal-qwen-gguf …`) — NOT ollama.com
+- [ ] Optionally upload merged HF checkpoint at `runpod-pipeline-final/` as source
+- [ ] Update Modelfile to point at the published GGUF; smoke-test via `ollama create … -f Modelfile`
 
-### Source breakdown
+## Why this round (vs the v1 run that flopped)
 
-| Source | Count |
-|--------|-------|
-| stdlib | 4,804 |
-| spec | 270 |
-| divergence | 120 |
-| sample | 66 |
-| convention | 57 |
-| doc | 36 |
-| mcp-doc | 25 |
-| changelog | 21 |
-| man | 13 |
-| mcp-spec | 10 |
-| mcp-src | 8 |
-
-Regenerate: `python3 convert_training_data.py`
-
----
-
-## Step 1: Setup
-
-```bash
-pip install together
-export TOGETHER_API_KEY="your-key-here"   # or save to ~/.together-ai.token
-```
-
-## Step 2: Upload
-
-```bash
-python3 train_together.py upload
-```
-
-Saves `file_id` to `.together_state.json`.
-
-## Step 3: Train
-
-```bash
-python3 train_together.py train
-```
-
-Saves `job_id` to `.together_state.json`. Training settings:
-- LoRA r=16, alpha=32
-- 1 epoch, learning rate 1e-5, batch size 2
-- Base model: `Qwen/Qwen3-Coder-30B-A3B-Instruct` (30B MoE, 3B active)
-
-Single epoch is intentional — at 5,430 examples and a 30B base, more epochs risk overfitting on the synthetic divergence/convention triples.
-
-## Step 4: Wait & Status
-
-```bash
-python3 train_together.py status
-```
-
-When done, the model name (e.g. `jaimef_xxxx/Qwen3-Coder-30B-A3B-Instruct-yyyyyyyy`) is saved to state.
-
----
-
-## Step 5: Deploy — Choose Your Option
-
-### Option A: RunPod Serverless (recommended — 30B is heavy for local, ~$0.69/hr active, $0 idle)
-
-```bash
-export RUNPOD_API_KEY="your-key"
-hf auth login
-./deploy_runpod.sh jaimef21/crystal-qwen-30b
-```
-
-The script auto-reads JOB_ID from `.together_state.json`, downloads + merges the adapter, uploads the merged model to HuggingFace, then provisions a 48GB-GPU vLLM endpoint.
-
-Configure OpenCode:
-```bash
-./configure_opencode.sh runpod <ENDPOINT_ID>
-```
-
-### Option B: Local Ollama (free, needs 24GB+ GPU for usable speed)
-
-```bash
-./download_and_convert.sh
-```
-
-This downloads the LoRA adapter, merges it into the base, converts to GGUF (q4_k_m by default), and registers `crystal-qwen` with Ollama.
-
-Or pull from the registry once published:
-```bash
-ollama pull jaimef/crystal-qwen
-```
-
-Configure OpenCode:
-```bash
-./configure_opencode.sh ollama
-```
-
-### Option C: Local Unsloth training (free, needs 24GB+ GPU, smaller base)
-
-If you want to iterate quickly on a smaller model first:
-```bash
-python3 train_unsloth.py        # → ./crystal-lora-output/   (uses Qwen2.5-Coder-7B as base)
-python3 merge_and_export.py     # → ./crystal-qwen-gguf/
-ollama create crystal-qwen -f Modelfile
-```
-
-This is a 7B fallback — quality will be lower than the Together AI 30B run, but it's useful for catching data-formatting bugs before paying for the big training job.
-
----
-
-## Verification
-
-```bash
-# Local
-python3 verify_model.py --base-url http://localhost:11434/v1 --model crystal-qwen -v
-
-# RunPod
-python3 verify_model.py \
-  --base-url https://api.runpod.ai/v2/<ENDPOINT_ID>/openai/v1 \
-  --model jaimef21/crystal-qwen-30b \
-  --api-key $RUNPOD_API_KEY -v
-```
-
-10 test cases covering: type-annotated properties, `attr_accessor` → `property`, fibers + Channels, `JSON::Serializable`, `HTTP::Server`, the `Spec` framework, `(T)` generic syntax, `Tuple` vs `NamedTuple`, FFI via `lib`/`fun`, nilable types (`Nil`/`?`).
-
----
-
-## Iteration
-
-To improve quality:
-1. Add Crystal idioms to the `CONVENTION_EXAMPLES` list in `convert_training_data.py`
-2. Add Ruby → Crystal divergence entries for any new hallucinations you catch
-3. `python3 convert_training_data.py`
-4. `python3 train_together.py upload && python3 train_together.py train`
-5. Redeploy
+See [`EVAL_VERDICT.md`](EVAL_VERDICT.md) for the v1 post-mortem and [`TRAINING_FIX_PLAN.md`](TRAINING_FIX_PLAN.md) for the corrective hyperparams. Short version: v1 DPO LR was 100× too low — the LoRA delta sat below the BF16 precision floor and Q4_K_M quantization erased the rest. v3 fixes that and adds 10–100× more data across all three stages.

@@ -1,0 +1,1502 @@
+{
+  "sums": {
+    "jaimef/crystal-qwen3.6-30b": {
+      "tok_lean": 0.3568307340791431,
+      "char_lean": -8.490101074666851,
+      "wins_chosen": 6,
+      "wins_rejected": 1
+    },
+    "qwen3-coder:30b": {
+      "tok_lean": 0.12351648351648352,
+      "char_lean": -8.523884956385572,
+      "wins_chosen": 2,
+      "wins_rejected": 0
+    }
+  },
+  "results": {
+    "jaimef/crystal-qwen3.6-30b": [
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0078125,
+        "char_sim_rejected": 0.22916666666666666,
+        "char_lean": -0.22135416666666666,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 0
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12093023255813953,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": -0.06088794926004229,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 1
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12962962962962962,
+        "char_sim_rejected": 0.19753086419753085,
+        "char_lean": -0.06790123456790123,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 2
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1407035175879397,
+        "char_sim_rejected": 0.24,
+        "char_lean": -0.0992964824120603,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 3
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.056338028169014086,
+        "char_sim_rejected": 0.0975609756097561,
+        "char_lean": -0.041222947440742015,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 4
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.176,
+        "char_lean": -0.176,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 5
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.040983606557377046,
+        "char_sim_rejected": 0.3333333333333333,
+        "char_lean": -0.2923497267759563,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 6
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1301775147928994,
+        "char_sim_rejected": 0.24390243902439024,
+        "char_lean": -0.11372492423149083,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 7
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1596244131455399,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": 0.03196483867745481,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 8
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.19318181818181818,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": 0.011363636363636354,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 9
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.2898550724637681,
+        "char_lean": -0.2898550724637681,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 10
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.15454545454545454,
+        "char_sim_rejected": 0.25742574257425743,
+        "char_lean": -0.10288028802880289,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 11
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12903225806451613,
+        "char_sim_rejected": 0.24242424242424243,
+        "char_lean": -0.1133919843597263,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 12
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1348314606741573,
+        "char_sim_rejected": 0.14285714285714285,
+        "char_lean": -0.00802568218298555,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 13
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0078125,
+        "char_sim_rejected": 0.1188118811881188,
+        "char_lean": -0.1109993811881188,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 14
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.35,
+        "char_lean": -0.35,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 15
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11711711711711711,
+        "char_sim_rejected": 0.225,
+        "char_lean": -0.10788288288288289,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 16
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1485148514851485,
+        "char_sim_rejected": 0.15,
+        "char_lean": -0.0014851485148514865,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 17
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008264462809917356,
+        "char_sim_rejected": 0.20588235294117646,
+        "char_lean": -0.1976178901312591,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 18
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0446927374301676,
+        "char_sim_rejected": 0.1568627450980392,
+        "char_lean": -0.11217000766787161,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 19
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.13131313131313133,
+        "char_sim_rejected": 0.23809523809523808,
+        "char_lean": -0.10678210678210676,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 20
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.02608695652173913,
+        "char_sim_rejected": 0.1956521739130435,
+        "char_lean": -0.16956521739130437,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 21
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.017543859649122806,
+        "char_sim_rejected": 0.19607843137254902,
+        "char_lean": -0.1785345717234262,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 22
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12087912087912088,
+        "char_sim_rejected": 0.2857142857142857,
+        "char_lean": -0.1648351648351648,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 23
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.02390438247011952,
+        "char_sim_rejected": 0.2222222222222222,
+        "char_lean": -0.19831783975210268,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 24
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.16216216216216217,
+        "char_sim_rejected": 0.14285714285714285,
+        "char_lean": 0.019305019305019322,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 25
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11320754716981132,
+        "char_sim_rejected": 0.14634146341463414,
+        "char_lean": -0.033133916244822814,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 26
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.16580310880829016,
+        "char_sim_rejected": 0.16842105263157894,
+        "char_lean": -0.002617943823288782,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 27
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008547008547008548,
+        "char_sim_rejected": 0.12903225806451613,
+        "char_lean": -0.12048524951750758,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 28
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.10891089108910891,
+        "char_sim_rejected": 0.28169014084507044,
+        "char_lean": -0.17277924975596154,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 29
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1218274111675127,
+        "char_sim_rejected": 0.14634146341463414,
+        "char_lean": -0.024514052247121443,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 30
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.10695187165775401,
+        "char_sim_rejected": 0.1875,
+        "char_lean": -0.08054812834224599,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 31
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12698412698412698,
+        "char_sim_rejected": 0.32142857142857145,
+        "char_lean": -0.19444444444444448,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 32
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.024691358024691357,
+        "char_sim_rejected": 0.2608695652173913,
+        "char_lean": -0.23617820719269994,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 33
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1348314606741573,
+        "char_sim_rejected": 0.2647058823529412,
+        "char_lean": -0.12987442167878388,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 34
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1004566210045662,
+        "char_sim_rejected": 0.25,
+        "char_lean": -0.1495433789954338,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 35
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.017316017316017316,
+        "char_sim_rejected": 0.10810810810810811,
+        "char_lean": -0.0907920907920908,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 36
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.024489795918367346,
+        "char_sim_rejected": 0.21951219512195122,
+        "char_lean": -0.19502239920358388,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 37
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.18994413407821228,
+        "char_sim_rejected": 0.3582089552238806,
+        "char_lean": -0.1682648211456683,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 38
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.15053763440860216,
+        "char_lean": -0.15053763440860216,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 39
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.03137254901960784,
+        "char_sim_rejected": 0.18518518518518517,
+        "char_lean": -0.15381263616557733,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 40
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.14354066985645933,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": 0.015881095388374233,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 41
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.05737704918032787,
+        "char_sim_rejected": 0.1694915254237288,
+        "char_lean": -0.11211447624340093,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 42
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.18867924528301888,
+        "char_lean": -0.18867924528301888,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 43
+      },
+      {
+        "tok_sim_chosen": 0.047619047619047616,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.047619047619047616,
+        "char_sim_chosen": 0.016597510373443983,
+        "char_sim_rejected": 0.10989010989010989,
+        "char_lean": -0.09329259951666591,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 44
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.22580645161290322,
+        "char_lean": -0.22580645161290322,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 45
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.13559322033898305,
+        "char_lean": -0.13559322033898305,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 46
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.006514657980456026,
+        "char_sim_rejected": 0.13636363636363635,
+        "char_lean": -0.12984897838318032,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 47
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12727272727272726,
+        "char_sim_rejected": 0.15625,
+        "char_lean": -0.02897727272727274,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 48
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.014652014652014652,
+        "char_sim_rejected": 0.13953488372093023,
+        "char_lean": -0.12488286906891558,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 49
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.013201320132013201,
+        "char_sim_rejected": 0.24793388429752067,
+        "char_lean": -0.23473256416550747,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 50
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1761006289308176,
+        "char_sim_rejected": 0.24489795918367346,
+        "char_lean": -0.06879733025285587,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 51
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.06818181818181818,
+        "char_sim_rejected": 0.09375,
+        "char_lean": -0.025568181818181823,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 52
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.006493506493506494,
+        "char_sim_rejected": 0.2558139534883721,
+        "char_lean": -0.2493204469948656,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 53
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.062111801242236024,
+        "char_sim_rejected": 0.13636363636363635,
+        "char_lean": -0.07425183512140032,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 54
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.04669260700389105,
+        "char_sim_rejected": 0.17543859649122806,
+        "char_lean": -0.128745989487337,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 55
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.030395136778115502,
+        "char_sim_rejected": 0.08,
+        "char_lean": -0.049604863221884496,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 56
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11267605633802817,
+        "char_sim_rejected": 0.32142857142857145,
+        "char_lean": -0.20875251509054327,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 57
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1744186046511628,
+        "char_sim_rejected": 0.05263157894736842,
+        "char_lean": 0.12178702570379438,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 58
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.020689655172413793,
+        "char_sim_rejected": 0.23255813953488372,
+        "char_lean": -0.2118684843624699,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 59
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.019417475728155338,
+        "char_sim_rejected": 0.20930232558139536,
+        "char_lean": -0.18988484985324003,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 60
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.15204678362573099,
+        "char_sim_rejected": 0.08571428571428572,
+        "char_lean": 0.06633249791144527,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 61
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.18439716312056736,
+        "char_sim_rejected": 0.08888888888888889,
+        "char_lean": 0.09550827423167847,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 62
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.09345794392523364,
+        "char_sim_rejected": 0.14893617021276595,
+        "char_lean": -0.05547822628753231,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 63
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008547008547008548,
+        "char_sim_rejected": 0.2682926829268293,
+        "char_lean": -0.2597456743798207,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 64
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.0761904761904762,
+        "char_lean": -0.0761904761904762,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 65
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.023076923076923078,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": -0.10458265139116202,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 66
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.01639344262295082,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": -0.165424739195231,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 67
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.11666666666666668,
+        "char_sim_chosen": 0.35542168674698793,
+        "char_sim_rejected": 0.10476190476190476,
+        "char_lean": 0.25065978198508315,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nname.length\n```\n\n**Crystal version:**\n```crystal\nname.length\n```\n\n**Explanation:**\n\nCrystal's stdlib has a `String#length` method (line 1077 of `src/string.cr`) which returns an `Int32`.",
+        "pair_idx": 68
+      },
+      {
+        "tok_sim_chosen": 0.2647058823529412,
+        "tok_sim_rejected": 0.15,
+        "tok_lean": 0.11470588235294119,
+        "char_sim_chosen": 0.11142061281337047,
+        "char_sim_rejected": 0.2097902097902098,
+        "char_lean": -0.09836959697683932,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\n\"abc\"[1]   # => 'b'\n```\n\nCrystal strings are UTF-8, and indexing returns a `Char`, not a `String`.",
+        "pair_idx": 69
+      },
+      {
+        "tok_sim_chosen": 0.13043478260869565,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": -0.03623188405797101,
+        "char_sim_chosen": 0.03696098562628337,
+        "char_sim_rejected": 0.31868131868131866,
+        "char_lean": -0.2817203330550353,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\narr.delete?(item)\narr.compact!\n```\n\n**Example:**\n```crystal\nary = [1, 2, 3, 2, 4]\nary.delete?(2)  # => true\nary.compact!    # => [1, 3, 4]\n```",
+        "pair_idx": 70
+      },
+      {
+        "tok_sim_chosen": 0.35185185185185186,
+        "tok_sim_rejected": 0.2857142857142857,
+        "tok_lean": 0.06613756613756616,
+        "char_sim_chosen": 0.3238095238095238,
+        "char_sim_rejected": 0.3710247349823322,
+        "char_lean": -0.04721521117280836,
+        "text": "Here's the Crystal version:\n\n```crystal\nlib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = \"hello\".to_unsafe\nLibFoo.process(buf, buf.size)\n```\n\n**Note**: `String#to_unsafe` allocates a new `UInt8*` and copies the contents of the string into it. If the string is immutable, this is unnecessary \u2014 you can use `Slice(UInt8).new` to allocate a new slice and copy the contents into it, or use `Slice(UInt8).new` to allocate a new slice and copy the contents into it.",
+        "pair_idx": 71
+      },
+      {
+        "tok_sim_chosen": 0.17391304347826086,
+        "tok_sim_rejected": 0.16129032258064516,
+        "tok_lean": 0.012622720897615708,
+        "char_sim_chosen": 0.024154589371980676,
+        "char_sim_rejected": 0.34375,
+        "char_lean": -0.3195954106280193,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\narr = StaticArray(UInt8, 3).new { |i| i + 1_u8 }\nLibFoo.process(arr.to_unsafe, arr.size)\n```\n\n**NOTE**: `StaticArray` is a `struct` and must be initialized before passing to C.",
+        "pair_idx": 72
+      },
+      {
+        "tok_sim_chosen": 0.11864406779661017,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.035310734463276844,
+        "char_sim_chosen": 0.06557377049180328,
+        "char_sim_rejected": 0.09180327868852459,
+        "char_lean": -0.026229508196721305,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nvalue.not_nil!\n```\n\n**Signature:**\n```crystal\ndef not_nil!(message : String? = nil) : self\n```\n\n**Documentation:**\n\nAsserts that `self` is not `nil`. Returns `self`.\n\nRaises `NilAssertionError` if `self` is `nil`.\n\n```\n\"hello\".not_nil! # => \"hello\"\nnil.not_nil!     # raises NilAssertionError\n```",
+        "pair_idx": 73
+      }
+    ],
+    "qwen3-coder:30b": [
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0078125,
+        "char_sim_rejected": 0.22916666666666666,
+        "char_lean": -0.22135416666666666,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 0
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12093023255813953,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": -0.06088794926004229,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 1
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12962962962962962,
+        "char_sim_rejected": 0.19753086419753085,
+        "char_lean": -0.06790123456790123,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 2
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1407035175879397,
+        "char_sim_rejected": 0.24,
+        "char_lean": -0.0992964824120603,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 3
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.056338028169014086,
+        "char_sim_rejected": 0.0975609756097561,
+        "char_lean": -0.041222947440742015,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 4
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.176,
+        "char_lean": -0.176,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 5
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.040983606557377046,
+        "char_sim_rejected": 0.3333333333333333,
+        "char_lean": -0.2923497267759563,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 6
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1301775147928994,
+        "char_sim_rejected": 0.24390243902439024,
+        "char_lean": -0.11372492423149083,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 7
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1596244131455399,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": 0.03196483867745481,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 8
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.19318181818181818,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": 0.011363636363636354,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 9
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.2898550724637681,
+        "char_lean": -0.2898550724637681,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 10
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.15454545454545454,
+        "char_sim_rejected": 0.25742574257425743,
+        "char_lean": -0.10288028802880289,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 11
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12903225806451613,
+        "char_sim_rejected": 0.24242424242424243,
+        "char_lean": -0.1133919843597263,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 12
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1348314606741573,
+        "char_sim_rejected": 0.14285714285714285,
+        "char_lean": -0.00802568218298555,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 13
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0078125,
+        "char_sim_rejected": 0.1188118811881188,
+        "char_lean": -0.1109993811881188,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 14
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.35,
+        "char_lean": -0.35,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 15
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11711711711711711,
+        "char_sim_rejected": 0.225,
+        "char_lean": -0.10788288288288289,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 16
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1485148514851485,
+        "char_sim_rejected": 0.15,
+        "char_lean": -0.0014851485148514865,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 17
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008264462809917356,
+        "char_sim_rejected": 0.20588235294117646,
+        "char_lean": -0.1976178901312591,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 18
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0446927374301676,
+        "char_sim_rejected": 0.1568627450980392,
+        "char_lean": -0.11217000766787161,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 19
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.13131313131313133,
+        "char_sim_rejected": 0.23809523809523808,
+        "char_lean": -0.10678210678210676,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 20
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.02608695652173913,
+        "char_sim_rejected": 0.1956521739130435,
+        "char_lean": -0.16956521739130437,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 21
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.017543859649122806,
+        "char_sim_rejected": 0.19607843137254902,
+        "char_lean": -0.1785345717234262,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 22
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12087912087912088,
+        "char_sim_rejected": 0.2857142857142857,
+        "char_lean": -0.1648351648351648,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 23
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.02390438247011952,
+        "char_sim_rejected": 0.2222222222222222,
+        "char_lean": -0.19831783975210268,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 24
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.16216216216216217,
+        "char_sim_rejected": 0.14285714285714285,
+        "char_lean": 0.019305019305019322,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 25
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11320754716981132,
+        "char_sim_rejected": 0.14634146341463414,
+        "char_lean": -0.033133916244822814,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 26
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.16580310880829016,
+        "char_sim_rejected": 0.16842105263157894,
+        "char_lean": -0.002617943823288782,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 27
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008547008547008548,
+        "char_sim_rejected": 0.12903225806451613,
+        "char_lean": -0.12048524951750758,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 28
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.10891089108910891,
+        "char_sim_rejected": 0.28169014084507044,
+        "char_lean": -0.17277924975596154,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 29
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1218274111675127,
+        "char_sim_rejected": 0.14634146341463414,
+        "char_lean": -0.024514052247121443,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 30
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.10695187165775401,
+        "char_sim_rejected": 0.1875,
+        "char_lean": -0.08054812834224599,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 31
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12698412698412698,
+        "char_sim_rejected": 0.32142857142857145,
+        "char_lean": -0.19444444444444448,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 32
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.024691358024691357,
+        "char_sim_rejected": 0.2608695652173913,
+        "char_lean": -0.23617820719269994,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 33
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1348314606741573,
+        "char_sim_rejected": 0.2647058823529412,
+        "char_lean": -0.12987442167878388,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 34
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1004566210045662,
+        "char_sim_rejected": 0.25,
+        "char_lean": -0.1495433789954338,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 35
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.017316017316017316,
+        "char_sim_rejected": 0.10810810810810811,
+        "char_lean": -0.0907920907920908,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 36
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.024489795918367346,
+        "char_sim_rejected": 0.21951219512195122,
+        "char_lean": -0.19502239920358388,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 37
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.18994413407821228,
+        "char_sim_rejected": 0.3582089552238806,
+        "char_lean": -0.1682648211456683,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 38
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.15053763440860216,
+        "char_lean": -0.15053763440860216,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 39
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.03137254901960784,
+        "char_sim_rejected": 0.18518518518518517,
+        "char_lean": -0.15381263616557733,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 40
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.14354066985645933,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": 0.015881095388374233,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 41
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.05737704918032787,
+        "char_sim_rejected": 0.1694915254237288,
+        "char_lean": -0.11211447624340093,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 42
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.18867924528301888,
+        "char_lean": -0.18867924528301888,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 43
+      },
+      {
+        "tok_sim_chosen": 0.047619047619047616,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.047619047619047616,
+        "char_sim_chosen": 0.016597510373443983,
+        "char_sim_rejected": 0.10989010989010989,
+        "char_lean": -0.09329259951666591,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 44
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.22580645161290322,
+        "char_lean": -0.22580645161290322,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 45
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.13559322033898305,
+        "char_lean": -0.13559322033898305,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 46
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.006514657980456026,
+        "char_sim_rejected": 0.13636363636363635,
+        "char_lean": -0.12984897838318032,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 47
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.12727272727272726,
+        "char_sim_rejected": 0.15625,
+        "char_lean": -0.02897727272727274,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 48
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.014652014652014652,
+        "char_sim_rejected": 0.13953488372093023,
+        "char_lean": -0.12488286906891558,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 49
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.013201320132013201,
+        "char_sim_rejected": 0.24793388429752067,
+        "char_lean": -0.23473256416550747,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 50
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1761006289308176,
+        "char_sim_rejected": 0.24489795918367346,
+        "char_lean": -0.06879733025285587,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 51
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.06818181818181818,
+        "char_sim_rejected": 0.09375,
+        "char_lean": -0.025568181818181823,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 52
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.006493506493506494,
+        "char_sim_rejected": 0.2558139534883721,
+        "char_lean": -0.2493204469948656,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 53
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.062111801242236024,
+        "char_sim_rejected": 0.13636363636363635,
+        "char_lean": -0.07425183512140032,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 54
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.04669260700389105,
+        "char_sim_rejected": 0.17543859649122806,
+        "char_lean": -0.128745989487337,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 55
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.030395136778115502,
+        "char_sim_rejected": 0.08,
+        "char_lean": -0.049604863221884496,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 56
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.11267605633802817,
+        "char_sim_rejected": 0.32142857142857145,
+        "char_lean": -0.20875251509054327,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 57
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.1744186046511628,
+        "char_sim_rejected": 0.05263157894736842,
+        "char_lean": 0.12178702570379438,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 58
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.020689655172413793,
+        "char_sim_rejected": 0.23255813953488372,
+        "char_lean": -0.2118684843624699,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 59
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.019417475728155338,
+        "char_sim_rejected": 0.20930232558139536,
+        "char_lean": -0.18988484985324003,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 60
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.15204678362573099,
+        "char_sim_rejected": 0.08571428571428572,
+        "char_lean": 0.06633249791144527,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 61
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.18439716312056736,
+        "char_sim_rejected": 0.08888888888888889,
+        "char_lean": 0.09550827423167847,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 62
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.09345794392523364,
+        "char_sim_rejected": 0.14893617021276595,
+        "char_lean": -0.05547822628753231,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 63
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.008547008547008548,
+        "char_sim_rejected": 0.2682926829268293,
+        "char_lean": -0.2597456743798207,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 64
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0,
+        "char_sim_rejected": 0.0761904761904762,
+        "char_lean": -0.0761904761904762,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 65
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.023076923076923078,
+        "char_sim_rejected": 0.1276595744680851,
+        "char_lean": -0.10458265139116202,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 66
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.01639344262295082,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": -0.165424739195231,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 67
+      },
+      {
+        "tok_sim_chosen": 0.10666666666666667,
+        "tok_sim_rejected": 0.03076923076923077,
+        "tok_lean": 0.0758974358974359,
+        "char_sim_chosen": 0.1586021505376344,
+        "char_sim_rejected": 0.03536977491961415,
+        "char_lean": 0.12323237561802025,
+        "text": "In Crystal, you would write it exactly the same way:\n\n```crystal\nname.length\n```\n\nCrystal is statically-typed but inherits Ruby's syntax for method calls, so `name.length` works identically whether `name` is a `String` or any other type that implements a `length` method.\n\nIf you need to be explicit about the type (which is often the case in Crystal), you'd write:\n\n```crystal\nname : String\nname.length\n```\n\nOr if you're working with a variable that might be `nil`:\n\n```crystal\nname : String?\nname&.length  # Safe navigation\n```\n\nBut the basic `name.length` syntax is identical to Ruby's, as Crystal maintains Ruby's method call syntax while adding static typing.",
+        "pair_idx": 68
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.0311284046692607,
+        "char_sim_rejected": 0.14634146341463414,
+        "char_lean": -0.11521305874537344,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 69
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.01675977653631285,
+        "char_sim_rejected": 0.07547169811320754,
+        "char_lean": -0.0587119215768947,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 70
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.006711409395973154,
+        "char_sim_rejected": 0.13953488372093023,
+        "char_lean": -0.13282347432495709,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 71
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.025423728813559324,
+        "char_sim_rejected": 0.20512820512820512,
+        "char_lean": -0.1797044763146458,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 72
+      },
+      {
+        "tok_sim_chosen": 0.0,
+        "tok_sim_rejected": 0.0,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.01749271137026239,
+        "char_sim_rejected": 0.21052631578947367,
+        "char_lean": -0.19303360441921127,
+        "text": "<PARSE_ERROR 'response'>",
+        "pair_idx": 73
+      }
+    ]
+  }
+}

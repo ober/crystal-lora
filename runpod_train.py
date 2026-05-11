@@ -36,7 +36,7 @@ if MODE == "pipeline":
     POD_NAME = "crystal-train-pipeline"
     GPU_COUNT = 1
     CONTAINER_DISK_GB = 200              # base + previous_merged + new_merged peak
-    HOURLY_RATE = 2.10                   # 1× A100-SXM4 80GB community price
+    HOURLY_RATE = 3.99                   # 1× H200 SXM 141GB community price
     LOCAL_CONFIG_NAME = None             # pipeline pushes its own per-stage configs
 elif MODE == "lora":
     POD_NAME = "crystal-train-lora"
@@ -47,8 +47,8 @@ elif MODE == "lora":
 else:
     sys.exit(f"Unknown CRYSTAL_MODE={MODE!r} (expected: pipeline, lora)")
 
-# Pipeline mode uses SXM4 (PCIe community capacity is intermittent for long jobs).
-GPU_TYPE = "NVIDIA A100-SXM4-80GB" if MODE == "pipeline" else "NVIDIA A100 80GB PCIe"
+# Pipeline mode: H200 141GB single card — Qwen3-30B-A3B MoE saturates 80GB on forward+backward.
+GPU_TYPE = "NVIDIA H200" if MODE == "pipeline" else "NVIDIA A100 80GB PCIe"
 IMAGE_NAME = "axolotlai/axolotl-cloud-uv:main-py3.12-cu128-2.10.0"
 VOLUME_GB = 0                            # no persistent volume; we scp out
 
@@ -68,7 +68,7 @@ PIPELINE_STAGES = [
     {
         "name": "cpt",
         "config_local": "axolotl_crystal_cpt.yaml",
-        "data_local": "cpt_corpus.jsonl",
+        "data_local": "cpt_corpus_v3_merged.jsonl",
         "data_remote": f"{REMOTE_WORKSPACE}/data/cpt.jsonl",
         "output_dir": f"{REMOTE_WORKSPACE}/output_cpt",
         "merged_dir": f"{REMOTE_WORKSPACE}/cpt_merged",
@@ -78,7 +78,7 @@ PIPELINE_STAGES = [
     {
         "name": "sft",
         "config_local": "axolotl_crystal_sft.yaml",
-        "data_local": "training_data_together.jsonl",
+        "data_local": "sft_v3_mined.jsonl",
         "data_remote": f"{REMOTE_WORKSPACE}/data/sft.jsonl",
         "output_dir": f"{REMOTE_WORKSPACE}/output_sft",
         "merged_dir": f"{REMOTE_WORKSPACE}/sft_merged",
@@ -88,7 +88,7 @@ PIPELINE_STAGES = [
     {
         "name": "dpo",
         "config_local": "axolotl_crystal_dpo.yaml",
-        "data_local": "dpo_pairs.jsonl",
+        "data_local": "dpo_pairs_v3.jsonl",
         "data_remote": f"{REMOTE_WORKSPACE}/data/dpo.jsonl",
         "output_dir": f"{REMOTE_WORKSPACE}/output_dpo",
         "merged_dir": f"{REMOTE_WORKSPACE}/dpo_merged",
@@ -371,6 +371,7 @@ def _run_one_stage(state, stage):
     rm_prev = f"rm -rf {stage['previous_merged']}; " if stage["previous_merged"] else ""
     bash = (
         "export PATH=/workspace/axolotl-venv/bin:$PATH; "
+        "export PYTORCH_ALLOC_CONF=expandable_segments:True; "
         "set -o pipefail; "
         f"axolotl train {remote_cfg} 2>&1 | tee {log_file}; "
         "te=${PIPESTATUS[0]}; "

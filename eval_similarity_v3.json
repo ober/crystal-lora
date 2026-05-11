@@ -1,0 +1,2250 @@
+{
+  "sums": {
+    "crystal-qwen-v3": {
+      "tok_lean": 6.5465226656754645,
+      "char_lean": 3.013408188672513,
+      "wins_chosen": 66,
+      "wins_rejected": 7
+    },
+    "jaimef/crystal-qwen3.6-30b": {
+      "tok_lean": 2.345229597498062,
+      "char_lean": -0.9059256910893374,
+      "wins_chosen": 52,
+      "wins_rejected": 22
+    },
+    "qwen3-coder:30b": {
+      "tok_lean": 6.076739343092799,
+      "char_lean": 3.107152194607964,
+      "wins_chosen": 74,
+      "wins_rejected": 0
+    }
+  },
+  "results": {
+    "crystal-qwen-v3": [
+      {
+        "tok_sim_chosen": 0.3469387755102041,
+        "tok_sim_rejected": 0.175,
+        "tok_lean": 0.1719387755102041,
+        "char_sim_chosen": 0.2815884476534296,
+        "char_sim_rejected": 0.2639593908629442,
+        "char_lean": 0.01762905679048543,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass User\n  getter name : String\n\n  def initialize(@name : String)\n  end\nend\n```\n\nIn Crystal, you must explicitly declare the type of each instance variable. The `getter` macro creates a read-only accessor, and `@name : String` in the parameter automatically assigns it to the instance variable.",
+        "pair_idx": 0
+      },
+      {
+        "tok_sim_chosen": 0.30612244897959184,
+        "tok_sim_rejected": 0.06521739130434782,
+        "tok_lean": 0.240905057675244,
+        "char_sim_chosen": 0.5190562613430127,
+        "char_sim_rejected": 0.15012106537530268,
+        "char_lean": 0.3689351959677101,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Account\n  getter id : Int64\n  setter secret : String\n\n  def initialize(@id : Int64, @secret : String)\n  end\nend\n```\n\nIn Crystal, you must explicitly declare types for instance variables (`@id`, `@secret`) and use `getter`/`setter` macros instead of `attr_*`. The `initialize` method handles construction with type-safe parameters.",
+        "pair_idx": 1
+      },
+      {
+        "tok_sim_chosen": 0.3333333333333333,
+        "tok_sim_rejected": 0.25,
+        "tok_lean": 0.08333333333333331,
+        "char_sim_chosen": 0.5611814345991561,
+        "char_sim_rejected": 0.24778761061946902,
+        "char_lean": 0.3133938239796871,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Box(T)\n  getter value : T\n\n  def initialize(@value : T)\n  end\nend\n```\n\nKey differences: explicit type parameter `T` on the class, `getter` declaration for the instance variable, and `@value : T` in the parameter to declare and initialize in one step.",
+        "pair_idx": 2
+      },
+      {
+        "tok_sim_chosen": 0.28888888888888886,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.20555555555555555,
+        "char_sim_chosen": 0.3973509933774834,
+        "char_sim_rejected": 0.17105263157894737,
+        "char_lean": 0.22629836179853605,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr = [1, 2]\n```\n\nOr if you need to build it dynamically:\n\n```crystal\narr = [] of Int32\narr << 1\narr << 2\n```\n\nCrystal's array literals are more concise than Ruby's, and explicit type annotations (`of Type`) are required when the element type cannot be inferred.",
+        "pair_idx": 3
+      },
+      {
+        "tok_sim_chosen": 0.20588235294117646,
+        "tok_sim_rejected": 0.12,
+        "tok_lean": 0.08588235294117647,
+        "char_sim_chosen": 0.41379310344827586,
+        "char_sim_rejected": 0.1559633027522936,
+        "char_lean": 0.25782980069598227,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nCrystal requires explicit type annotations for empty collection literals. The `of` syntax declares the key-value type mapping.",
+        "pair_idx": 4
+      },
+      {
+        "tok_sim_chosen": 0.391304347826087,
+        "tok_sim_rejected": 0.325,
+        "tok_lean": 0.06630434782608696,
+        "char_sim_chosen": 0.05537459283387622,
+        "char_sim_rejected": 0.4008714596949891,
+        "char_lean": -0.3454968668611129,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"spec\"\n\nstruct User\n  getter name : String\n\n  def initialize(@name : String)\n  end\nend\n\ndescribe User do\n  it \"has a name\" do\n    user = User.new(\"Ada\")\n    user.name.should eq(\"Ada\")\n  end\nend\n```\n\nKey differences: `struct` (value type), `getter`/`property` (not `attr_*`), `should` (not `expect`), and `String` type annotation required.",
+        "pair_idx": 5
+      },
+      {
+        "tok_sim_chosen": 0.37209302325581395,
+        "tok_sim_rejected": 0.18181818181818182,
+        "tok_lean": 0.19027484143763213,
+        "char_sim_chosen": 0.08016032064128256,
+        "char_sim_rejected": 0.18122977346278318,
+        "char_lean": -0.10106945282150062,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nchannel = Channel(Nil).new\nspawn do\n  do_work\n  channel.send(nil)\nend\nchannel.receive\n```\n\nCrystal uses `spawn` instead of `Thread.new`, and `Channel(T)` for coordination rather than `join`. The channel receives a sentinel value to signal completion.",
+        "pair_idx": 6
+      },
+      {
+        "tok_sim_chosen": 0.2558139534883721,
+        "tok_sim_rejected": 0.17142857142857143,
+        "tok_lean": 0.08438538205980067,
+        "char_sim_chosen": 0.39903846153846156,
+        "char_sim_rejected": 0.2188449848024316,
+        "char_lean": 0.18019347673602995,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nq = Channel(Int32).new\nspawn do\n  q.send(42)\nend\nputs q.receive\n```\n\nKey differences: `Channel(T)` for typed channels, `spawn` instead of `Thread.new`, `send`/`receive` instead of `<<`/`pop`, and no parentheses needed for the type argument.",
+        "pair_idx": 7
+      },
+      {
+        "tok_sim_chosen": 0.2708333333333333,
+        "tok_sim_rejected": 0.15625,
+        "tok_lean": 0.11458333333333331,
+        "char_sim_chosen": 0.4439359267734554,
+        "char_sim_rejected": 0.16974169741697417,
+        "char_lean": 0.2741942293564812,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef add(a : Int32, b : Int32) : Int32\n  a + b\nend\n```\n\nCrystal requires explicit type annotations on parameters and return types. The `Int32` type is Crystal's standard 32-bit integer; use `Int64` for 64-bit integers.",
+        "pair_idx": 8
+      },
+      {
+        "tok_sim_chosen": 0.47058823529411764,
+        "tok_sim_rejected": 0.16129032258064516,
+        "tok_lean": 0.3092979127134725,
+        "char_sim_chosen": 0.5815217391304348,
+        "char_sim_rejected": 0.2527881040892193,
+        "char_lean": 0.3287336350412155,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef initialize(@name : String, @age : Int32)\nend\n```\n\nCrystal uses `@name : String` syntax to declare and initialize an instance variable in one step. The type annotation is required.",
+        "pair_idx": 9
+      },
+      {
+        "tok_sim_chosen": 0.32608695652173914,
+        "tok_sim_rejected": 0.1935483870967742,
+        "tok_lean": 0.13253856942496495,
+        "char_sim_chosen": 0.014234875444839857,
+        "char_sim_rejected": 0.2777777777777778,
+        "char_lean": -0.2635429023329379,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"json\"\n\njson_str = %({\"name\": \"Alice\"})\ndata = JSON.parse(json_str)\nputs data[\"name\"]\n```\n\nKey differences: use `require` for stdlib modules, `%()` for string literals, and `JSON.parse` returns a `JSON::Any` type that supports `[]` access.",
+        "pair_idx": 10
+      },
+      {
+        "tok_sim_chosen": 0.30612244897959184,
+        "tok_sim_rejected": 0.2564102564102564,
+        "tok_lean": 0.049712192569335456,
+        "char_sim_chosen": 0.4703703703703704,
+        "char_sim_rejected": 0.35629453681710216,
+        "char_lean": 0.11407583355326822,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef greet(name : String) : String\n  raise ArgumentError.new(\"blank\") if name.empty?\n  \"Hi, #{name}\"\nend\n```\n\nKey differences:\n- Type annotations on parameters and return type are required\n- Use `ArgumentError.new` instead of `ArgumentError, \"message\"`\n- Crystal's type system requires explicit types for correctness",
+        "pair_idx": 11
+      },
+      {
+        "tok_sim_chosen": 0.2564102564102564,
+        "tok_sim_rejected": 0.22580645161290322,
+        "tok_lean": 0.030603804797353168,
+        "char_sim_chosen": 0.4876712328767123,
+        "char_sim_rejected": 0.2826086956521739,
+        "char_lean": 0.20506253722453843,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nbegin\n  risky\nrescue ex\n  puts ex.message\nend\n```\n\nCrystal uses `ex` (or any identifier) instead of `=> e` for the exception variable. The `rescue` clause without a type restriction catches all exceptions.",
+        "pair_idx": 12
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.125,
+        "tok_lean": 0.07500000000000001,
+        "char_sim_chosen": 0.2619647355163728,
+        "char_sim_rejected": 0.13793103448275862,
+        "char_lean": 0.12403370103361416,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nputs foo.try(&.bar).try(&.baz)\n```\n\nCrystal uses `try` with a block for safe chaining instead of the `&.` operator. The `&.method` syntax is a block shorthand that passes the value as an argument to the method.",
+        "pair_idx": 13
+      },
+      {
+        "tok_sim_chosen": 0.27450980392156865,
+        "tok_sim_rejected": 0.23684210526315788,
+        "tok_lean": 0.03766769865841077,
+        "char_sim_chosen": 0.022018348623853212,
+        "char_sim_rejected": 0.2153846153846154,
+        "char_lean": -0.19336626676076218,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef lookup(key : String) : String?\n  @cache[key]?.try &.upcase\nend\n```\n\nKey differences:\n- Type annotations on `key` and return type (`String?`)\n- `@cache[key]?` returns `nil` if missing (no explicit `has_key?` needed)\n- `try` chains safely \u2014 only calls `upcase` if the value exists",
+        "pair_idx": 14
+      },
+      {
+        "tok_sim_chosen": 0.26666666666666666,
+        "tok_sim_rejected": 0.11764705882352941,
+        "tok_lean": 0.14901960784313725,
+        "char_sim_chosen": 0.049429657794676805,
+        "char_sim_rejected": 0.17174515235457063,
+        "char_lean": -0.12231549455989382,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nabstract struct Animal\n  abstract def speak : String\nend\n```\n\nKey differences:\n- `abstract struct` (value type, no inheritance needed)\n- Explicit return type `: String` (required in Crystal)\n- No `self.` prefix on abstract methods\n- `abstract` is required on the type itself",
+        "pair_idx": 15
+      },
+      {
+        "tok_sim_chosen": 0.2830188679245283,
+        "tok_sim_rejected": 0.09090909090909091,
+        "tok_lean": 0.19210977701543738,
+        "char_sim_chosen": 0.4427767354596623,
+        "char_sim_rejected": 0.18414322250639387,
+        "char_lean": 0.2586335129532684,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nlib LibC\n  fun puts(x0 : Char*) : Int32\nend\n```\n\nCrystal uses `lib` blocks inside a `Lib` module, with explicit type names like `Char*` for pointers and `Int32` for integers. The `extern \"C\"` and `attach_function` syntax is specific to Ruby's FFI \u2014 Crystal's `lib` syntax is more type-safe and idiomatic.",
+        "pair_idx": 16
+      },
+      {
+        "tok_sim_chosen": 0.3170731707317073,
+        "tok_sim_rejected": 0.25,
+        "tok_lean": 0.06707317073170732,
+        "char_sim_chosen": 0.5155925155925156,
+        "char_sim_rejected": 0.31197771587743733,
+        "char_lean": 0.2036147997150783,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Cache\n  @@instance : Cache? = nil\n\n  def self.instance : Cache\n    @@instance ||= Cache.new\n  end\nend\n```\n\nCrystal requires explicit type annotations on class variables (`@@instance : Cache?`) and uses `: Cache` return type annotation on the method. The `?` makes it nilable.",
+        "pair_idx": 17
+      },
+      {
+        "tok_sim_chosen": 0.19642857142857142,
+        "tok_sim_rejected": 0.13953488372093023,
+        "tok_lean": 0.056893687707641194,
+        "char_sim_chosen": 0.12020033388981637,
+        "char_sim_rejected": 0.2023529411764706,
+        "char_lean": -0.08215260728665423,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef transform(xs : Array(T), &block : T -> U) : Array(U) forall T, U\n  xs.map { |x| yield x }\nend\n```\n\nKey differences:\n- Type parameters are specified with `forall T, U` after the method name\n- Block parameter syntax uses `&block : T -> U` (no implicit `&`)\n- Return type annotation is required\n- `forall` declares type variables for generic methods",
+        "pair_idx": 18
+      },
+      {
+        "tok_sim_chosen": 0.275,
+        "tok_sim_rejected": 0.20689655172413793,
+        "tok_lean": 0.0681034482758621,
+        "char_sim_chosen": 0.4254278728606357,
+        "char_sim_rejected": 0.19217081850533807,
+        "char_lean": 0.23325705435529764,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nh = Hash(String, Int32).new(0)\nh[\"x\"] += 1\n```\n\nCrystal requires explicit type parameters for generic collections. The `new(0)` default value syntax is the same, but the type annotation `Hash(String, Int32)` is mandatory.",
+        "pair_idx": 19
+      },
+      {
+        "tok_sim_chosen": 0.2926829268292683,
+        "tok_sim_rejected": 0.14285714285714285,
+        "tok_lean": 0.14982578397212543,
+        "char_sim_chosen": 0.4173027989821883,
+        "char_sim_rejected": 0.1518987341772152,
+        "char_lean": 0.26540406480497314,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr = Array(Int32).new(5)\n```\n\nIn Crystal, you must specify the element type for generic collections. The `new` method creates an array with 5 default-initialized elements (0 for Int32).",
+        "pair_idx": 20
+      },
+      {
+        "tok_sim_chosen": 0.14545454545454545,
+        "tok_sim_rejected": 0.13636363636363635,
+        "tok_lean": 0.009090909090909094,
+        "char_sim_chosen": 0.028119507908611598,
+        "char_sim_rejected": 0.19489559164733178,
+        "char_lean": -0.1667760837387202,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass User\n  getter attrs : Hash(String, String)\n\n  def initialize(@attrs : Hash(String, String))\n  end\n\n  def [](key : String) : String\n    @attrs[key]\n  end\nend\n```\n\nCrystal doesn't have `method_missing` \u2014 use explicit getters/setters or `[]` instead. Type all instance variables with `@name : Type` and provide a constructor that assigns them.",
+        "pair_idx": 21
+      },
+      {
+        "tok_sim_chosen": 0.19117647058823528,
+        "tok_sim_rejected": 0.057692307692307696,
+        "tok_lean": 0.13348416289592757,
+        "char_sim_chosen": 0.08813559322033898,
+        "char_sim_rejected": 0.12106537530266344,
+        "char_lean": -0.03292978208232446,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nname : String? = nil\nputs name.try(&.size)\n```\n\n**Signature:**\n```crystal\ndef try(& : T -> _)\nend\n```\n\n**Documentation:**\n\nYields `self`. `Nil` overrides this method and doesn't yield.\n\nThis method is useful for dealing with nilable types, to safely\nperform operations only when the value is not `nil`.\n\n```\n# First program argument in downcase, or nil\nARGV[0]?.try &.downcase\n```",
+        "pair_idx": 22
+      },
+      {
+        "tok_sim_chosen": 0.19642857142857142,
+        "tok_sim_rejected": 0.11363636363636363,
+        "tok_lean": 0.08279220779220779,
+        "char_sim_chosen": 0.35714285714285715,
+        "char_sim_rejected": 0.14906832298136646,
+        "char_lean": 0.2080745341614907,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nenum Color\n  Red\n  Green\nend\n```\n\nCrystal's `enum` is value-based by default (unlike C-style enums). Each member automatically receives an underlying `Int32` value starting from 0. You can explicitly set values using `=` if needed, but it's usually unnecessary.",
+        "pair_idx": 23
+      },
+      {
+        "tok_sim_chosen": 0.1206896551724138,
+        "tok_sim_rejected": 0.027777777777777776,
+        "tok_lean": 0.09291187739463602,
+        "char_sim_chosen": 0.059322033898305086,
+        "char_sim_rejected": 0.12030075187969924,
+        "char_lean": -0.060978717981394155,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ngreet(\"world\")\n```\n\nCrystal doesn't have dynamic dispatch via symbol-to-method lookup. Direct method calls are preferred and more efficient. Use function pointers or `no_return` if you need true dynamic dispatch.",
+        "pair_idx": 24
+      },
+      {
+        "tok_sim_chosen": 0.29411764705882354,
+        "tok_sim_rejected": 0.03571428571428571,
+        "tok_lean": 0.25840336134453784,
+        "char_sim_chosen": 0.3380281690140845,
+        "char_sim_rejected": 0.07228915662650602,
+        "char_lean": 0.26573901238757847,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nno equivalent \u2014 use compile-time macros instead\n```\n\n**Explanation:**\n\nCrystal has no runtime `eval` \u2014 it compiles to native code. Use `{% %}` compile-time macros for code generation at compile time.",
+        "pair_idx": 25
+      },
+      {
+        "tok_sim_chosen": 0.16666666666666666,
+        "tok_sim_rejected": 0.075,
+        "tok_lean": 0.09166666666666666,
+        "char_sim_chosen": 0.41541755888650966,
+        "char_sim_rejected": 0.20512820512820512,
+        "char_lean": 0.21028935375830454,
+        "text": "Here's the Crystal version:\n\n```crystal\nrequire \"./user\"\nrequire \"../lib/helper\"\n```\n\nCrystal uses the same relative path syntax as Ruby, but the language requires explicit type annotations on instance variables and method parameters. Use `getter`, `setter`, and `property` for accessors instead of `attr_reader`, `attr_writer`, and `attr_accessor`.",
+        "pair_idx": 26
+      },
+      {
+        "tok_sim_chosen": 0.2222222222222222,
+        "tok_sim_rejected": 0.15789473684210525,
+        "tok_lean": 0.06432748538011696,
+        "char_sim_chosen": 0.46511627906976744,
+        "char_sim_rejected": 0.33066666666666666,
+        "char_lean": 0.13444961240310077,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"mutex\"\n\nclass Counter\n  @mutex = Mutex.new\n  @counter = 0\n\n  def increment : Nil\n    @mutex.synchronize { @counter += 1 }\n  end\nend\n```\n\nKey differences: `Mutex` is in the stdlib, use `@mutex.synchronize` directly on the instance variable, and type the method return as `Nil`.",
+        "pair_idx": 27
+      },
+      {
+        "tok_sim_chosen": 0.3469387755102041,
+        "tok_sim_rejected": 0.2702702702702703,
+        "tok_lean": 0.07666850523993379,
+        "char_sim_chosen": 0.3724696356275304,
+        "char_sim_rejected": 0.31728045325779036,
+        "char_lean": 0.05518918236974002,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Box(T)\n  getter value : T\n\n  def initialize(@value : T)\n  end\nend\n\nb = Box(Int32).new(1)\n```\n\nKey differences: explicit generic parameter `T`, type annotation on `@value`, and `getter` declaration. The `getter` macro creates a read-only accessor method.",
+        "pair_idx": 28
+      },
+      {
+        "tok_sim_chosen": 0.2222222222222222,
+        "tok_sim_rejected": 0.08888888888888889,
+        "tok_lean": 0.1333333333333333,
+        "char_sim_chosen": 0.23853211009174313,
+        "char_sim_rejected": 0.1932367149758454,
+        "char_lean": 0.045295395115897724,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nuser = find_user(id).not_nil!\nputs user.name\n```\n\nOr better yet, use `try` to handle the nil case safely:\n\n```crystal\nif user = find_user(id)\n  puts user.name\nend\n```\n\nThe key differences: `not_nil!` unwraps an `Nillable` type, `try` chains operations on nullable values, and explicit type annotations are required on method parameters and return types.",
+        "pair_idx": 29
+      },
+      {
+        "tok_sim_chosen": 0.29545454545454547,
+        "tok_sim_rejected": 0.22857142857142856,
+        "tok_lean": 0.0668831168831169,
+        "char_sim_chosen": 0.49537037037037035,
+        "char_sim_rejected": 0.334384858044164,
+        "char_lean": 0.16098551232620634,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef info(**opts) : Nil\n  puts opts[:name]\nend\n\ninfo(name: \"Ada\")\n```\n\nCrystal uses `**opts` for named arguments and `: Type` for explicit return types. The `?` suffix on a type name (like `String?`) represents a union with `Nil`.",
+        "pair_idx": 30
+      },
+      {
+        "tok_sim_chosen": 0.34210526315789475,
+        "tok_sim_rejected": 0.2903225806451613,
+        "tok_lean": 0.051782682512733436,
+        "char_sim_chosen": 0.5,
+        "char_sim_rejected": 0.38605898123324395,
+        "char_lean": 0.11394101876675605,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Logger\n  @@instance : Logger? = nil\n\n  def self.global : Logger\n    @@instance ||= Logger.new\n  end\nend\n```\n\nKey differences: explicit `: Logger?` type annotation on the class variable, explicit return type `: Logger` on the method, and `String?` instead of `String | Nil`.",
+        "pair_idx": 31
+      },
+      {
+        "tok_sim_chosen": 0.3055555555555556,
+        "tok_sim_rejected": 0.2222222222222222,
+        "tok_lean": 0.08333333333333337,
+        "char_sim_chosen": 0.3076923076923077,
+        "char_sim_rejected": 0.26229508196721313,
+        "char_lean": 0.04539722572509458,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\narr.first?  # returns T | Nil\n```\n\nIn Crystal, `first?` returns the first element or `nil` if the collection is empty. Use `first` alone if you want an exception on empty collections.",
+        "pair_idx": 32
+      },
+      {
+        "tok_sim_chosen": 0.27450980392156865,
+        "tok_sim_rejected": 0.22580645161290322,
+        "tok_lean": 0.04870335230866543,
+        "char_sim_chosen": 0.23275862068965517,
+        "char_sim_rejected": 0.296551724137931,
+        "char_lean": -0.06379310344827585,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Cat < Animal\n  def speak : String\n    \"meow\"\n  end\nend\n```\n\nCrystal requires explicit return type annotations on methods. The `: String` return type is mandatory in Crystal, unlike Ruby's duck-typed dynamic typing.",
+        "pair_idx": 33
+      },
+      {
+        "tok_sim_chosen": 0.25,
+        "tok_sim_rejected": 0.25,
+        "tok_lean": 0.0,
+        "char_sim_chosen": 0.43902439024390244,
+        "char_sim_rejected": 0.25806451612903225,
+        "char_lean": 0.1809598741148702,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nputs (foo.responds_to?(:bar) ? foo.bar : \"n/a\").as(String | Int32)\n```\n\nOr more cleanly with `try`:\n\n```crystal\nputs foo.bar?.try(&.to_s) || \"n/a\"\n```\n\nThe key differences: use `responds_to?` (not `respond_to?`), cast with `.as()`, and use `try` with `&.` for safe method chaining.",
+        "pair_idx": 34
+      },
+      {
+        "tok_sim_chosen": 0.18867924528301888,
+        "tok_sim_rejected": 0.075,
+        "tok_lean": 0.11367924528301888,
+        "char_sim_chosen": 0.3572679509632224,
+        "char_sim_rejected": 0.14814814814814814,
+        "char_lean": 0.20911980281507425,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\npool = Channel(Nil).new(4)\n4.times do\n  spawn do\n    loop { Channel(Nil).receive }\n  end\nend\npool.send(nil)\n```\n\nCrystal's concurrency model uses `spawn` for lightweight fibers and `Channel` for coordination. The `Channel(Nil).new(capacity)` creates a bounded channel, and `spawn` launches a fiber. The loop receives from the channel to wait for work.",
+        "pair_idx": 35
+      },
+      {
+        "tok_sim_chosen": 0.26666666666666666,
+        "tok_sim_rejected": 0.13793103448275862,
+        "tok_lean": 0.12873563218390804,
+        "char_sim_chosen": 0.05527638190954774,
+        "char_sim_rejected": 0.10784313725490197,
+        "char_lean": -0.052566755345354224,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\na, b = 1, 2\n```\n\nCrystal's tuple unpacking works similarly but doesn't require an array literal \u2014 you can unpack directly from a tuple or multiple assignment.",
+        "pair_idx": 36
+      },
+      {
+        "tok_sim_chosen": 0.20754716981132076,
+        "tok_sim_rejected": 0.23684210526315788,
+        "tok_lean": -0.029294935451837117,
+        "char_sim_chosen": 0.1076923076923077,
+        "char_sim_rejected": 0.3137254901960784,
+        "char_lean": -0.20603318250377073,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nexpect(user.name).to eq \"Ada\"\nexpect(user.age).to be > 18\n```\n\nCrystal uses the same `expect(...).to` syntax as RSpec, but with stricter type checking. The only difference is that Crystal requires explicit type annotations on instance variables and method arguments.",
+        "pair_idx": 37
+      },
+      {
+        "tok_sim_chosen": 0.2222222222222222,
+        "tok_sim_rejected": 0.125,
+        "tok_lean": 0.09722222222222221,
+        "char_sim_chosen": 0.5341246290801187,
+        "char_sim_rejected": 0.19555555555555557,
+        "char_lean": 0.3385690735245631,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nexpect_raises(IO::Error) { risky! }\n```\n\nUse `expect_raises(ExceptionType)` from the spec library to assert that a block raises a specific exception.",
+        "pair_idx": 38
+      },
+      {
+        "tok_sim_chosen": 0.1694915254237288,
+        "tok_sim_rejected": 0.11904761904761904,
+        "tok_lean": 0.050443906376109765,
+        "char_sim_chosen": 0.0326530612244898,
+        "char_sim_rejected": 0.23684210526315788,
+        "char_lean": -0.20418904403866808,
+        "text": "Here's the Crystal-idiomatic form using `setup`/`teardown` blocks:\n\n```crystal\nclass MyTest\n  include Spec\n\n  setup do\n    repo = Repo.new\n    yield repo\n  end\n\n  teardown do |repo|\n    repo.close\n  end\n\n  it \"works\" do\n    setup do |repo|\n      repo.do_something\n    end\n  end\nend\n```\n\nOr for simpler cases, use `Spec.before_each`/`Spec.after_each` with explicit type annotations:\n\n```crystal\nclass MyTest\n  include Spec\n\n  @@repo : Repo?\n\n  Spec.before_each do\n    @@repo = Repo.new\n  end\n\n  Spec.after_each do\n    if repo = @@repo\n      repo.close\n    end\n  end\nend\n```",
+        "pair_idx": 39
+      },
+      {
+        "tok_sim_chosen": 0.27586206896551724,
+        "tok_sim_rejected": 0.21739130434782608,
+        "tok_lean": 0.05847076461769116,
+        "char_sim_chosen": 0.1758957654723127,
+        "char_sim_rejected": 0.2955032119914347,
+        "char_lean": -0.119607446519122,
+        "text": "Here's the idiomatic Crystal version using `Spec` and `subject`:\n\n```crystal\nrequire \"spec\"\n\nclass User\n  getter name : String\n\n  def initialize(@name : String)\n  end\nend\n\ndescribe \"User\" do\n  subject = User.new(\"Ada\")\n\n  it \"has a name\" do\n    subject.name.should eq(\"Ada\")\n  end\nend\n```\n\nKey differences: `subject` for shared test objects, `should` for assertions, and explicit type annotations on `getter` properties.",
+        "pair_idx": 40
+      },
+      {
+        "tok_sim_chosen": 0.2222222222222222,
+        "tok_sim_rejected": 0.13043478260869565,
+        "tok_lean": 0.09178743961352656,
+        "char_sim_chosen": 0.4450402144772118,
+        "char_sim_rejected": 0.1895734597156398,
+        "char_lean": 0.255466754761572,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nnow = Time.utc\nputs now\n```\n\nCrystal's `Time.utc` is the standard way to get the current UTC time. Use `Time.local` if you need the local timezone instead.",
+        "pair_idx": 41
+      },
+      {
+        "tok_sim_chosen": 0.1951219512195122,
+        "tok_sim_rejected": 0.2,
+        "tok_lean": -0.004878048780487809,
+        "char_sim_chosen": 0.09026128266033254,
+        "char_sim_rejected": 0.2457627118644068,
+        "char_lean": -0.15550142920407425,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nTime.utc\nTime.parse(\"2024-01-15\", \"%F\", Time::Location::UTC)\n```\n\nUse `Time` instead of `Date`, and the `Time::Location::UTC` parameter for explicit time zone handling.",
+        "pair_idx": 42
+      },
+      {
+        "tok_sim_chosen": 0.16279069767441862,
+        "tok_sim_rejected": 0.19230769230769232,
+        "tok_lean": -0.029516994633273702,
+        "char_sim_chosen": 0.05759162303664921,
+        "char_sim_rejected": 0.2679425837320574,
+        "char_lean": -0.2103509606954082,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\n2.minutes.ago\n3.days.from_now\n```\n\nCrystal's stdlib extends `Int` with time span methods. Use `ago` for past times and `from_now` for future times.",
+        "pair_idx": 43
+      },
+      {
+        "tok_sim_chosen": 0.4117647058823529,
+        "tok_sim_rejected": 0.26666666666666666,
+        "tok_lean": 0.14509803921568626,
+        "char_sim_chosen": 0.3542116630669546,
+        "char_sim_rejected": 0.33865814696485624,
+        "char_lean": 0.015553516102098375,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"http/client\"\n\nbody = HTTP::Client.get(\"https://example.com\").body\n```\n\nCrystal's stdlib uses `HTTP::Client` instead of `Net::HTTP`, and the `get` method returns a `Response` object with a `.body` property.",
+        "pair_idx": 44
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.1388888888888889,
+        "tok_lean": 0.061111111111111116,
+        "char_sim_chosen": 0.025,
+        "char_sim_rejected": 0.12379110251450677,
+        "char_lean": -0.09879110251450676,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"process\"\n\noutput = Process.run(\"ls\", [\"-la\"], output: :inherit).output\nProcess.run(\"git\", [\"status\"], output: :inherit)\n```\n\nOr if you need the output as a string:\n\n```crystal\nrequire \"process\"\n\noutput = Process.run(\"ls\", [\"-la\"], output: Process::Redirect::Pipe).output\n```\n\nCrystal's `Process.run` is the standard way to execute shell commands, with `output: :inherit` to stream to the terminal or `output: Process::Redirect::Pipe` to capture the output.",
+        "pair_idx": 45
+      },
+      {
+        "tok_sim_chosen": 0.22727272727272727,
+        "tok_sim_rejected": 0.14814814814814814,
+        "tok_lean": 0.07912457912457913,
+        "char_sim_chosen": 0.2765957446808511,
+        "char_sim_rejected": 0.2422145328719723,
+        "char_lean": 0.034381211808878764,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nhome = ENV[\"HOME\"]?\nif home\n  puts home.upcase\nend\n```\n\nOr more concisely with the `try` method:\n\n```crystal\nif home = ENV[\"HOME\"]?\n  puts home.upcase\nend\n```\n\nCrystal requires explicit nil-checking because `ENV[key]?` returns `String | Nil`.",
+        "pair_idx": 46
+      },
+      {
+        "tok_sim_chosen": 0.21568627450980393,
+        "tok_sim_rejected": 0.23529411764705882,
+        "tok_lean": -0.019607843137254888,
+        "char_sim_chosen": 0.05647840531561462,
+        "char_sim_rejected": 0.2924281984334204,
+        "char_lean": -0.23594979311780576,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nFile.each_line(\"data.txt\") do |line|\n  puts line\nend\n```\n\nOr if you need the `File` object directly:\n\n```crystal\nFile.open(\"data.txt\") do |file|\n  file.each_line do |line|\n    puts line\n  end\nend\n```\n\nCrystal's stdlib provides convenience methods like `File.each_line` that handle the resource management for you.",
+        "pair_idx": 47
+      },
+      {
+        "tok_sim_chosen": 0.21875,
+        "tok_sim_rejected": 0.18181818181818182,
+        "tok_lean": 0.03693181818181818,
+        "char_sim_chosen": 0.458128078817734,
+        "char_sim_rejected": 0.288,
+        "char_lean": 0.170128078817734,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"file_utils\"\n\nFileUtils.glob(\"**/*.cr\").each do |path|\n  puts path\nend\n```\n\nOr more concisely with `Path`:\n\n```crystal\nrequire \"file_utils\"\n\nPath[\"**/*.cr\"].each do |path|\n  puts path\nend\n```",
+        "pair_idx": 48
+      },
+      {
+        "tok_sim_chosen": 0.2222222222222222,
+        "tok_sim_rejected": 0.09375,
+        "tok_lean": 0.1284722222222222,
+        "char_sim_chosen": 0.015267175572519083,
+        "char_sim_rejected": 0.12244897959183673,
+        "char_lean": -0.10718180401931765,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nRandom.new.rand(100)\nRandom.new(seed: 42)\n```\n\nCrystal's stdlib `Random` is a class (not a module) with instance methods. Use `Random.new` to create an instance with a custom seed, or use the module-level `Random.rand` for a default instance.",
+        "pair_idx": 49
+      },
+      {
+        "tok_sim_chosen": 0.425,
+        "tok_sim_rejected": 0.24324324324324326,
+        "tok_lean": 0.18175675675675673,
+        "char_sim_chosen": 0.37988826815642457,
+        "char_sim_rejected": 0.49577464788732395,
+        "char_lean": -0.11588637973089938,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"option_parser\"\n\nv = false\nOptionParser.parse do |parser|\n  parser.on(\"-v\", \"--verbose\") { v = true }\nend\n```\n\nKey differences: `OptionParser` is top-level, `parse` yields to a block, and you must declare `v` before use.",
+        "pair_idx": 50
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.23529411764705882,
+        "tok_lean": -0.03529411764705881,
+        "char_sim_chosen": 0.5,
+        "char_sim_rejected": 0.26666666666666666,
+        "char_lean": 0.23333333333333334,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr.find { |x| x > 10 }\n```\n\nCrystal uses `find` instead of `detect` for the same semantics.",
+        "pair_idx": 51
+      },
+      {
+        "tok_sim_chosen": 0.2727272727272727,
+        "tok_sim_rejected": 0.21212121212121213,
+        "tok_lean": 0.06060606060606058,
+        "char_sim_chosen": 0.43349753694581283,
+        "char_sim_rejected": 0.2653061224489796,
+        "char_lean": 0.16819141449683322,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\n[1, 2, 3].sum\n```\n\nOr if you need a custom operation:\n\n```crystal\n[1, 2, 3].reduce(0) { |sum, x| sum + x }\n```\n\nCrystal's stdlib provides `sum` as a convenience method on collections, avoiding the need for `inject/reduce` in simple cases.",
+        "pair_idx": 52
+      },
+      {
+        "tok_sim_chosen": 0.23728813559322035,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": 0.07062146892655369,
+        "char_sim_chosen": 0.12080536912751678,
+        "char_sim_rejected": 0.22459893048128343,
+        "char_lean": -0.10379356135376665,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr.group_by(&.kind)\n   .transform_values(&.size)\n```\n\nKey differences:\n- `&.method` syntax (block shorthand) instead of `{ |x| x.method }`\n- `&.size` works because `Array` has a `size` method (unlike Ruby's `length`)\n- Type inference handles the grouping and transformation cleanly",
+        "pair_idx": 53
+      },
+      {
+        "tok_sim_chosen": 0.2619047619047619,
+        "tok_sim_rejected": 0.0625,
+        "tok_lean": 0.19940476190476192,
+        "char_sim_chosen": 0.3014354066985646,
+        "char_sim_rejected": 0.12624584717607973,
+        "char_lean": 0.17518955952248488,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\npeople.min_by(&.age)\n```\n\nCrystal uses `&.property` syntax for method references in collection operations. The `&` operator converts the method reference into a block, and `.age` accesses the property. This is equivalent to the Ruby `&.age` syntax.",
+        "pair_idx": 54
+      },
+      {
+        "tok_sim_chosen": 0.21818181818181817,
+        "tok_sim_rejected": 0.17142857142857143,
+        "tok_lean": 0.04675324675324674,
+        "char_sim_chosen": 0.12284069097888675,
+        "char_sim_rejected": 0.205607476635514,
+        "char_lean": -0.08276678565662726,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\n[3, 1, 2].sort(&.>.id)\n```\n\nCrystal's `sort` accepts a block with the `&.` syntax for method shorthand. The `.id` method returns the value unchanged, allowing the comparison operator to work directly. This is more concise than Ruby's `{ |a, b| b <=> a }`.",
+        "pair_idx": 55
+      },
+      {
+        "tok_sim_chosen": 0.23076923076923078,
+        "tok_sim_rejected": 0.19444444444444445,
+        "tok_lean": 0.036324786324786335,
+        "char_sim_chosen": 0.17699115044247787,
+        "char_sim_rejected": 0.31511254019292606,
+        "char_lean": -0.1381213897504482,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nh = {:a => 1, :b => 2}\nh.each { |k, v| puts \"#{k}=#{v}\" }\n```\n\nCrystal uses `=>` for hash literals instead of `:`, and the `each` iteration pattern is the same. The type system will infer the hash type as `Hash(Symbol, Int32)`.",
+        "pair_idx": 56
+      },
+      {
+        "tok_sim_chosen": 0.16393442622950818,
+        "tok_sim_rejected": 0.10869565217391304,
+        "tok_lean": 0.055238774055595144,
+        "char_sim_chosen": 0.3855421686746988,
+        "char_sim_rejected": 0.18181818181818182,
+        "char_lean": 0.203723986856517,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndata.dig? :user, :address, :city\n```\n\nUse `dig?` (with a `?` suffix) instead of `dig` \u2014 it returns `nil` if any key is missing, rather than raising an error. The symbol syntax `:key` is the same, but Crystal's type system requires you to ensure `data` has the right structure.",
+        "pair_idx": 57
+      },
+      {
+        "tok_sim_chosen": 0.14285714285714285,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.05952380952380952,
+        "char_sim_chosen": 0.2404692082111437,
+        "char_sim_rejected": 0.13526570048309178,
+        "char_lean": 0.10520350772805193,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nbig = 10_i64 ** 20\n```\n\nCrystal requires explicit integer type suffixes (like `_i64`) for numeric literals. The `**` operator works the same for exponentiation.",
+        "pair_idx": 58
+      },
+      {
+        "tok_sim_chosen": 0.20833333333333334,
+        "tok_sim_rejected": 0.11538461538461539,
+        "tok_lean": 0.09294871794871795,
+        "char_sim_chosen": 0.046218487394957986,
+        "char_sim_rejected": 0.16593886462882096,
+        "char_lean": -0.11972037723386297,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\navg = total.to_f / count\n```\n\nCrystal requires explicit type conversion to `Float` before division to avoid integer division. Use `to_f` for `Float64` or `to_f32` for `Float32`.",
+        "pair_idx": 59
+      },
+      {
+        "tok_sim_chosen": 0.27692307692307694,
+        "tok_sim_rejected": 0.13725490196078433,
+        "tok_lean": 0.1396681749622926,
+        "char_sim_chosen": 0.12244897959183673,
+        "char_sim_rejected": 0.20302375809935205,
+        "char_lean": -0.08057477850751532,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndef transform(x : Int32 | String)\n  x.is_a?(Int32) ? x * 2 : x\nend\n```\n\nKey differences:\n- Type annotations on parameters and return types\n- Union types use `|` (e.g., `Int32 | String`)\n- `is_a?` returns a boolean in a ternary\n- No `to_s` needed since the union already includes `String`\n- Crystal's type system eliminates the need for explicit type checks in many cases",
+        "pair_idx": 60
+      },
+      {
+        "tok_sim_chosen": 0.2558139534883721,
+        "tok_sim_rejected": 0.17647058823529413,
+        "tok_lean": 0.07934336525307797,
+        "char_sim_chosen": 0.4792176039119804,
+        "char_sim_rejected": 0.2857142857142857,
+        "char_lean": 0.19350331819769473,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\ndoubler = (x : Int32) -> { x * 2 }\nputs doubler.call(5)\n```\n\nKey differences: explicit `Int32` type annotation on the parameter, use of `(T)` for generics, and `spawn`/`Channel(T)` for concurrency instead of `Thread.new`/`Queue`.",
+        "pair_idx": 61
+      },
+      {
+        "tok_sim_chosen": 0.3142857142857143,
+        "tok_sim_rejected": 0.14285714285714285,
+        "tok_lean": 0.17142857142857143,
+        "char_sim_chosen": 0.42724458204334365,
+        "char_sim_rejected": 0.1762114537444934,
+        "char_lean": 0.25103312829885027,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\n[1, 2, 3].map(&.to_s)\n```\n\nCrystal uses `&.method_name` syntax (not `&:method_name`) for method references in blocks. The `&` operator converts the method call into a block.",
+        "pair_idx": 62
+      },
+      {
+        "tok_sim_chosen": 0.2702702702702703,
+        "tok_sim_rejected": 0.2916666666666667,
+        "tok_lean": -0.0213963963963964,
+        "char_sim_chosen": 0.5210526315789473,
+        "char_sim_rejected": 0.3,
+        "char_lean": 0.22105263157894733,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nmodule Logger\n  macro included\n    extend ClassMethods\n  end\nend\n```\n\nCrystal uses `macro included` (not `self.included`) and `module` instead of `class` for mixins.",
+        "pair_idx": 63
+      },
+      {
+        "tok_sim_chosen": 0.1590909090909091,
+        "tok_sim_rejected": 0.1875,
+        "tok_lean": -0.02840909090909091,
+        "char_sim_chosen": 0.15942028985507245,
+        "char_sim_rejected": 0.29,
+        "char_lean": -0.13057971014492753,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nclass Base\n  @@registry = [] of Base.class\n\n  def self.inherited(subclass : Base.class)\n    @@registry << subclass\n  end\nend\n```\n\nCrystal requires explicit type annotations on class variables (`@@registry : Array(Base.class)`), uses `: Base.class` for the parameter type, and uses `of` syntax for generic type arguments.",
+        "pair_idx": 64
+      },
+      {
+        "tok_sim_chosen": 0.27419354838709675,
+        "tok_sim_rejected": 0.20454545454545456,
+        "tok_lean": 0.0696480938416422,
+        "char_sim_chosen": 0.0030075187969924814,
+        "char_sim_rejected": 0.2966101694915254,
+        "char_lean": -0.29360265069453295,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nverbs = [:get, :post, :put]\nverbs.each do |verb|\n  macro define_handler(verb_sym)\n    def {{verb_sym.id}}(path : String, &block : ->)\n    end\n  end\n  define_handler(verb)\nend\n```\n\nCrystal uses `macro` for compile-time code generation rather than runtime metaprogramming. The `{{verb_sym.id}}` syntax interpolates the symbol as an identifier into the generated method name.",
+        "pair_idx": 65
+      },
+      {
+        "tok_sim_chosen": 0.20512820512820512,
+        "tok_sim_rejected": 0.17391304347826086,
+        "tok_lean": 0.031215161649944256,
+        "char_sim_chosen": 0.1769041769041769,
+        "char_sim_rejected": 0.1958762886597938,
+        "char_lean": -0.018972111755616916,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\na.same?(b)\na.object_id\n```\n\nUse `same?` instead of `equal?` for identity comparison. The `object_id` method is the same in both languages.",
+        "pair_idx": 66
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.15,
+        "tok_lean": 0.05000000000000002,
+        "char_sim_chosen": 0.1978021978021978,
+        "char_sim_rejected": 0.32,
+        "char_lean": -0.12219780219780221,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\na.is_a?(String) && !a.empty?\n```\n\nCrystal's `String` type has an `empty?` method for concise truthiness checks.",
+        "pair_idx": 67
+      },
+      {
+        "tok_sim_chosen": 0.1724137931034483,
+        "tok_sim_rejected": 0.125,
+        "tok_lean": 0.04741379310344829,
+        "char_sim_chosen": 0.401673640167364,
+        "char_sim_rejected": 0.18803418803418803,
+        "char_lean": 0.21363945213317598,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nname.size\n```\n\nUse `.size` instead of `.length` for collections and strings.",
+        "pair_idx": 68
+      },
+      {
+        "tok_sim_chosen": 0.3235294117647059,
+        "tok_sim_rejected": 0.13636363636363635,
+        "tok_lean": 0.18716577540106955,
+        "char_sim_chosen": 0.13270142180094788,
+        "char_sim_rejected": 0.1553398058252427,
+        "char_lean": -0.022638384024294828,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\n\"abc\"[1]   # => 'b'\n```\n\nIn Crystal, string indexing returns a `Char`, not a `String`. If you need a substring, use slicing: `\"abc\"[1..1]` returns a `String`.",
+        "pair_idx": 69
+      },
+      {
+        "tok_sim_chosen": 0.20408163265306123,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": 0.03741496598639457,
+        "char_sim_chosen": 0.022556390977443608,
+        "char_sim_rejected": 0.2555066079295154,
+        "char_lean": -0.2329502169520718,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr.delete(item)\narr.compact!\n```\n\nThat form actually works in Crystal too \u2014 both `Array#delete` and `Array#compact!` exist there. The idiomatic pattern is the same.",
+        "pair_idx": 70
+      },
+      {
+        "tok_sim_chosen": 0.39622641509433965,
+        "tok_sim_rejected": 0.27906976744186046,
+        "tok_lean": 0.11715664765247918,
+        "char_sim_chosen": 0.3672787979966611,
+        "char_sim_rejected": 0.4883720930232558,
+        "char_lean": -0.12109329502659472,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\nlib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = \"hello\".to_slice\nLibFoo.process(buf, buf.size)\n```\n\nKey changes: use `.to_slice` to get a `Slice(UInt8)` from a `String` (which is a view into UTF-8 bytes), and use `Slice` type instead of `UInt8*` for safer memory handling.",
+        "pair_idx": 71
+      },
+      {
+        "tok_sim_chosen": 0.3191489361702128,
+        "tok_sim_rejected": 0.1891891891891892,
+        "tok_lean": 0.12995974698102358,
+        "char_sim_chosen": 0.16015625,
+        "char_sim_rejected": 0.2937853107344633,
+        "char_lean": -0.1336290607344633,
+        "text": "Here's the idiomatic Crystal version:\n\n```crystal\narr : StaticArray(UInt8, 3) = StaticArray[1_u8, 2_u8, 3_u8]\nLibFoo.process(arr.to_unsafe, 3)\n```\n\nKey differences: use `StaticArray(T, N)` with explicit type and size, access elements with `StaticArray[]`, and convert to a raw pointer with `.to_unsafe` for FFI calls.",
+        "pair_idx": 72
+      },
+      {
+        "tok_sim_chosen": 0.15714285714285714,
+        "tok_sim_rejected": 0.05128205128205128,
+        "tok_lean": 0.10586080586080586,
+        "char_sim_chosen": 0.056162246489859596,
+        "char_sim_rejected": 0.08333333333333333,
+        "char_lean": -0.027171086843473732,
+        "text": "Here's the idiomatic Crystal form:\n\n```crystal\nvalue.not_nil!\n```\n\nIn Crystal, `not_nil!` is a method on `Nilable` types that asserts the value is not `nil` and unwraps it. It's the standard way to handle optional values when you're certain they're present.\n\n```crystal\nvalue : String? = \"hello\"\nresult = value.not_nil!  # result is String, not String?\n```",
+        "pair_idx": 73
+      }
+    ],
+    "jaimef/crystal-qwen3.6-30b": [
+      {
+        "tok_sim_chosen": 0.3148148148148148,
+        "tok_sim_rejected": 0.18181818181818182,
+        "tok_lean": 0.132996632996633,
+        "char_sim_chosen": 0.2611570247933884,
+        "char_sim_rejected": 0.2292134831460674,
+        "char_lean": 0.03194354164732102,
+        "text": "Here's the Crystal version:\n\n```crystal\nclass User\n  property name : String\n\n  def initialize(@name : String)\n  end\nend\n```\n\n**Key differences:**\n- `property` replaces `attr_accessor` (also has `getter`/`setter` variants)\n- Instance variable types must be annotated (`@name : String`)\n- Constructor args are annotated and assigned with `@arg : Type` syntax\n- No parentheses needed for `initialize`",
+        "pair_idx": 0
+      },
+      {
+        "tok_sim_chosen": 0.2777777777777778,
+        "tok_sim_rejected": 0.19230769230769232,
+        "tok_lean": 0.08547008547008547,
+        "char_sim_chosen": 0.44680851063829785,
+        "char_sim_rejected": 0.3697478991596639,
+        "char_lean": 0.07706061147863397,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nclass Account\n  getter id : Int64\n  setter secret : String\nend\n```\n\n**Note:** Crystal doesn't have `attr_reader`/`attr_writer` \u2014 use `getter`/`setter` instead.",
+        "pair_idx": 1
+      },
+      {
+        "tok_sim_chosen": 0.38235294117647056,
+        "tok_sim_rejected": 0.34782608695652173,
+        "tok_lean": 0.03452685421994883,
+        "char_sim_chosen": 0.48337028824833705,
+        "char_sim_rejected": 0.20253164556962025,
+        "char_lean": 0.28083864267871683,
+        "text": "Here's the Crystal version:\n\n```crystal\nclass Box(T)\n  def initialize(@value : T)\n  end\nend\n```\n\nCrystal uses `T` for generics (not `T`), `@value : T` for typed instance vars (not `@value = value`), and `def initialize(@value : T)` for typed setters (not `def initialize(value)`).",
+        "pair_idx": 2
+      },
+      {
+        "tok_sim_chosen": 0.25,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": 0.08333333333333334,
+        "char_sim_chosen": 0.23809523809523808,
+        "char_sim_rejected": 0.3586206896551724,
+        "char_lean": -0.12052545155993433,
+        "text": "Here's the Crystal version:\n\n```crystal\narr = [1, 2]\n```\n\nOr, if you need to build it incrementally:\n\n```crystal\narr = [] of Int32\narr << 1\narr << 2\n```",
+        "pair_idx": 3
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.07894736842105263,
+        "tok_lean": 0.12105263157894738,
+        "char_sim_chosen": 0.4444444444444444,
+        "char_sim_rejected": 0.12686567164179105,
+        "char_lean": 0.31757877280265334,
+        "text": "Here's the Crystal version:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nCrystal requires explicit type annotations on instance variables and method arguments where they can't be inferred. Use `{} of K => V` for empty hashes with specific key and value types.",
+        "pair_idx": 4
+      },
+      {
+        "tok_sim_chosen": 0.4857142857142857,
+        "tok_sim_rejected": 0.5185185185185185,
+        "tok_lean": -0.03280423280423278,
+        "char_sim_chosen": 0.09170305676855896,
+        "char_sim_rejected": 0.6600660066006601,
+        "char_lean": -0.5683629498321011,
+        "text": "Here's the Crystal equivalent \u2014 note the idiomatic `Spec` framework, `expect` macro, and `it` blocks:\n\n```crystal\nrequire \"spec\"\n\ndescribe User do\n  it \"has a name\" do\n    expect(User.new(\"Ada\").name).to eq(\"Ada\")\n  end\nend\n```",
+        "pair_idx": 5
+      },
+      {
+        "tok_sim_chosen": 0.12745098039215685,
+        "tok_sim_rejected": 0.06741573033707865,
+        "tok_lean": 0.060035250055078204,
+        "char_sim_chosen": 0.03779786359901397,
+        "char_sim_rejected": 0.05647517039922103,
+        "char_lean": -0.018677306800207058,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nspawn do_work\nend.join\n```\n\nCrystal's `spawn` is a `def` defined in Crystal's stdlib at `src/spawn.cr` (line 10).\n\n**Signature:**\n```crystal\ndef spawn(*, name : String? = nil, same_thread = false, &block)\n```\n\n**Documentation:**\n\nSpawns a new fiber and starts executing the given block in it.\n\nThe fiber will run concurrently to the current fiber. The current fiber\nwill continue to run and, if needed, wait for the spawned fiber to\nterminate.\n\nNOTE: To use `spawn`, you must explicitly import it with `require \"spawn\"`\n\n```\nspawn do\n  do_work\nend.join\n```\n\nThe optional `name` argument allows setting the fiber name, which is\nuseful for debugging stacktraces. The default name is `\"main\"` for the\ninitial fiber and `\"fiber\"` for the rest.\n\n```\nspawn(name: \"worker\") do\n  do_work\nend.join\n```\n\nThe optional `same_thread` argument allows spawning a fiber in the same\nthread as the current fiber. This is useful for spawning fibers that\nwill run for a short time and return, so we avoid the cost of switching\nthreads.",
+        "pair_idx": 6
+      },
+      {
+        "tok_sim_chosen": 0.3548387096774194,
+        "tok_sim_rejected": 0.20833333333333334,
+        "tok_lean": 0.14650537634408603,
+        "char_sim_chosen": 0.5979381443298969,
+        "char_sim_rejected": 0.29411764705882354,
+        "char_lean": 0.30382049727107335,
+        "text": "Here's the Crystal version:\n\n```crystal\nq = Channel(Int32).new\nspawn { q.send(42) }\nputs q.receive\n```\n\nCrystal's stdlib has no `Queue` \u2014 use `Channel(T)` instead.",
+        "pair_idx": 7
+      },
+      {
+        "tok_sim_chosen": 0.23728813559322035,
+        "tok_sim_rejected": 0.11363636363636363,
+        "tok_lean": 0.12365177195685671,
+        "char_sim_chosen": 0.3861003861003861,
+        "char_sim_rejected": 0.13068181818181818,
+        "char_lean": 0.25541856791856793,
+        "text": "Here's the Crystal version:\n\n```crystal\ndef add(a : Int32, b : Int32) : Int32\n  a + b\nend\n```\n\nCrystal requires explicit type annotations on method arguments and return types. The above form is equivalent to the Ruby version \u2014 it works on any types that support `+`. If you want to restrict it to integers, use `Int32` (or `Int64`, `Int128`, etc.).",
+        "pair_idx": 8
+      },
+      {
+        "tok_sim_chosen": 0.36666666666666664,
+        "tok_sim_rejected": 0.22727272727272727,
+        "tok_lean": 0.13939393939393938,
+        "char_sim_chosen": 0.6013986013986014,
+        "char_sim_rejected": 0.36363636363636365,
+        "char_lean": 0.2377622377622377,
+        "text": "Here's the Crystal version:\n\n```crystal\ndef initialize(@name : String, @age : Int32)\nend\n```\n\nCrystal uses `@foo : Type` syntax for instance variables.",
+        "pair_idx": 9
+      },
+      {
+        "tok_sim_chosen": 0.171875,
+        "tok_sim_rejected": 0.13333333333333333,
+        "tok_lean": 0.03854166666666667,
+        "char_sim_chosen": 0.020497803806734993,
+        "char_sim_rejected": 0.20224719101123595,
+        "char_lean": -0.18174938720450096,
+        "text": "Here's the Crystal version:\n\n```crystal\nrequire \"json\"\n\ndata = JSON.parse(json_str)\nputs data[\"name\"]\n```\n\nCrystal's stdlib has a `JSON` module (not a separate shard) with a `parse` method that returns a `JSON::Any` \u2014 a union of `String`, `Int64`, `Float64`, `Bool`, `Array(JSON::Any)`, or `Hash(String, JSON::Any)`. Indexing with `[]` returns a `JSON::Any`, so you may need to cast or assert the type before using it.",
+        "pair_idx": 10
+      },
+      {
+        "tok_sim_chosen": 0.32608695652173914,
+        "tok_sim_rejected": 0.2777777777777778,
+        "tok_lean": 0.048309178743961345,
+        "char_sim_chosen": 0.4856115107913669,
+        "char_sim_rejected": 0.34324942791762014,
+        "char_lean": 0.14236208287374674,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\ndef greet(name : String) : String\n  raise ArgumentError.new(\"blank\") if name.empty?\n  \"Hi, #{name}\"\nend\n```\n\n**Key differences:**\n- Type annotations on arguments and return types (`name : String : String`)\n- `raise` instead of `raise Exception, message`\n- No parentheses around the exception argument (`ArgumentError.new(\"blank\")`)",
+        "pair_idx": 11
+      },
+      {
+        "tok_sim_chosen": 0.36,
+        "tok_sim_rejected": 0.4375,
+        "tok_lean": -0.07750000000000001,
+        "char_sim_chosen": 0.6852589641434262,
+        "char_sim_rejected": 0.48148148148148145,
+        "char_lean": 0.2037774826619448,
+        "text": "Here's the Crystal version:\n\n```crystal\nbegin\n  risky\nrescue ex\n  puts ex.message\nend\n```\n\nCrystal uses `rescue ex` instead of `rescue => e`.",
+        "pair_idx": 12
+      },
+      {
+        "tok_sim_chosen": 0.1875,
+        "tok_sim_rejected": 0.25,
+        "tok_lean": -0.0625,
+        "char_sim_chosen": 0.2710843373493976,
+        "char_sim_rejected": 0.1836734693877551,
+        "char_lean": 0.08741086796164246,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nputs foo.try &.bar.try &.baz\n```\n\n**Example:**\n```crystal\nfoo = \"hello\"\nputs foo.try &.upcase.try &.size # => 5\n\nfoo = nil\nputs foo.try &.upcase.try &.size # => nil\n```",
+        "pair_idx": 13
+      },
+      {
+        "tok_sim_chosen": 0.28846153846153844,
+        "tok_sim_rejected": 0.2564102564102564,
+        "tok_lean": 0.03205128205128205,
+        "char_sim_chosen": 0.20825852782764812,
+        "char_sim_rejected": 0.38308457711442784,
+        "char_lean": -0.17482604928677972,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\ndef lookup(key)\n  return nil unless @cache.has_key?(key)\n  @cache[key]?.try &.upcase\nend\n```\n\nThis assumes `@cache` is a `Hash(K, V)` where `V` is a `String` or `String?`. The `#cache[key]?` form returns `nil` if the key is missing, and `.try &.upcase` calls `upcase` only if the value is not `nil`.",
+        "pair_idx": 14
+      },
+      {
+        "tok_sim_chosen": 0.2972972972972973,
+        "tok_sim_rejected": 0.3181818181818182,
+        "tok_lean": -0.020884520884520863,
+        "char_sim_chosen": 0.04030226700251889,
+        "char_sim_rejected": 0.4396551724137931,
+        "char_lean": -0.3993529054112742,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nabstract class Animal\n  abstract def speak\nend\n```\n\nCrystal uses `abstract` classes and methods \u2014 no need for a `raise NotImplementedError` boilerplate.",
+        "pair_idx": 15
+      },
+      {
+        "tok_sim_chosen": 0.15254237288135594,
+        "tok_sim_rejected": 0.02127659574468085,
+        "tok_lean": 0.1312657771366751,
+        "char_sim_chosen": 0.35177865612648224,
+        "char_sim_rejected": 0.14835164835164835,
+        "char_lean": 0.20342700777483388,
+        "text": "Here's the Crystal version:\n\n```crystal\n@[Link(\"c\")]\nfun puts(str : Char*) : Int32\n```\n\n**NOTE:** `puts` is a `def` defined in Crystal's stdlib at `src/stdio.cr` (line 427).\n\n**Signature:**\n```crystal\ndef puts(str : String) : Nil\n```\n\n**Documentation:**\n\nWrites a string to this `IO`.\n\n```\nio = IO::Memory.new\nio.puts \"hello\"\nio.to_s # => \"hello\\n\"\n```",
+        "pair_idx": 16
+      },
+      {
+        "tok_sim_chosen": 0.3055555555555556,
+        "tok_sim_rejected": 0.32,
+        "tok_lean": -0.014444444444444426,
+        "char_sim_chosen": 0.55125284738041,
+        "char_sim_rejected": 0.35331230283911674,
+        "char_lean": 0.19794054454129328,
+        "text": "Here's the Crystal version:\n\n```crystal\nclass Cache\n  @@instance : Cache?\n\n  def self.instance : Cache\n    @@instance ||= new\n  end\nend\n```\n\nNote that Crystal requires the type annotation on the class variable (`@@instance : Cache?`) and the method signature (`def self.instance : Cache`).",
+        "pair_idx": 17
+      },
+      {
+        "tok_sim_chosen": 0.17307692307692307,
+        "tok_sim_rejected": 0.16216216216216217,
+        "tok_lean": 0.010914760914760901,
+        "char_sim_chosen": 0.1076388888888889,
+        "char_sim_rejected": 0.21890547263681592,
+        "char_lean": -0.11126658374792703,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\ndef transform(xs : Enumerable(T), &block : T -> U) forall T, U\n  xs.map(&block)\nend\n```\n\n**Signature:**\n```crystal\ndef transform(xs : Enumerable(T), &block : T -> U) forall T, U\n```\n\n**Documentation:**\n\nReturns an `Array` with the results of running *block* against each element of the collection.\n\n```\n[1, 2, 3].map { |i| i * 10 } # => [10, 20, 30]\n```",
+        "pair_idx": 18
+      },
+      {
+        "tok_sim_chosen": 0.3170731707317073,
+        "tok_sim_rejected": 0.1875,
+        "tok_lean": 0.12957317073170732,
+        "char_sim_chosen": 0.4646017699115044,
+        "char_sim_rejected": 0.16666666666666666,
+        "char_lean": 0.29793510324483774,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nh = Hash(String, Int32).new(0)\nh[\"x\"] += 1\n```\n\n**Explanation:**\n\nCrystal's type system requires explicit type annotations for generic types. The idiomatic form uses `Hash(String, Int32)` to specify the key and value types, and initializes the default value to `0`.",
+        "pair_idx": 19
+      },
+      {
+        "tok_sim_chosen": 0.22448979591836735,
+        "tok_sim_rejected": 0.11428571428571428,
+        "tok_lean": 0.11020408163265306,
+        "char_sim_chosen": 0.24603174603174602,
+        "char_sim_rejected": 0.10344827586206896,
+        "char_lean": 0.14258347016967704,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\narr = Array(Int32).new(5)\n```\n\n**Example:**\n```crystal\narr = Array(Int32).new(5)\narr.size # => 5\n```\n\n**Documentation:**\n\nCreates a new `Array` of the given size filled with the same value in each\nposition.\n\n```\nArray.new(3, 'a') # => ['a', 'a', 'a']\n```\n\n**Defined in** `src/array.cr` as: `def self.new(size : Int, value : T)`",
+        "pair_idx": 20
+      },
+      {
+        "tok_sim_chosen": 0.23076923076923078,
+        "tok_sim_rejected": 0.34615384615384615,
+        "tok_lean": -0.11538461538461536,
+        "char_sim_chosen": 0.038929440389294405,
+        "char_sim_rejected": 0.4981684981684982,
+        "char_lean": -0.45923905777920376,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nclass User\n  def method_missing(name : Symbol, *args)\n    @attrs[name.to_s]\n  end\nend\n```\n\n**Note:** `method_missing` is only available in Crystal when using the `--experimental-vm` flag.",
+        "pair_idx": 21
+      },
+      {
+        "tok_sim_chosen": 0.1527777777777778,
+        "tok_sim_rejected": 0.07547169811320754,
+        "tok_lean": 0.07730607966457025,
+        "char_sim_chosen": 0.05238828967642527,
+        "char_sim_rejected": 0.1016949152542373,
+        "char_lean": -0.04930662557781203,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nname : String?\nputs name.try &.length\n```\n\n**Explanation:**\n\nCrystal requires explicit type annotations on instance variables and method arguments where they can't be inferred. Crystal uses `getter`/`setter`/`property` (not `attr_*`), `T` for generics (not `T`), `spawn`/`Channel(T)` (not `Thread.new`/`Queue`), and the built-in `Spec` framework (not RSpec). Unions are written with `|` (`String?` = `String | Nil`).",
+        "pair_idx": 22
+      },
+      {
+        "tok_sim_chosen": 0.2608695652173913,
+        "tok_sim_rejected": 0.21212121212121213,
+        "tok_lean": 0.04874835309617917,
+        "char_sim_chosen": 0.43283582089552236,
+        "char_sim_rejected": 0.2318840579710145,
+        "char_lean": 0.20095176292450787,
+        "text": "Here's the Crystal version:\n\n```crystal\nenum Color\n  RED\n  GREEN\nend\n```\n\nCrystal enums are backed by `Int32` by default and are zero-indexed. You can specify a different type or value like this:\n\n```crystal\nenum Color : UInt8\n  RED\n  GREEN\nend\n\nenum Color\n  RED   # = 1\n  GREEN # = 2\nend\n```",
+        "pair_idx": 23
+      },
+      {
+        "tok_sim_chosen": 0.0975609756097561,
+        "tok_sim_rejected": 0.21428571428571427,
+        "tok_lean": -0.11672473867595817,
+        "char_sim_chosen": 0.057803468208092484,
+        "char_sim_rejected": 0.3,
+        "char_lean": -0.2421965317919075,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nsend(:greet, \"world\")\n```\n\n**Example:**\n```crystal\ndef send(message, *args)\n  send(message, *args)\nend\n```",
+        "pair_idx": 24
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.08,
+        "tok_lean": 0.12000000000000001,
+        "char_sim_chosen": 0.29310344827586204,
+        "char_sim_rejected": 0.09917355371900827,
+        "char_lean": 0.19392989455685378,
+        "text": "Here's the Crystal version:\n\n```crystal\nno equivalent \u2014 use macros instead\n```\n\n**Example:**\n```crystal\nmacro define_method(name, &block)\n  {% if name == \"foo\" %}\n    def foo\n      1\n    end\n  {% elsif name == \"bar\" %}\n    def bar\n      2\n    end\n  {% end %}\nend\n\ndefine_method \"foo\" { }\n```",
+        "pair_idx": 25
+      },
+      {
+        "tok_sim_chosen": 0.23076923076923078,
+        "tok_sim_rejected": 0.1875,
+        "tok_lean": 0.04326923076923078,
+        "char_sim_chosen": 0.5620437956204379,
+        "char_sim_rejected": 0.40609137055837563,
+        "char_lean": 0.1559524250620623,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nrequire \"./user\"\nrequire \"../lib/helper\"\n```\n\nCrystal's `require` always uses forward slashes, never backslashes.",
+        "pair_idx": 26
+      },
+      {
+        "tok_sim_chosen": 0.42857142857142855,
+        "tok_sim_rejected": 0.3181818181818182,
+        "tok_lean": 0.11038961038961037,
+        "char_sim_chosen": 0.6092307692307692,
+        "char_sim_rejected": 0.5550660792951542,
+        "char_lean": 0.054164689935615074,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nmutex = Mutex.new\nspawn do\n  mutex.synchronize { @counter += 1 }\nend\n```\n\n**Note**: `Mutex` is a `class` in Crystal, not a `module`.",
+        "pair_idx": 27
+      },
+      {
+        "tok_sim_chosen": 0.25,
+        "tok_sim_rejected": 0.21428571428571427,
+        "tok_lean": 0.035714285714285726,
+        "char_sim_chosen": 0.2029598308668076,
+        "char_sim_rejected": 0.3373493975903614,
+        "char_lean": -0.13438956672355382,
+        "text": "Here's the Crystal version:\n\n```crystal\nclass Box\n  def initialize(@value : Int32)\n  end\nend\n\nb = Box.new(1)\n```\n\n**Live demo:** https://play.crystal-lang.org/#/r/1077a\n\nNote that Crystal requires type annotations on instance variables and method arguments where they can't be inferred.",
+        "pair_idx": 28
+      },
+      {
+        "tok_sim_chosen": 0.2777777777777778,
+        "tok_sim_rejected": 0.20833333333333334,
+        "tok_lean": 0.06944444444444445,
+        "char_sim_chosen": 0.2966292134831461,
+        "char_sim_rejected": 0.29936305732484075,
+        "char_lean": -0.002733843841694672,
+        "text": "Here's the Crystal version:\n\n```crystal\nmaybe_user = find_user(id)\nputs maybe_user.try(&.name)\n```\n\n**Or** if you want to be more explicit:\n\n```crystal\nmaybe_user = find_user(id)\nif maybe_user\n  puts maybe_user.name\nend\n```\n\n**Or** if you want to raise an exception:\n\n```crystal\nuser = find_user!(id)\nputs user.name\n```",
+        "pair_idx": 29
+      },
+      {
+        "tok_sim_chosen": 0.3,
+        "tok_sim_rejected": 0.47058823529411764,
+        "tok_lean": -0.17058823529411765,
+        "char_sim_chosen": 0.3485838779956427,
+        "char_sim_rejected": 0.3372093023255814,
+        "char_lean": 0.011374575670061338,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\ndef info(opts = NamedTuple(name: String))\n  puts opts[:name]\nend\ninfo(name: \"Ada\")\n```\n\n**Crystal version:**\n```crystal\ndef info(opts = {name: \"Ada\"})\n  puts opts[:name]\nend\ninfo(name: \"Ada\")\n```\n\n**Ruby version:**\n```ruby\ndef info(opts = {})\n  puts opts[:name]\nend\ninfo(name: \"Ada\")\n```",
+        "pair_idx": 30
+      },
+      {
+        "tok_sim_chosen": 0.37142857142857144,
+        "tok_sim_rejected": 0.27586206896551724,
+        "tok_lean": 0.0955665024630542,
+        "char_sim_chosen": 0.579088471849866,
+        "char_sim_rejected": 0.48936170212765956,
+        "char_lean": 0.08972676972220645,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nclass Logger\n  @@instance : Logger?\n\n  def self.global : Logger\n    @@instance ||= new\n  end\nend\n```\n\nNote that `Logger` is a `class` defined in Crystal's stdlib at `src/logger.cr` (line 10).",
+        "pair_idx": 31
+      },
+      {
+        "tok_sim_chosen": 0.2647058823529412,
+        "tok_sim_rejected": 0.20833333333333334,
+        "tok_lean": 0.05637254901960784,
+        "char_sim_chosen": 0.3878787878787879,
+        "char_sim_rejected": 0.3248730964467005,
+        "char_lean": 0.0630056914320874,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\narr.first?  # returns T? if array is T, or Nil if array is empty\n```\n\n**Example:**\n```crystal\n[1, 2, 3].first?   # => 1\n([] of Int32).first? # => nil\n```",
+        "pair_idx": 32
+      },
+      {
+        "tok_sim_chosen": 0.3333333333333333,
+        "tok_sim_rejected": 0.3181818181818182,
+        "tok_lean": 0.015151515151515138,
+        "char_sim_chosen": 0.3,
+        "char_sim_rejected": 0.46236559139784944,
+        "char_lean": -0.16236559139784945,
+        "text": "Here's the Crystal version:\n\n```crystal\nclass Cat < Animal\n  def speak : String\n    \"meow\"\n  end\nend\n```\n\nNote that Crystal requires explicit return types on methods.",
+        "pair_idx": 33
+      },
+      {
+        "tok_sim_chosen": 0.15555555555555556,
+        "tok_sim_rejected": 0.15625,
+        "tok_lean": -0.000694444444444442,
+        "char_sim_chosen": 0.3076923076923077,
+        "char_sim_rejected": 0.20465116279069767,
+        "char_lean": 0.10304114490161004,
+        "text": "Here's the Crystal version:\n\n```crystal\nputs foo.try(&.bar) || \"n/a\"\n```\n\n`try` returns `nil` if the method doesn't exist or raises, so we use the `||` operator to provide a default value.",
+        "pair_idx": 34
+      },
+      {
+        "tok_sim_chosen": 0.11827956989247312,
+        "tok_sim_rejected": 0.05,
+        "tok_lean": 0.06827956989247312,
+        "char_sim_chosen": 0.1411042944785276,
+        "char_sim_rejected": 0.08581644815256258,
+        "char_lean": 0.05528784632596502,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\npool = Channel(Spawn::Options).new(4)\nspawn do\n  while options = pool.receive?\n    spawn(**options) { do_work }\n  end\nend\n```\n\n**Note**: `spawn` is a `def` defined in Crystal's stdlib at `src/spawn.cr` (line 117).\n\n**Signature**:\n```crystal\ndef spawn(*, name : String? = nil, file : String = __FILE__, line : Int32 = __LINE__, end_line : Int32 = __END_LINE__, &block)\n```\n\n**Documentation**:\n\nExecutes the given block in a new fiber, enqueued into the system run\nqueue immediately.\n\nThe fiber is enqueued into a system run queue immediately, so it will\neventually run, unless the program terminates before that.\n\nReturns the `Fiber` object.\n\nNOTE: To use `spawn`, you must explicitly import it with `require \"spawn\"`\n\n```\nspawn { do_work }\n```\n\nSee `Fiber.new` for details on the execution model.",
+        "pair_idx": 35
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.15384615384615385,
+        "tok_lean": 0.046153846153846156,
+        "char_sim_chosen": 0.043859649122807015,
+        "char_sim_rejected": 0.09923664122137404,
+        "char_lean": -0.05537699209856703,
+        "text": "Here's the Crystal version:\n\n```crystal\na, b = [1, 2]\n```\n\n**Crystal version:**\n```crystal\na, b = [1, 2]\n```\n\n**Type-annotated version:**\n```crystal\na, b = [1, 2] of Int32\n```\n\n**Note:** Crystal's destructuring assignment works the same as Ruby's, but the type annotation syntax is `(T)` not `<T>`.",
+        "pair_idx": 36
+      },
+      {
+        "tok_sim_chosen": 0.25,
+        "tok_sim_rejected": 0.23076923076923078,
+        "tok_lean": 0.019230769230769218,
+        "char_sim_chosen": 0.09981515711645102,
+        "char_sim_rejected": 0.30687830687830686,
+        "char_lean": -0.20706314976185586,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nexpect(user.name).to eq(\"Ada\")\nexpect(user.age).to be > 18\n```\n\nCrystal's `expect` is a macro defined in Crystal's stdlib at `src/spec/expectations.cr` (line 27).\n\n**Signature:**\n```crystal\ndef expect(value, file = __FILE__, line = __LINE__)\n```\n\n**Documentation:**\n\nCreates an `Expectation` for the given value.",
+        "pair_idx": 37
+      },
+      {
+        "tok_sim_chosen": 0.21428571428571427,
+        "tok_sim_rejected": 0.13333333333333333,
+        "tok_lean": 0.08095238095238094,
+        "char_sim_chosen": 0.45878136200716846,
+        "char_sim_rejected": 0.2634730538922156,
+        "char_lean": 0.19530830811495287,
+        "text": "Here's the Crystal version:\n\n```crystal\nexpect_raises(IO::Error) { risky! }\n```\n\n**Example:**\n```crystal\nexpect_raises(Exception, \"bad\") { raise \"bad\" }\n```",
+        "pair_idx": 38
+      },
+      {
+        "tok_sim_chosen": 0.21311475409836064,
+        "tok_sim_rejected": 0.13043478260869565,
+        "tok_lean": 0.082679971489665,
+        "char_sim_chosen": 0.05421686746987952,
+        "char_sim_rejected": 0.21691973969631237,
+        "char_lean": -0.16270287222643284,
+        "text": "Here's the Crystal version:\n\n```crystal\ndescribe Foo do\n  repo = Repo.new\n\n  it \"does something\" do\n    repo.do_something\n  end\n\n  it \"does something else\" do\n    repo.do_something_else\n  end\n\n  it \"does another thing\" do\n    repo.do_another_thing\n  end\nend\n```\n\n**Note**: Crystal's `Spec` doesn't have a `before(:each)` hook, so the idiomatic form is to create the instance variable in the `describe` block and use it in each `it` block.",
+        "pair_idx": 39
+      },
+      {
+        "tok_sim_chosen": 0.3125,
+        "tok_sim_rejected": 0.3235294117647059,
+        "tok_lean": -0.011029411764705899,
+        "char_sim_chosen": 0.2688679245283019,
+        "char_sim_rejected": 0.35379061371841153,
+        "char_lean": -0.08492268919010965,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nit \"has a name\" do\n  user.name.should eq(\"Ada\")\nend\n```\n\n**Note:** `let` is a Ruby/RSpec idiom \u2014 Crystal's idiomatic form is to use a `getter` or `def` for shared state.",
+        "pair_idx": 40
+      },
+      {
+        "tok_sim_chosen": 0.21621621621621623,
+        "tok_sim_rejected": 0.125,
+        "tok_lean": 0.09121621621621623,
+        "char_sim_chosen": 0.3695652173913043,
+        "char_sim_rejected": 0.1941747572815534,
+        "char_lean": 0.17539046010975093,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nnow = Time.utc\nputs now\n```\n\n**Live demo:** https://play.crystal-lang.org/#/r/1077\n\nCrystal's stdlib has no `Time.now` \u2014 only `Time.utc` and `Time.local`.",
+        "pair_idx": 41
+      },
+      {
+        "tok_sim_chosen": 0.22857142857142856,
+        "tok_sim_rejected": 0.2631578947368421,
+        "tok_lean": -0.034586466165413526,
+        "char_sim_chosen": 0.15339233038348082,
+        "char_sim_rejected": 0.37662337662337664,
+        "char_lean": -0.22323104623989581,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nTime.utc\nTime.parse(\"2024-01-15\")\n```\n\nCrystal's stdlib has no `Date` type \u2014 only `Time`.",
+        "pair_idx": 42
+      },
+      {
+        "tok_sim_chosen": 0.23529411764705882,
+        "tok_sim_rejected": 0.35294117647058826,
+        "tok_lean": -0.11764705882352944,
+        "char_sim_chosen": 0.1258741258741259,
+        "char_sim_rejected": 0.2265625,
+        "char_lean": -0.10068837412587411,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\n5.minutes.ago\n3.days.from_now\n```\n\n**Crystal version:**\n```crystal\nTime::Span.hours(5).ago\nTime::Span.days(3).from_now\n```\n\n**Crystal version (using `Time::Span`):**\n```crystal\nTime::Span.hours(5).ago\nTime::Span.days(3).from_now\n```",
+        "pair_idx": 43
+      },
+      {
+        "tok_sim_chosen": 0.36363636363636365,
+        "tok_sim_rejected": 0.25,
+        "tok_lean": 0.11363636363636365,
+        "char_sim_chosen": 0.2703962703962704,
+        "char_sim_rejected": 0.37992831541218636,
+        "char_lean": -0.10953204501591596,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nrequire \"http/client\"\nbody = HTTP::Client.get(\"https://example.com\").body\n```\n\n**Note**: Crystal's stdlib has no `HTTP::Client.get` convenience method \u2014 use `HTTP::Client.exec` for that.",
+        "pair_idx": 44
+      },
+      {
+        "tok_sim_chosen": 0.13559322033898305,
+        "tok_sim_rejected": 0.13513513513513514,
+        "tok_lean": 0.00045808520384790774,
+        "char_sim_chosen": 0.0243531202435312,
+        "char_sim_rejected": 0.14096916299559473,
+        "char_lean": -0.11661604275206353,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\noutput = Process.run(\"ls\", [\"-la\"])\nProcess.run(\"git\", [\"status\"])\n```\n\n**Note:** Crystal doesn't have a built-in `Process.run` method \u2014 that's a hypothetical form. The idiomatic Crystal version would be:\n\n```crystal\noutput = Process.exec(\"ls -la\")\nProcess.exec(\"git status\")\n```\n\nOr using `Shell.exec` from the stdlib (requires `require \"shell\"`):\n\n```crystal\noutput = Shell.exec(\"ls -la\")\nShell.exec(\"git status\")\n```",
+        "pair_idx": 45
+      },
+      {
+        "tok_sim_chosen": 0.2978723404255319,
+        "tok_sim_rejected": 0.11764705882352941,
+        "tok_lean": 0.1802252816020025,
+        "char_sim_chosen": 0.2074074074074074,
+        "char_sim_rejected": 0.19498607242339833,
+        "char_lean": 0.012421334984009075,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nhome = ENV[\"HOME\"]?\nputs home.try &.upcase\n```\n\n**Explanation:**\n\n`ENV[]` returns a `String` (raises `KeyError` if key is missing), but `ENV[\"HOME\"]?` returns a `String?` (returns `nil` if key is missing). We use the safe navigation operator `&.` to only call `upcase` if `home` is not `nil`.",
+        "pair_idx": 46
+      },
+      {
+        "tok_sim_chosen": 0.2553191489361702,
+        "tok_sim_rejected": 0.39285714285714285,
+        "tok_lean": -0.13753799392097266,
+        "char_sim_chosen": 0.12943632567849686,
+        "char_sim_rejected": 0.49230769230769234,
+        "char_lean": -0.3628713666291955,
+        "text": "Here's the Crystal version:\n\n```crystal\nFile.open(\"data.txt\", \"r\") do |f|\n  f.each_line { |l| puts l }\nend\n```\n\nCrystal's stdlib has a `File` class with an `open` method that behaves similarly to Ruby's `File.open`.",
+        "pair_idx": 47
+      },
+      {
+        "tok_sim_chosen": 0.17073170731707318,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": 0.004065040650406526,
+        "char_sim_chosen": 0.42058165548098436,
+        "char_sim_rejected": 0.2611683848797251,
+        "char_lean": 0.15941327060125926,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nDir.glob(\"**/*.cr\").each { |path| puts path }\n```\n\nCrystal's stdlib has no `Dir[\"...\"]` \u2014 that's a Ruby idiom using `Dir.glob` under the hood. Crystal's `Dir.glob` is a `def` (not a `def self.[]`), so it's called with parens.",
+        "pair_idx": 48
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.2222222222222222,
+        "tok_lean": -0.0222222222222222,
+        "char_sim_chosen": 0.025510204081632654,
+        "char_sim_rejected": 0.2345679012345679,
+        "char_lean": -0.20905769715293523,
+        "text": "Here's the Crystal version:\n\n```crystal\nRandom.new.rand(100)\nRandom.srand(42)\n```\n\nCrystal's stdlib has no global `rand`/`srand` \u2014 always use `Random` directly.",
+        "pair_idx": 49
+      },
+      {
+        "tok_sim_chosen": 0.34782608695652173,
+        "tok_sim_rejected": 0.275,
+        "tok_lean": 0.07282608695652171,
+        "char_sim_chosen": 0.30413223140495865,
+        "char_sim_rejected": 0.425531914893617,
+        "char_lean": -0.12139968348865837,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nrequire \"option_parser\"\n\nOptionParser.parse do |parser|\n  parser.on(\"-v\", \"--verbose\", \"Enable verbose output\") { @v = true }\nend\n```\n\n**Note**: Crystal's stdlib lacks a direct equivalent to Ruby's `OptionParser` \u2014 the idiomatic form uses `OptionParser.parse` (not `new`) and requires an explicit block.",
+        "pair_idx": 50
+      },
+      {
+        "tok_sim_chosen": 0.2571428571428571,
+        "tok_sim_rejected": 0.16,
+        "tok_lean": 0.09714285714285711,
+        "char_sim_chosen": 0.5579937304075235,
+        "char_sim_rejected": 0.19138755980861244,
+        "char_lean": 0.3666061705989111,
+        "text": "Here's the Crystal version:\n\n```crystal\narr.find { |x| x > 10 }\n```\n\nCrystal's stdlib defines `find` (and `find_all`) on `Enumerable` \u2014 not `detect` (Ruby) or `select` (which is a different operation).",
+        "pair_idx": 51
+      },
+      {
+        "tok_sim_chosen": 0.2777777777777778,
+        "tok_sim_rejected": 0.2,
+        "tok_lean": 0.07777777777777778,
+        "char_sim_chosen": 0.283987915407855,
+        "char_sim_rejected": 0.1461187214611872,
+        "char_lean": 0.1378691939466678,
+        "text": "Here's the Crystal version:\n\n```crystal\n[1, 2, 3].sum\n```\n\n**Alternative forms:**\n\n```crystal\n[1, 2, 3].reduce(0, &:+)\n[1, 2, 3].reduce(&:+)\n```\n\nThe first form is preferred \u2014 it's the most readable and idiomatic.",
+        "pair_idx": 52
+      },
+      {
+        "tok_sim_chosen": 0.18055555555555555,
+        "tok_sim_rejected": 0.10204081632653061,
+        "tok_lean": 0.07851473922902494,
+        "char_sim_chosen": 0.0830188679245283,
+        "char_sim_rejected": 0.16055846422338568,
+        "char_lean": -0.07753959629885739,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\narr.group_by(&.kind).transform_values(&.size)\n```\n\n**Signature:**\n```crystal\ndef transform_values(&block : V -> V) : Hash(K, V)\n```\n\n**Documentation:**\n\nReturns a new hash with the results of running block once for every value.\nThe block can change a value type.\nThe block yields the value and key.\n\n```\nh = {\"a\" => 100, \"b\" => 200, \"c\" => 300}\nh.transform_values { |value| value + 1 } # => {\"a\" => 101, \"b\" => 201, \"c\" => 301}\nh                         # => {\"a\" => 100, \"b\" => 200, \"c\" => 300}\n```\n\nSee also: `Hash#transform_values!`.",
+        "pair_idx": 53
+      },
+      {
+        "tok_sim_chosen": 0.15384615384615385,
+        "tok_sim_rejected": 0.05128205128205128,
+        "tok_lean": 0.10256410256410257,
+        "char_sim_chosen": 0.16942148760330578,
+        "char_sim_rejected": 0.09809264305177112,
+        "char_lean": 0.07132884455153465,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\npeople.min_by &.age\n```\n\n**Signature:**\n```crystal\ndef min_by(& : T -> U) : T forall U\n```\n\n**Documentation:**\n\nReturns the element for which the passed block returns with the minimum value.\n\n```\n[\"Alice\", \"Bob\"].min_by { |name| name.size } # => \"Bob\"\n```\n\nRaises `Enumerable::EmptyError` if the collection is empty.\n\nSee also: `Enumerable#min_by?`.",
+        "pair_idx": 54
+      },
+      {
+        "tok_sim_chosen": 0.16,
+        "tok_sim_rejected": 0.18518518518518517,
+        "tok_lean": -0.02518518518518517,
+        "char_sim_chosen": 0.08737864077669903,
+        "char_sim_rejected": 0.16981132075471697,
+        "char_lean": -0.08243267997801794,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\n[3, 1, 2].sort(&.>.id)\n```\n\nThis uses the `&.` operator to generate a comparison method from the `>` method, which is more efficient than a block.",
+        "pair_idx": 55
+      },
+      {
+        "tok_sim_chosen": 0.28205128205128205,
+        "tok_sim_rejected": 0.3181818181818182,
+        "tok_lean": -0.03613053613053613,
+        "char_sim_chosen": 0.22935779816513763,
+        "char_sim_rejected": 0.5384615384615384,
+        "char_lean": -0.3091037402964008,
+        "text": "Here's the Crystal version:\n\n```crystal\nh = {:a => 1, :b => 2}\nh.each { |k, v| puts \"#{k}=#{v}\" }\n```\n\nCrystal uses `=>` for hash literals, not `:`.",
+        "pair_idx": 56
+      },
+      {
+        "tok_sim_chosen": 0.14814814814814814,
+        "tok_sim_rejected": 0.10526315789473684,
+        "tok_lean": 0.042884990253411304,
+        "char_sim_chosen": 0.2950191570881226,
+        "char_sim_rejected": 0.17534246575342466,
+        "char_lean": 0.11967669133469794,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\ndata.dig?(:user, :address, :city)\n```\n\n**Signature:**\n```crystal\ndef dig?(key : Symbol | String, *subkeys)\n```\n\n**Documentation:**\n\nTraverses the depth of a structure and returns the value.\nReturns `nil` if the key is not found.\n\n```\nh = {\"a\" => {\"b\" => [10, 20, 30]}}\nh.dig?(\"a\", \"b\") # => [10, 20, 30]\nh.dig?(\"a\", \"x\") # => nil\n```",
+        "pair_idx": 57
+      },
+      {
+        "tok_sim_chosen": 0.11864406779661017,
+        "tok_sim_rejected": 0.061224489795918366,
+        "tok_lean": 0.05741957800069181,
+        "char_sim_chosen": 0.1425891181988743,
+        "char_sim_rejected": 0.07017543859649122,
+        "char_lean": 0.07241367960238307,
+        "text": "Here's the Crystal version:\n\n```crystal\nbig = 10_u64 ** 20\n```\n\n**Explanation:**\n\nCrystal requires explicit type annotations on instance variables and method arguments where they can't be inferred. Here, `10 ** 20` is an `Int32` (default integer type), but the result is too large for an `Int32`, so we must specify a larger type \u2014 in this case, `10_u64` (an `Int64` literal) \u2014 to get an `Int64` result.",
+        "pair_idx": 58
+      },
+      {
+        "tok_sim_chosen": 0.14545454545454545,
+        "tok_sim_rejected": 0.0967741935483871,
+        "tok_lean": 0.04868035190615835,
+        "char_sim_chosen": 0.06772908366533864,
+        "char_sim_rejected": 0.14901960784313725,
+        "char_lean": -0.08129052417779861,
+        "text": "Here's the Crystal version:\n\n```crystal\navg = total / count\n```\n\n**Live demo:** https://play.crystal-lang.org/#/r/1077a\n\nNote that Crystal's type inference will figure out that `avg` is a `Float64` because `total` is an `Int64` and `count` is an `Int32`.",
+        "pair_idx": 59
+      },
+      {
+        "tok_sim_chosen": 0.25862068965517243,
+        "tok_sim_rejected": 0.23076923076923078,
+        "tok_lean": 0.02785145888594165,
+        "char_sim_chosen": 0.13864306784660768,
+        "char_sim_rejected": 0.210989010989011,
+        "char_lean": -0.07234594314240331,
+        "text": "Here's the Crystal version:\n\n```crystal\ndef transform(x)\n  case x\n  when Int32\n    x * 2\n  else\n    x.to_s\n  end\nend\n```\n\n**Alternative** \u2014 if you don't need to handle `Int64` and other integer types differently:\n\n```crystal\ndef transform(x : Int32)\n  x * 2\nend\n\ndef transform(x)\n  x.to_s\nend\n```\n\n**Alternative** \u2014 if you want to avoid runtime type checks:\n\n```crystal\ndef transform(x : Int32)\n  x * 2\nend\n\ndef transform(x : _) # matches anything else\n  x.to_s\nend\n```",
+        "pair_idx": 60
+      },
+      {
+        "tok_sim_chosen": 0.3548387096774194,
+        "tok_sim_rejected": 0.2727272727272727,
+        "tok_lean": 0.08211143695014667,
+        "char_sim_chosen": 0.594059405940594,
+        "char_sim_rejected": 0.45544554455445546,
+        "char_lean": 0.13861386138613857,
+        "text": "Here's the Crystal version:\n\n```crystal\ndoubler = ->(x : Int32) { x * 2 }\nputs doubler.call(5)\n```\n\nNote that Crystal requires explicit type annotations on method arguments.",
+        "pair_idx": 61
+      },
+      {
+        "tok_sim_chosen": 0.34782608695652173,
+        "tok_sim_rejected": 0.4166666666666667,
+        "tok_lean": -0.06884057971014496,
+        "char_sim_chosen": 0.3855421686746988,
+        "char_sim_rejected": 0.27450980392156865,
+        "char_lean": 0.11103236475313016,
+        "text": "Here's the Crystal version:\n\n```crystal\n[1, 2, 3].map(&.to_s)\n```\n\n**Crystal version:**\n```crystal\n[1, 2, 3].map(&.to_s)\n```\n\n**Ruby version:**\n```ruby\n[1, 2, 3].map(&:to_s)\n```",
+        "pair_idx": 62
+      },
+      {
+        "tok_sim_chosen": 0.2647058823529412,
+        "tok_sim_rejected": 0.2857142857142857,
+        "tok_lean": -0.02100840336134452,
+        "char_sim_chosen": 0.4946808510638298,
+        "char_sim_rejected": 0.375,
+        "char_lean": 0.11968085106382981,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nmodule Logger\n  macro included\n    extend(ClassMethods)\n  end\nend\n```\n\n**Signature:**\n```crystal\nmacro included\n```\n\n**Documentation:**\n\nExtends the including class with `ClassMethods`.",
+        "pair_idx": 63
+      },
+      {
+        "tok_sim_chosen": 0.17073170731707318,
+        "tok_sim_rejected": 0.20689655172413793,
+        "tok_lean": -0.036164844407064745,
+        "char_sim_chosen": 0.16091954022988506,
+        "char_sim_rejected": 0.4098939929328622,
+        "char_lean": -0.24897445270297716,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nabstract class Base\n  @@registry = [] of Class\n\n  def self.inherited(subclass)\n    @@registry << subclass\n  end\nend\n```\n\n**NOTE:** `inherited` is a `def` defined in Crystal stdlib at `src/object.cr` (line 477).",
+        "pair_idx": 64
+      },
+      {
+        "tok_sim_chosen": 0.14893617021276595,
+        "tok_sim_rejected": 0.47368421052631576,
+        "tok_lean": -0.3247480403135498,
+        "char_sim_chosen": 0.07265774378585087,
+        "char_sim_rejected": 0.38181818181818183,
+        "char_lean": -0.30916043803233095,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\n{% [:get, :post, :put].each do |verb| %}\n  def {{verb.id}}(path, &block)\n    ...\n  end\n{% end %}\n```\n\n**Example:**\n\n```crystal\n{% [:get, :post, :put].each do |verb| %}\n  def {{verb.id}}(path, &block)\n    call({{verb.id}}, path, &block)\n  end\n{% end %}\n```",
+        "pair_idx": 65
+      },
+      {
+        "tok_sim_chosen": 0.14705882352941177,
+        "tok_sim_rejected": 0.1875,
+        "tok_lean": -0.04044117647058823,
+        "char_sim_chosen": 0.13861386138613863,
+        "char_sim_rejected": 0.19895287958115182,
+        "char_lean": -0.060339018195013194,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\na.same?(b)\na.object_id\n```\n\n**Example:**\n```crystal\na = \"foo\"\nb = \"foo\"\na.same?(b)   # => false\na.object_id  # => 1000000000\nb.object_id  # => 1000000008\n```",
+        "pair_idx": 66
+      },
+      {
+        "tok_sim_chosen": 0.13953488372093023,
+        "tok_sim_rejected": 0.09090909090909091,
+        "tok_lean": 0.04862579281183932,
+        "char_sim_chosen": 0.045454545454545456,
+        "char_sim_rejected": 0.19631901840490798,
+        "char_lean": -0.15086447295036254,
+        "text": "Here's the Crystal version:\n\n```crystal\n!a.empty?\n```\n\nCrystal's stdlib defines `empty?` on `String` (line 107 of `src/string.cr`):\n\n```crystal\ndef empty? : Bool\n```",
+        "pair_idx": 67
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.11666666666666668,
+        "char_sim_chosen": 0.35542168674698793,
+        "char_sim_rejected": 0.10476190476190476,
+        "char_lean": 0.25065978198508315,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\nname.length\n```\n\n**Crystal version:**\n```crystal\nname.length\n```\n\n**Explanation:**\n\nCrystal's stdlib has a `String#length` method (line 1077 of `src/string.cr`) which returns an `Int32`.",
+        "pair_idx": 68
+      },
+      {
+        "tok_sim_chosen": 0.2647058823529412,
+        "tok_sim_rejected": 0.15,
+        "tok_lean": 0.11470588235294119,
+        "char_sim_chosen": 0.11142061281337047,
+        "char_sim_rejected": 0.2097902097902098,
+        "char_lean": -0.09836959697683932,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\n\"abc\"[1]   # => 'b'\n```\n\nCrystal strings are UTF-8, and indexing returns a `Char`, not a `String`.",
+        "pair_idx": 69
+      },
+      {
+        "tok_sim_chosen": 0.13043478260869565,
+        "tok_sim_rejected": 0.16666666666666666,
+        "tok_lean": -0.03623188405797101,
+        "char_sim_chosen": 0.03696098562628337,
+        "char_sim_rejected": 0.31868131868131866,
+        "char_lean": -0.2817203330550353,
+        "text": "Here's the Crystal-idiomatic form:\n\n```crystal\narr.delete?(item)\narr.compact!\n```\n\n**Example:**\n```crystal\nary = [1, 2, 3, 2, 4]\nary.delete?(2)  # => true\nary.compact!    # => [1, 3, 4]\n```",
+        "pair_idx": 70
+      },
+      {
+        "tok_sim_chosen": 0.35185185185185186,
+        "tok_sim_rejected": 0.2857142857142857,
+        "tok_lean": 0.06613756613756616,
+        "char_sim_chosen": 0.3238095238095238,
+        "char_sim_rejected": 0.3710247349823322,
+        "char_lean": -0.04721521117280836,
+        "text": "Here's the Crystal version:\n\n```crystal\nlib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = \"hello\".to_unsafe\nLibFoo.process(buf, buf.size)\n```\n\n**Note**: `String#to_unsafe` allocates a new `UInt8*` and copies the contents of the string into it. If the string is immutable, this is unnecessary \u2014 you can use `Slice(UInt8).new` to allocate a new slice and copy the contents into it, or use `Slice(UInt8).new` to allocate a new slice and copy the contents into it.",
+        "pair_idx": 71
+      },
+      {
+        "tok_sim_chosen": 0.17391304347826086,
+        "tok_sim_rejected": 0.16129032258064516,
+        "tok_lean": 0.012622720897615708,
+        "char_sim_chosen": 0.024154589371980676,
+        "char_sim_rejected": 0.34375,
+        "char_lean": -0.3195954106280193,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\narr = StaticArray(UInt8, 3).new { |i| i + 1_u8 }\nLibFoo.process(arr.to_unsafe, arr.size)\n```\n\n**NOTE**: `StaticArray` is a `struct` and must be initialized before passing to C.",
+        "pair_idx": 72
+      },
+      {
+        "tok_sim_chosen": 0.11864406779661017,
+        "tok_sim_rejected": 0.08333333333333333,
+        "tok_lean": 0.035310734463276844,
+        "char_sim_chosen": 0.06557377049180328,
+        "char_sim_rejected": 0.09180327868852459,
+        "char_lean": -0.026229508196721305,
+        "text": "Here's the Crystal equivalent:\n\n```crystal\nvalue.not_nil!\n```\n\n**Signature:**\n```crystal\ndef not_nil!(message : String? = nil) : self\n```\n\n**Documentation:**\n\nAsserts that `self` is not `nil`. Returns `self`.\n\nRaises `NilAssertionError` if `self` is `nil`.\n\n```\n\"hello\".not_nil! # => \"hello\"\nnil.not_nil!     # raises NilAssertionError\n```",
+        "pair_idx": 73
+      }
+    ],
+    "qwen3-coder:30b": [
+      {
+        "tok_sim_chosen": 0.2111111111111111,
+        "tok_sim_rejected": 0.0975609756097561,
+        "tok_lean": 0.11355013550135501,
+        "char_sim_chosen": 0.07450331125827815,
+        "char_sim_rejected": 0.10305343511450382,
+        "char_lean": -0.02855012385622567,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\nclass User\n  getter :name\n  setter :name\n  \n  def initialize(@name : String)\n  end\nend\n```\n\nOr, using the more concise property syntax:\n\n```crystal\nclass User\n  property :name : String\n  \n  def initialize(@name : String)\n  end\nend\n```\n\nOr, if you want to make it even more concise with automatic getter/setter generation:\n\n```crystal\nclass User\n  @name : String\n  \n  def initialize(@name : String)\n  end\nend\n```\n\nIn this last version, Crystal automatically generates the getter and setter methods for the instance variable `@name` because it's declared with a type annotation in the constructor.\n\nThe key differences from Ruby:\n- Type annotations are required (`: String`)\n- Instance variables are declared with `@` prefix\n- `getter`/`setter`/`property` keywords are used instead of `attr_accessor`\n- Constructor parameters can be directly assigned to instance variables using `@variable = value` syntax\n- No need for explicit `initialize` method when using the automatic assignment syntax",
+        "pair_idx": 0
+      },
+      {
+        "tok_sim_chosen": 0.1702127659574468,
+        "tok_sim_rejected": 0.07954545454545454,
+        "tok_lean": 0.09066731141199226,
+        "char_sim_chosen": 0.1945288753799392,
+        "char_sim_rejected": 0.06621392190152801,
+        "char_lean": 0.1283149534784112,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nclass Account\n  getter :id\n  setter :secret\nend\n```\n\nOr, if you want to be more explicit about the types and follow Crystal's conventions:\n\n```crystal\nclass Account\n  @id : Int32\n  @secret : String\n\n  getter :id\n  setter :secret\nend\n```\n\nOr, using the more concise property syntax (which is the most idiomatic):\n\n```crystal\nclass Account\n  property :id : Int32\n  property :secret : String\nend\n```\n\nIf you want a read-only property for `id` and a writable property for `secret`, you could also write:\n\n```crystal\nclass Account\n  property :id : Int32\n  property :secret : String\nend\n```\n\nAnd then use it like:\n\n```crystal\naccount = Account.new\naccount.id = 123  # This would be a compile-time error since id is read-only\naccount.secret = \"mysecret\"  # This works\n```\n\nBut since you want the equivalent of Ruby's `attr_reader` and `attr_writer`, the most direct translation would be:\n\n```crystal\nclass Account\n  getter :id\n  setter :secret\nend\n```\n\nNote that Crystal's `getter` and `setter` are used instead of Ruby's `attr_reader` and `attr_writer`. Also, Crystal requires explicit type annotations for instance variables, so if you're using the `getter`/`setter` approach, you'll need to declare the types.",
+        "pair_idx": 1
+      },
+      {
+        "tok_sim_chosen": 0.1927710843373494,
+        "tok_sim_rejected": 0.10666666666666667,
+        "tok_lean": 0.08610441767068273,
+        "char_sim_chosen": 0.2522851919561243,
+        "char_sim_rejected": 0.11470281543274244,
+        "char_lean": 0.13758237652338187,
+        "text": "In Crystal, you'd write it like this:\n\n```crystal\nclass Box(T)\n  def initialize(@value : T)\n  end\nend\n```\n\nKey differences from Ruby:\n\n1. **Generic syntax**: `Box(T)` instead of `Box<T>`\n2. **Instance variable assignment**: `@value : T` in the initialize method parameter list\n3. **Type annotations**: Required for instance variables and method arguments\n4. **No explicit `@value = value`**: Crystal's constructor syntax automatically assigns the parameter to the instance variable\n\nYou can also write it more concisely using the `property` macro:\n\n```crystal\nclass Box(T)\n  property value : T\n\n  def initialize(@value : T)\n  end\nend\n```\n\nOr even simpler, using Crystal's automatic property generation:\n\n```crystal\nclass Box(T)\n  def initialize(@value : T)\n  end\nend\n\n# The `@value` instance variable is automatically available\n# and Crystal generates getter/setter methods automatically\n```\n\nThe first version is the most idiomatic and commonly used approach in Crystal.",
+        "pair_idx": 2
+      },
+      {
+        "tok_sim_chosen": 0.2,
+        "tok_sim_rejected": 0.04838709677419355,
+        "tok_lean": 0.15161290322580645,
+        "char_sim_chosen": 0.28886168910648713,
+        "char_sim_rejected": 0.07784431137724551,
+        "char_lean": 0.21101737772924162,
+        "text": "In Crystal, you would write this as:\n\n```crystal\narr = [] of Int32\narr << 1\narr << 2\n```\n\nOr more idiomatically, since you're initializing with values, you could write:\n\n```crystal\narr = [1, 2] of Int32\n```\n\nOr if you prefer the explicit initialization approach:\n\n```crystal\narr = [] of Int32\narr.push(1)\narr.push(2)\n```\n\nKey differences from Ruby:\n- Type annotations are required: `[] of Int32`\n- Use `push` or `<<` for adding elements (both work)\n- Crystal's type system requires explicit type declarations for empty arrays\n- The `of Int32` syntax specifies the element type\n\nThe most idiomatic version would be the literal array initialization `[1, 2] of Int32` since it's concise and clear.",
+        "pair_idx": 3
+      },
+      {
+        "tok_sim_chosen": 0.14492753623188406,
+        "tok_sim_rejected": 0.047619047619047616,
+        "tok_lean": 0.09730848861283645,
+        "char_sim_chosen": 0.14573991031390135,
+        "char_sim_rejected": 0.04298356510745891,
+        "char_lean": 0.10275634520644245,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nOr, if you want to let Crystal infer the types:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nOr more concisely, using the `Hash` literal syntax with explicit type annotation:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nOr, if you're okay with letting Crystal infer the types from usage:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nActually, let me correct that - the most idiomatic way is:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nOr if you want to be more explicit about the type:\n\n```crystal\nh : Hash(String, Int32) = {} of String => Int32\nh[\"a\"] = 1\n```\n\nBut the simplest and most common approach is:\n\n```crystal\nh = {} of String => Int32\nh[\"a\"] = 1\n```\n\nThis creates an empty hash with String keys and Int32 values, then assigns the value 1 to the key \"a\".",
+        "pair_idx": 4
+      },
+      {
+        "tok_sim_chosen": 0.23170731707317074,
+        "tok_sim_rejected": 0.2,
+        "tok_lean": 0.03170731707317073,
+        "char_sim_chosen": 0.017770597738287562,
+        "char_sim_rejected": 0.1809787626962142,
+        "char_lean": -0.16320816495792664,
+        "text": "Here's the Crystal-idiomatic version using Crystal's built-in `Spec` framework:\n\n```crystal\nrequire \"spec\"\n\nstruct User\n  property name : String\n\n  def initialize(@name : String)\n  end\nend\n\ndescribe User do\n  it \"has a name\" do\n    user = User.new(\"Ada\")\n    user.name.should eq(\"Ada\")\n  end\nend\n```\n\nKey differences from Ruby/RSpec:\n\n1. **`require \"spec\"`** instead of `\"rspec\"`\n2. **`describe`** block structure remains similar but uses Crystal's syntax\n3. **`user.name.should eq(\"Ada\")`** instead of `expect(user.name).to eq(\"Ada\")`\n4. **`property name : String`** defines both getter and setter with type annotation\n5. **`def initialize(@name : String)`** uses Crystal's constructor shorthand\n6. **`should`** matcher syntax instead of `expect`/`to`\n\nYou can also write it more concisely with a `getter`:\n\n```crystal\nrequire \"spec\"\n\nstruct User\n  getter name : String\n\n  def initialize(@name : String)\n  end\nend\n\ndescribe User do\n  it \"has a name\" do\n    User.new(\"Ada\").name.should eq(\"Ada\")\n  end\nend\n```\n\nTo run the tests, use `crystal spec` command.",
+        "pair_idx": 5
+      },
+      {
+        "tok_sim_chosen": 0.10714285714285714,
+        "tok_sim_rejected": 0.07352941176470588,
+        "tok_lean": 0.03361344537815125,
+        "char_sim_chosen": 0.04628501827040195,
+        "char_sim_rejected": 0.07606973058637084,
+        "char_lean": -0.029784712315968895,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nspawn do\n  do_work\nend.join\n```\n\nHowever, it's worth noting that in Crystal, you typically don't need to explicitly call `join` in most cases, as the program will wait for all spawned threads to complete before exiting. The `join` is only necessary if you need to wait for a specific thread's completion within a larger execution flow.\n\nIf you want to be more explicit about the return value or need the thread to complete before continuing, you can also write:\n\n```crystal\nthread = spawn do\n  do_work\nend\nthread.join\n```\n\nBut the most idiomatic approach is simply:\n\n```crystal\nspawn do\n  do_work\nend.join\n```",
+        "pair_idx": 6
+      },
+      {
+        "tok_sim_chosen": 0.17857142857142858,
+        "tok_sim_rejected": 0.08860759493670886,
+        "tok_lean": 0.08996383363471971,
+        "char_sim_chosen": 0.19029850746268656,
+        "char_sim_rejected": 0.09746192893401015,
+        "char_lean": 0.09283657852867641,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\nrequire \"channel\"\n\nchannel = Channel(Int32).new\nproducer = spawn do\n  channel.send(42)\nend\nputs channel.receive\n```\n\nKey differences in Crystal:\n\n1. **`Channel(T)`** instead of `Queue.new` - Crystal uses channels for concurrent communication\n2. **`spawn`** instead of `Thread.new` - Crystal's concurrency primitive\n3. **`.send()`** and **`.receive()`** instead of `<<` and `pop` - Channel methods\n4. **Type annotation** `Int32` - Crystal requires explicit type parameters for channels\n5. **No `require \"thread\"`** needed - channels are part of the standard library\n\nAlternative more concise version:\n```crystal\nrequire \"channel\"\n\nchannel = Channel(Int32).new\nspawn { channel.send(42) }\nputs channel.receive\n```\n\nThe `spawn` block doesn't need an explicit `do...end` when it's a single statement, and the `Channel(T)` constructor is used to specify the type of data being passed through the channel.",
+        "pair_idx": 7
+      },
+      {
+        "tok_sim_chosen": 0.20454545454545456,
+        "tok_sim_rejected": 0.06493506493506493,
+        "tok_lean": 0.13961038961038963,
+        "char_sim_chosen": 0.18823529411764706,
+        "char_sim_rejected": 0.053864168618266976,
+        "char_lean": 0.13437112549938007,
+        "text": "In Crystal, the idiomatic version would be:\n\n```crystal\ndef add(a : Int32, b : Int32) : Int32\n  a + b\nend\n```\n\nOr, if you want to be more flexible with types:\n\n```crystal\ndef add(a : T, b : T) : T\n  a + b\nend\n```\n\nOr even more generally using union types:\n\n```crystal\ndef add(a : Int32 | Float64, b : Int32 | Float64) : Int32 | Float64\n  a + b\nend\n```\n\nThe first version is the most explicit and commonly used when you know the exact types you're working with. The second uses generics to work with any type that supports the `+` operation, and the third allows for specific numeric types while being more flexible about which ones.\n\nNote that Crystal requires explicit type annotations for method arguments and return types when they can't be inferred from the context. The `T` in the generic version is a type parameter that will be inferred from the arguments when the method is called.",
+        "pair_idx": 8
+      },
+      {
+        "tok_sim_chosen": 0.1917808219178082,
+        "tok_sim_rejected": 0.08955223880597014,
+        "tok_lean": 0.10222858311183806,
+        "char_sim_chosen": 0.2642369020501139,
+        "char_sim_rejected": 0.09242618741976893,
+        "char_lean": 0.17181071463034497,
+        "text": "In Crystal, you would write this as:\n\n```crystal\ndef initialize(@name : String, @age : Int32)\nend\n```\n\nThis uses Crystal's **instance variable assignment syntax** where `@name : String` and `@age : Int32` automatically create the instance variables and their type annotations. The `@name` and `@age` are both required parameters.\n\nIf you want to make them optional, you could write:\n\n```crystal\ndef initialize(@name : String?, @age : Int32?)\nend\n```\n\nOr if you want to provide default values:\n\n```crystal\ndef initialize(@name : String = \"\", @age : Int32 = 0)\nend\n```\n\nNote that Crystal requires explicit type annotations for instance variables in the constructor, unlike Ruby where types are inferred at runtime. Also, Crystal uses `Int32` instead of `Integer` for the age type.",
+        "pair_idx": 9
+      },
+      {
+        "tok_sim_chosen": 0.14634146341463414,
+        "tok_sim_rejected": 0.09375,
+        "tok_lean": 0.05259146341463414,
+        "char_sim_chosen": 0.011466011466011465,
+        "char_sim_rejected": 0.09155645981688708,
+        "char_lean": -0.08009044835087561,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nrequire \"json\"\n\njson_str = \"{\\\"name\\\": \\\"John\\\"}\"\ndata = JSON.parse(json_str)\nputs data[\"name\"]\n```\n\nHowever, since `JSON.parse` returns a `JSON::Any` type which can be any JSON value, you'll want to handle the type safely:\n\n```crystal\nrequire \"json\"\n\njson_str = \"{\\\"name\\\": \\\"John\\\"}\"\ndata = JSON.parse(json_str)\nif name = data[\"name\"]?\n  puts name.as_s\nend\n```\n\nOr more explicitly with type handling:\n\n```crystal\nrequire \"json\"\n\njson_str = \"{\\\"name\\\": \\\"John\\\"}\"\ndata = JSON.parse(json_str)\nname = data[\"name\"]\nif name.is_a?(JSON::String)\n  puts name\nend\n```\n\nOr using the more idiomatic `as_s` method when you're certain it's a string:\n\n```crystal\nrequire \"json\"\n\njson_str = \"{\\\"name\\\": \\\"John\\\"}\"\ndata = JSON.parse(json_str)\nputs data[\"name\"].as_s\n```\n\nThe key differences from Ruby:\n- Must explicitly `require \"json\"`\n- `JSON.parse` returns `JSON::Any` \n- Need to handle type safety with `as_s` or `is_a?` checks\n- No automatic type coercion like Ruby provides",
+        "pair_idx": 10
+      },
+      {
+        "tok_sim_chosen": 0.23684210526315788,
+        "tok_sim_rejected": 0.14492753623188406,
+        "tok_lean": 0.09191456903127382,
+        "char_sim_chosen": 0.2989593188268685,
+        "char_sim_rejected": 0.16417910447761194,
+        "char_lean": 0.13478021434925655,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\ndef greet(name : String)\n  raise ArgumentError.new(\"blank\") if name.empty?\n  \"Hi, #{name}\"\nend\n```\n\nKey differences in Crystal:\n\n1. **Explicit type annotations**: `name : String` - Crystal requires explicit type annotations for method parameters\n2. **`ArgumentError.new`**: Crystal uses `new` to instantiate exceptions, not the constructor syntax\n3. **No implicit string interpolation**: Crystal requires explicit string interpolation with `#{}`\n\nAlternative version using `raise` with a more concise syntax:\n\n```crystal\ndef greet(name : String)\n  raise ArgumentError, \"blank\" if name.empty?\n  \"Hi, #{name}\"\nend\n```\n\nBoth are valid - Crystal's `raise` can accept either `Exception.new(message)` or `Exception, message` syntax. The explicit `new` is more idiomatic when you need to pass additional parameters to the exception constructor.",
+        "pair_idx": 11
+      },
+      {
+        "tok_sim_chosen": 0.15789473684210525,
+        "tok_sim_rejected": 0.1,
+        "tok_lean": 0.05789473684210525,
+        "char_sim_chosen": 0.19213973799126638,
+        "char_sim_rejected": 0.09673518742442563,
+        "char_lean": 0.09540455056684075,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nbegin\n  risky\nrescue e : Exception\n  puts e.message\nend\n```\n\nOr more idiomatically, since `Exception` is the base class for all exceptions in Crystal:\n\n```crystal\nbegin\n  risky\nrescue e\n  puts e.message\nend\n```\n\nCrystal's exception handling syntax is similar to Ruby's, but with a few key differences:\n\n1. You must specify the exception type in the rescue clause (though `Exception` works as a catch-all)\n2. Crystal uses `rescue` keyword instead of `rescue =>`\n3. The variable `e` is automatically typed as `Exception` (or whatever you specify)\n\nIf you want to be more specific about the exception type, you could write:\n\n```crystal\nbegin\n  risky\nrescue e : ArgumentError\n  puts e.message\nend\n```\n\nOr catch multiple exception types:\n\n```crystal\nbegin\n  risky\nrescue e : ArgumentError | IndexError\n  puts e.message\nend\n```",
+        "pair_idx": 12
+      },
+      {
+        "tok_sim_chosen": 0.11578947368421053,
+        "tok_sim_rejected": 0.047619047619047616,
+        "tok_lean": 0.06817042606516291,
+        "char_sim_chosen": 0.1638418079096045,
+        "char_sim_rejected": 0.038876889848812095,
+        "char_lean": 0.12496491806079241,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nputs foo&.bar&.baz\n```\n\nCrystal supports the safe navigation operator (`&.`) just like Ruby, so the syntax is identical. However, it's worth noting that Crystal's type system is more strict, so you might need to ensure that `foo` is properly typed to handle the potential `nil` values in the chain.\n\nIf you want to be more explicit about the types, you could write:\n\n```crystal\nputs foo&.bar&.baz\n```\n\nBut the safe navigation operator works the same way as in Ruby. If `foo` is `nil`, or if `foo.bar` is `nil`, the expression will return `nil` instead of raising an error.\n\nFor example:\n```crystal\nfoo = nil\nputs foo&.bar&.baz  # prints nil\n\nfoo = SomeClass.new\nputs foo&.bar&.baz  # calls bar on foo, then baz on the result\n```\n\nThe key difference from Ruby is that Crystal's type system will enforce that the types are compatible with the safe navigation, but the `&.` operator itself works exactly the same way.",
+        "pair_idx": 13
+      },
+      {
+        "tok_sim_chosen": 0.22988505747126436,
+        "tok_sim_rejected": 0.12658227848101267,
+        "tok_lean": 0.1033027789902517,
+        "char_sim_chosen": 0.1778975741239892,
+        "char_sim_rejected": 0.16075156576200417,
+        "char_lean": 0.017146008361985043,
+        "text": "Here's the Crystal-idiomatic version of that Ruby method:\n\n```crystal\ndef lookup(key : String) : String?\n  return nil unless @cache.has_key?(key)\n  @cache[key].upcase\nend\n```\n\nKey differences in the Crystal version:\n\n1. **Type annotations**: Both the parameter (`key : String`) and return type (`: String?`) are explicitly declared\n2. **Union syntax**: `String?` represents `String | Nil` (the nullable type)\n3. **Method signature**: Crystal uses `def method_name(args) : ReturnType` syntax\n4. **Instance variable access**: `@cache` is accessed directly (Crystal handles the instance variable declaration automatically when used)\n\nIf you want to be more explicit about the cache type, you could also write:\n\n```crystal\ndef lookup(key : String) : String?\n  return nil unless @cache.has_key?(key)\n  @cache[key].upcase\nend\n```\n\nWhere `@cache` would be declared as `@cache : Hash(String, String)` or similar earlier in the class.",
+        "pair_idx": 14
+      },
+      {
+        "tok_sim_chosen": 0.17647058823529413,
+        "tok_sim_rejected": 0.0945945945945946,
+        "tok_lean": 0.08187599364069953,
+        "char_sim_chosen": 0.03676470588235294,
+        "char_sim_rejected": 0.12134344528710726,
+        "char_lean": -0.08457873940475433,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nabstract class Animal\n  def speak\n    raise NotImplementedError.new\n  end\nend\n```\n\nKey differences from Ruby:\n\n1. **`abstract class`** - Crystal uses `abstract` to define abstract classes that cannot be instantiated directly\n2. **`NotImplementedError.new`** - Crystal requires you to explicitly instantiate the exception class\n\nAlternatively, if you want to make the method abstract without implementation (which is more idiomatic for pure interfaces), you can write:\n\n```crystal\nabstract class Animal\n  def speak : Nil\n    raise NotImplementedError.new\n  end\nend\n```\n\nOr even more simply, if you just want to define an abstract method without a body:\n\n```crystal\nabstract class Animal\n  abstract def speak : Nil\nend\n```\n\nThe `abstract` keyword tells the compiler that subclasses must implement this method, and the return type annotation `: Nil` explicitly states what the method returns.",
+        "pair_idx": 15
+      },
+      {
+        "tok_sim_chosen": 0.20481927710843373,
+        "tok_sim_rejected": 0.08108108108108109,
+        "tok_lean": 0.12373819602735264,
+        "char_sim_chosen": 0.20987654320987653,
+        "char_sim_rejected": 0.10843373493975904,
+        "char_lean": 0.1014428082701175,
+        "text": "In Crystal, you would write this using the `lib` and `fun` syntax:\n\n```crystal\nlib C\n  fun puts = \"puts\"(str : Char*) : Int32\nend\n```\n\nOr if you prefer a more explicit approach with the `extern` syntax (which is less common but still valid):\n\n```crystal\nlib C\n  fun puts(str : Char*) : Int32\nend\n```\n\nKey differences from Ruby:\n- Uses `lib C` instead of `extern \"C\"`\n- Uses `fun` instead of `attach_function`\n- Uses `Char*` instead of `:string` for C string pointers\n- Uses `Int32` instead of `:int` for the return type\n- Crystal's type system handles the C FFI bindings more directly\n\nThe first form with `fun puts = \"puts\"(...)` is the most idiomatic when you want to explicitly name the C function, while the second form `fun puts(...)` works when the Crystal function name matches the C function name exactly.",
+        "pair_idx": 16
+      },
+      {
+        "tok_sim_chosen": 0.12371134020618557,
+        "tok_sim_rejected": 0.09195402298850575,
+        "tok_lean": 0.031757317217679826,
+        "char_sim_chosen": 0.21891418563922943,
+        "char_sim_rejected": 0.10980392156862745,
+        "char_lean": 0.10911026407060198,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\nclass Cache\n  @@instance : Cache?\n\n  def self.instance\n    @@instance ||= new\n  end\nend\n```\n\nHowever, a more idiomatic Crystal approach would be to use a `getter` for the instance variable and potentially a more explicit singleton pattern:\n\n```crystal\nclass Cache\n  @@instance : Cache?\n\n  def self.instance\n    @@instance ||= new\n  end\n\n  private_class_method :new\nend\n```\n\nOr even more simply, if you want to follow Crystal's conventions more closely:\n\n```crystal\nclass Cache\n  @@instance : Cache?\n\n  def self.instance\n    @@instance ||= new\n  end\nend\n```\n\nThe key differences from Ruby:\n1. Type annotations are required: `@@instance : Cache?`\n2. Crystal uses `?` for nullable types (equivalent to Ruby's `nil` handling)\n3. The `self.` prefix is used for class methods\n4. Crystal's `getter`/`setter`/`property` syntax is preferred over `attr_*` methods\n5. Crystal doesn't have the `private_class_method` syntax, but you can achieve similar behavior with `private` and `def self.new`",
+        "pair_idx": 17
+      },
+      {
+        "tok_sim_chosen": 0.13,
+        "tok_sim_rejected": 0.06741573033707865,
+        "tok_lean": 0.06258426966292135,
+        "char_sim_chosen": 0.0546448087431694,
+        "char_sim_rejected": 0.07949412827461608,
+        "char_lean": -0.02484931953144668,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\ndef transform(xs : Enumerable(T), &block : T -> U) : Array(U)\n  xs.map { |x| block.call(x) }\nend\n```\n\nOr more simply, since Crystal's `map` is already generic and type-safe:\n\n```crystal\ndef transform(xs : Enumerable(T), &block : T -> U) : Array(U)\n  xs.map(&block)\nend\n```\n\nHowever, the most idiomatic approach would be to just use `map` directly without a wrapper:\n\n```crystal\n# Instead of defining transform, just use map directly\nresult = xs.map { |x| some_operation(x) }\n```\n\nIf you really need a wrapper function, here's a more complete version with proper type annotations:\n\n```crystal\ndef transform(xs : Enumerable(T), &block : T -> U) : Array(U)\n  xs.map(&block)\nend\n```\n\nKey differences from Ruby:\n- Type annotations required (`xs : Enumerable(T)`, `&block : T -> U`)\n- `map(&block)` syntax works the same way\n- Crystal's type system ensures type safety at compile time\n- No need for `call` method invocation (Crystal handles this automatically)\n\nThe generic parameters `T` and `U` represent the input and output types respectively, making the function polymorphic and type-safe.",
+        "pair_idx": 18
+      },
+      {
+        "tok_sim_chosen": 0.16666666666666666,
+        "tok_sim_rejected": 0.0967741935483871,
+        "tok_lean": 0.06989247311827956,
+        "char_sim_chosen": 0.15079365079365079,
+        "char_sim_rejected": 0.056818181818181816,
+        "char_lean": 0.09397546897546896,
+        "text": "In Crystal, you'd write this using `Hash#fetch` with a default value or by using `Hash#[]=` with a check. Here are the idiomatic approaches:\n\n```crystal\n# Approach 1: Using Hash#fetch with default\nh = {} of String => Int32\nh[\"x\"] = h.fetch(\"x\", 0) + 1\n\n# Approach 2: Using Hash#has_key? check\nh = {} of String => Int32\nif h.has_key?(\"x\")\n  h[\"x\"] += 1\nelse\n  h[\"x\"] = 1\nend\n\n# Approach 3: Using Hash#[]? with default (most similar to Ruby)\nh = {} of String => Int32\nh[\"x\"] = h[\"x\"]? || 0\nh[\"x\"] += 1\n\n# Approach 4: Using a helper method (most idiomatic)\ndef increment_hash_value(hash, key)\n  hash[key] = hash[key]? || 0\n  hash[key] += 1\nend\n\nh = {} of String => Int32\nincrement_hash_value(h, \"x\")\n```\n\nThe most direct equivalent to Ruby's `Hash.new(0)` behavior would be **Approach 1** or **Approach 3**, though Crystal's type system requires explicit type annotations for the hash.",
+        "pair_idx": 19
+      },
+      {
+        "tok_sim_chosen": 0.19318181818181818,
+        "tok_sim_rejected": 0.05,
+        "tok_lean": 0.1431818181818182,
+        "char_sim_chosen": 0.236,
+        "char_sim_rejected": 0.04265402843601896,
+        "char_lean": 0.19334597156398103,
+        "text": "In Crystal, you would write this as:\n\n```crystal\narr = Array(String).new(5)\n```\n\nOr more commonly, if you want an array of a specific type with default values:\n\n```crystal\narr = Array(String).new(5, \"\")  # Creates 5 empty strings\n```\n\nOr if you want an array of integers:\n\n```crystal\narr = Array(Int32).new(5, 0)  # Creates 5 zeros\n```\n\nThe key differences from Ruby:\n1. Crystal requires explicit type annotations for arrays\n2. You must specify the type parameter `(String)` or `(Int32)` etc.\n3. The second parameter sets the default value for each element\n4. Crystal's `Array(T).new(size, default_value)` syntax is more explicit than Ruby's `Array.new(size)`\n\nIf you want an array of `nil` values (similar to Ruby's behavior), you'd write:\n\n```crystal\narr = Array(String?).new(5)  # Creates 5 nil values\n```\n\nNote that Crystal arrays are always homogeneous - all elements must be of the same type.",
+        "pair_idx": 20
+      },
+      {
+        "tok_sim_chosen": 0.12048192771084337,
+        "tok_sim_rejected": 0.1111111111111111,
+        "tok_lean": 0.009370816599732268,
+        "char_sim_chosen": 0.011627906976744186,
+        "char_sim_rejected": 0.09361702127659574,
+        "char_lean": -0.08198911429985156,
+        "text": "In Crystal, you'd implement this using a `getter` with a `Dynamic` type and `method_missing` handling, but since Crystal doesn't have `method_missing` in the same way Ruby does, here's the idiomatic approach using a `Hash` with dynamic key access:\n\n```crystal\nclass User\n  def initialize\n    @attrs = {} of String => Dynamic\n  end\n\n  def method_missing(name : String)\n    @attrs[name]\n  end\n\n  def respond_to_missing?(name : String)\n    @attrs.has_key?(name)\n  end\nend\n```\n\nHowever, if you want a more type-safe approach, you could use a `NamedTuple` or `Hash` with explicit type handling:\n\n```crystal\nclass User\n  def initialize\n    @attrs = {} of String => Dynamic\n  end\n\n  def [](key : String)\n    @attrs[key]\n  end\n\n  def []=(key : String, value : Dynamic)\n    @attrs[key] = value\n  end\nend\n```\n\nOr, for a more Crystal-idiomatic approach using `Dynamic` with proper type handling:\n\n```crystal\nclass User\n  def initialize\n    @attrs = {} of String => Dynamic\n  end\n\n  def method_missing(name : String, *args)\n    @attrs[name]\n  end\n\n  def respond_to_missing?(name : String)\n    @attrs.has_key?(name)\n  end\nend\n```\n\nBut the most practical and idiomatic Crystal approach would be:\n\n```crystal\nclass User\n  def initialize\n    @attrs = {} of String => Dynamic\n  end\n\n  def method_missing(name : String)\n    @attrs[name]\n  end\n\n  def respond_to_missing?(name : String)\n    @attrs.has_key?(name)\n  end\nend\n```\n\nThis allows dynamic attribute access similar to Ruby's `method_missing`, though Crystal's type system will",
+        "pair_idx": 21
+      },
+      {
+        "tok_sim_chosen": 0.17721518987341772,
+        "tok_sim_rejected": 0.06349206349206349,
+        "tok_lean": 0.11372312638135423,
+        "char_sim_chosen": 0.0515695067264574,
+        "char_sim_rejected": 0.07552447552447553,
+        "char_lean": -0.023954968798018124,
+        "text": "In Crystal, you'd write this as:\n\n```crystal\nname : String? = nil\nputs name.not_nil!.length\n```\n\nOr more idiomatically, you'd handle the nil case explicitly:\n\n```crystal\nname : String? = nil\nif name\n  puts name.length\nelse\n  puts \"Name is nil\"\nend\n```\n\nOr using the safe navigation operator:\n\n```crystal\nname : String? = nil\nputs name&.length\n```\n\nThe key differences from Ruby:\n- Type annotations are required: `name : String? = nil`\n- Crystal is statically typed, so you must handle the nil case explicitly\n- `not_nil!` is a method that asserts a value is not nil (will panic if nil)\n- `&.length` is the safe navigation operator (returns nil if receiver is nil)\n- Crystal doesn't allow calling methods on nil values without explicit handling",
+        "pair_idx": 22
+      },
+      {
+        "tok_sim_chosen": 0.18072289156626506,
+        "tok_sim_rejected": 0.0958904109589041,
+        "tok_lean": 0.08483248060736095,
+        "char_sim_chosen": 0.20770877944325483,
+        "char_sim_rejected": 0.07920792079207921,
+        "char_lean": 0.1285008586511756,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nenum Color\n  Red\n  Green\nend\n```\n\nCrystal's `enum` is more sophisticated than Ruby's. It automatically assigns sequential integer values starting from 0, so `Red` = 0, `Green` = 1. If you need specific values, you can assign them explicitly:\n\n```crystal\nenum Color\n  Red   = 1\n  Green = 2\nend\n```\n\nYou can also mix explicit and implicit assignments:\n\n```crystal\nenum Color\n  Red   = 1\n  Green\n  Blue  = 5\nend\n```\n\nThis would assign `Red` = 1, `Green` = 2, `Blue` = 5.\n\nEnums in Crystal are compile-time constructs that provide type safety and are compiled down to efficient integer values. They support methods and can be used in pattern matching:\n\n```crystal\nenum Color\n  Red\n  Green\n  Blue\nend\n\ndef color_name(color : Color)\n  case color\n  when Color::Red\n    \"red\"\n  when Color::Green\n    \"green\"\n  when Color::Blue\n    \"blue\"\n  end\nend\n```",
+        "pair_idx": 23
+      },
+      {
+        "tok_sim_chosen": 0.168141592920354,
+        "tok_sim_rejected": 0.0297029702970297,
+        "tok_lean": 0.1384386226233243,
+        "char_sim_chosen": 0.012543554006968641,
+        "char_sim_rejected": 0.03417412530512612,
+        "char_lean": -0.02163057129815748,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nsend(:greet, \"world\")\n```\n\nHowever, since Crystal is statically-typed and doesn't have dynamic method dispatch like Ruby, you'd typically use a more type-safe approach. Here are the idiomatic Crystal equivalents:\n\n**Option 1: Using `send` with explicit types**\n```crystal\n# If you know the method signature at compile time\ndef greet(name : String)\n  \"Hello, #{name}!\"\nend\n\n# Call it directly (most idiomatic)\ngreet(\"world\")\n\n# Or if you must use send:\nsend(:greet, \"world\")\n```\n\n**Option 2: Using `responds_to?` and `send` for dynamic cases**\n```crystal\n# For truly dynamic scenarios\nif self.responds_to?(:greet)\n  send(:greet, \"world\")\nend\n```\n\n**Option 3: Using a method dispatch pattern**\n```crystal\ndef call_method(method_name : Symbol, *args)\n  case method_name\n  when :greet\n    greet(args[0].as(String))\n  else\n    raise \"Unknown method\"\n  end\nend\n\ncall_method(:greet, \"world\")\n```\n\n**Option 4: Using `Object#send` with proper type handling**\n```crystal\n# This works but is less idiomatic\ndef dynamic_call(obj, method_name, *args)\n  obj.send(method_name, *args)\nend\n\ndynamic_call(self, :greet, \"world\")\n```\n\nThe most idiomatic Crystal approach would be to avoid `send` entirely and use direct method calls or proper polymorphism with union types or interfaces.",
+        "pair_idx": 24
+      },
+      {
+        "tok_sim_chosen": 0.15555555555555556,
+        "tok_sim_rejected": 0.047058823529411764,
+        "tok_lean": 0.1084967320261438,
+        "char_sim_chosen": 0.12878787878787878,
+        "char_sim_rejected": 0.037894736842105266,
+        "char_lean": 0.09089314194577353,
+        "text": "In Crystal, you cannot use `eval` because it's not available in the standard library. Crystal is a statically-typed language that compiles to native code, so dynamic code evaluation is not supported for safety and performance reasons.\n\nHowever, if you need to execute code dynamically, you have a few alternatives:\n\n1. **Use `system` to execute external commands**:\n```crystal\nsystem(\"ruby\", \"-e\", \"puts 1 + 2\")\n```\n\n2. **Use `Process.run` for more control**:\n```crystal\nProcess.run(\"ruby\", [\"-e\", \"puts 1 + 2\"])\n```\n\n3. **For simple arithmetic, just write the code directly**:\n```crystal\nputs 1 + 2\n```\n\n4. **If you need dynamic behavior, consider using a case statement or method dispatch**:\n```crystal\ndef execute_operation(operation : String)\n  case operation\n  when \"add\"\n    puts 1 + 2\n  when \"subtract\"\n    puts 1 - 2\n  end\nend\n\nexecute_operation(\"add\")\n```\n\nThe Crystal approach emphasizes compile-time safety and performance over runtime dynamism, so dynamic code evaluation is intentionally not supported.",
+        "pair_idx": 25
+      },
+      {
+        "tok_sim_chosen": 0.15942028985507245,
+        "tok_sim_rejected": 0.06349206349206349,
+        "tok_lean": 0.09592822636300896,
+        "char_sim_chosen": 0.2557200538358008,
+        "char_sim_rejected": 0.14714714714714713,
+        "char_lean": 0.10857290668865369,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nrequire \"./user\"\nrequire \"../lib/helper\"\n```\n\nCrystal uses the same `require` statement as Ruby for loading files, but it doesn't have `require_relative` as a separate keyword. Instead, you can use relative paths directly with `require` (which is equivalent to Ruby's `require_relative`) or absolute paths from the project root.\n\nIf you need to be more explicit about the relative path, you can also use:\n\n```crystal\nrequire \"./user\"\nrequire \"../lib/helper\"\n```\n\nThe path resolution works the same way as in Ruby - `./` refers to the current directory, and `../` refers to the parent directory.",
+        "pair_idx": 26
+      },
+      {
+        "tok_sim_chosen": 0.175,
+        "tok_sim_rejected": 0.10666666666666667,
+        "tok_lean": 0.06833333333333332,
+        "char_sim_chosen": 0.2465034965034965,
+        "char_sim_rejected": 0.12045889101338432,
+        "char_lean": 0.1260446054901122,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nrequire \"mutex\"\n\nclass MyClass\n  @counter : Int32 = 0\n  \n  def increment\n    mutex = Mutex.new\n    spawn do\n      mutex.synchronize { @counter += 1 }\n    end\n  end\nend\n```\n\nOr if you want to use a class-level mutex:\n\n```crystal\nrequire \"mutex\"\n\nclass MyClass\n  @counter : Int32 = 0\n  @@mutex : Mutex = Mutex.new\n  \n  def increment\n    spawn do\n      @@mutex.synchronize { @counter += 1 }\n    end\n  end\nend\n```\n\nKey differences from Ruby:\n- Use `spawn` instead of `Thread.new`\n- Use `Mutex` from the standard library (it's built-in)\n- Must declare instance variables with type annotations (`@counter : Int32`)\n- Use `require \"mutex\"` to import the mutex functionality\n- The `spawn` block syntax is similar to Ruby's `Thread.new` but with Crystal's syntax\n\nIf you're working with a simple counter and don't need to return the thread, you can also write it more directly:\n\n```crystal\nrequire \"mutex\"\n\nclass Counter\n  @value : Int32 = 0\n  @mutex : Mutex = Mutex.new\n  \n  def increment\n    spawn do\n      @mutex.synchronize { @value += 1 }\n    end\n  end\nend\n```",
+        "pair_idx": 27
+      },
+      {
+        "tok_sim_chosen": 0.20512820512820512,
+        "tok_sim_rejected": 0.15384615384615385,
+        "tok_lean": 0.051282051282051266,
+        "char_sim_chosen": 0.1142263759086189,
+        "char_sim_rejected": 0.1362530413625304,
+        "char_lean": -0.02202666545391152,
+        "text": "In Crystal, the equivalent idiomatic code would be:\n\n```crystal\nclass Box\n  def initialize(@value : Int32)\n  end\nend\n\nb = Box.new(1)\n```\n\nKey differences from Ruby:\n\n1. **Type annotations required**: Crystal is statically typed, so `@value : Int32` specifies the type\n2. **Shorthand instance variable assignment**: The `@value : Int32` syntax automatically creates the instance variable and its getter/setter\n3. **No explicit `getter`/`setter` needed**: The shorthand `@value : Int32` in the constructor creates both automatically\n\nIf you want to be more explicit about the getter/setter, you could also write:\n\n```crystal\nclass Box\n  @value : Int32\n  \n  def initialize(@value : Int32)\n  end\n  \n  getter value\nend\n\nb = Box.new(1)\n```\n\nBut the first version with the shorthand is the most idiomatic in Crystal.",
+        "pair_idx": 28
+      },
+      {
+        "tok_sim_chosen": 0.13095238095238096,
+        "tok_sim_rejected": 0.0684931506849315,
+        "tok_lean": 0.062459230267449456,
+        "char_sim_chosen": 0.1935483870967742,
+        "char_sim_rejected": 0.11325301204819277,
+        "char_lean": 0.08029537504858142,
+        "text": "In Crystal, you'd write this as:\n\n```crystal\nmaybe_user = find_user(id)\nif maybe_user\n  puts maybe_user.name\nend\n```\n\nOr more idiomatically using the safe navigation operator:\n\n```crystal\nmaybe_user = find_user(id)\nputs maybe_user&.name\n```\n\nOr if you want to handle the nil case explicitly:\n\n```crystal\nmaybe_user = find_user(id)\nunless maybe_user.nil?\n  puts maybe_user.name\nend\n```\n\nThe key differences from Ruby are:\n1. Crystal requires explicit nil checking (no implicit truthiness)\n2. The safe navigation operator is `&.` not `&`\n3. Crystal's type system requires you to handle the `nil` case explicitly\n4. You can't call methods on potentially nil values without proper nil checking\n\nIf `find_user` returns `User?` (User or Nil), you must explicitly handle the nil case, which makes the code more robust and prevents runtime errors.",
+        "pair_idx": 29
+      },
+      {
+        "tok_sim_chosen": 0.19540229885057472,
+        "tok_sim_rejected": 0.0975609756097561,
+        "tok_lean": 0.09784132324081862,
+        "char_sim_chosen": 0.17353198948290974,
+        "char_sim_rejected": 0.1111111111111111,
+        "char_lean": 0.06242087837179863,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\ndef info(opts = {} of String => String)\n  puts opts[\"name\"]\nend\n\ninfo(name: \"Ada\")\n```\n\nKey differences from Ruby:\n\n1. **Type annotations required**: `opts = {} of String => String` explicitly declares the hash type\n2. **String keys**: Crystal hashes use string keys (not symbols) - so `:name` becomes `\"name\"`\n3. **No implicit conversion**: Crystal doesn't automatically convert symbols to strings like Ruby does\n\nAlternative approach using a keyword arguments pattern (more idiomatic in Crystal):\n\n```crystal\ndef info(name : String = \"\")\n  puts name\nend\n\ninfo(name: \"Ada\")\n```\n\nOr even more explicitly with a struct for complex options:\n\n```crystal\nstruct InfoOptions\n  property name : String\n  \n  def initialize(@name : String = \"\")\n  end\nend\n\ndef info(opts : InfoOptions = InfoOptions.new)\n  puts opts.name\nend\n\ninfo(name: \"Ada\")\n```\n\nThe first example shows the direct translation, while the second demonstrates Crystal's preferred approach using keyword arguments with explicit types.",
+        "pair_idx": 30
+      },
+      {
+        "tok_sim_chosen": 0.20512820512820512,
+        "tok_sim_rejected": 0.12162162162162163,
+        "tok_lean": 0.08350658350658349,
+        "char_sim_chosen": 0.19635099913119028,
+        "char_sim_rejected": 0.13018867924528302,
+        "char_lean": 0.06616231988590726,
+        "text": "Here's the Crystal-idiomatic version of that Ruby singleton pattern:\n\n```crystal\nclass Logger\n  @@instance : Logger?\n\n  def self.global\n    @@instance ||= new\n  end\nend\n```\n\nKey differences from Ruby:\n\n1. **Type annotations required**: `@@instance : Logger?` - Crystal requires explicit type annotations for class variables\n2. **Union syntax**: `Logger?` means `Logger | Nil` (nullable type)\n3. **No `self.` prefix needed**: In Crystal, you can call class methods directly without `self.`\n\nAlternative Crystal approaches:\n\n**Using `@instance` with `getter`/`setter`:**\n```crystal\nclass Logger\n  @@instance : Logger?\n\n  def self.global\n    @@instance ||= new\n  end\nend\n```\n\n**Using `initialize` with explicit constructor:**\n```crystal\nclass Logger\n  @@instance : Logger?\n\n  def self.global\n    @@instance ||= new\n  end\n\n  private def initialize\n    # initialization logic here\n  end\nend\n```\n\nThe `@@instance : Logger?` syntax is Crystal's way of declaring a class variable with a nullable type, which is equivalent to Ruby's `@@instance = nil` followed by the conditional assignment.",
+        "pair_idx": 31
+      },
+      {
+        "tok_sim_chosen": 0.1527777777777778,
+        "tok_sim_rejected": 0.09523809523809523,
+        "tok_lean": 0.05753968253968256,
+        "char_sim_chosen": 0.20306965761511217,
+        "char_sim_rejected": 0.0896358543417367,
+        "char_lean": 0.11343380327337547,
+        "text": "In Crystal, you would write this as:\n\n```crystal\narr.first?  # returns T? (T or Nil) if empty\n```\n\nOr if you want to be more explicit about the return type:\n\n```crystal\narr.first? # returns T? where T is the element type\n```\n\nCrystal's `first?` method returns the first element or `nil` if the array is empty, similar to Ruby's `first` method. However, Crystal's type system requires you to be explicit about potential nil returns, so `first?` is the idiomatic way to get this behavior.\n\nIf you want to handle the case where the array might be empty and you need to provide a default value, you can also use:\n\n```crystal\narr.first || default_value\n```\n\nBut for the direct equivalent of Ruby's `first` behavior, use `first?` in Crystal.",
+        "pair_idx": 32
+      },
+      {
+        "tok_sim_chosen": 0.24324324324324326,
+        "tok_sim_rejected": 0.1206896551724138,
+        "tok_lean": 0.12255358807082946,
+        "char_sim_chosen": 0.05108556832694764,
+        "char_sim_rejected": 0.1412151067323481,
+        "char_lean": -0.09012953840540047,
+        "text": "Here's the Crystal-idiomatic version of that Ruby class:\n\n```crystal\nclass Cat < Animal\n  def speak\n    \"meow\"\n  end\nend\n```\n\nIn Crystal, you don't need the semicolon after the return value, and the syntax is slightly more concise. The class definition and method definition follow the same structure as Ruby, but Crystal's syntax is more streamlined.\n\nIf you want to be more explicit about the return type (which is idiomatic in Crystal), you could write:\n\n```crystal\nclass Cat < Animal\n  def speak : String\n    \"meow\"\n  end\nend\n```\n\nBut the first version is perfectly valid and commonly used in Crystal codebases.",
+        "pair_idx": 33
+      },
+      {
+        "tok_sim_chosen": 0.1951219512195122,
+        "tok_sim_rejected": 0.12162162162162163,
+        "tok_lean": 0.07350032959789057,
+        "char_sim_chosen": 0.2578397212543554,
+        "char_sim_rejected": 0.11717709720372836,
+        "char_lean": 0.14066262405062702,
+        "text": "In Crystal, you'd write this as:\n\n```crystal\nputs foo.responds_to?(:bar) ? foo.bar : \"n/a\"\n```\n\nHowever, since Crystal is statically-typed and doesn't have dynamic method dispatch like Ruby, you'd typically use a more type-safe approach:\n\n```crystal\nif foo.responds_to?(:bar)\n  puts foo.bar\nelse\n  puts \"n/a\"\nend\n```\n\nOr if you know the possible types, you might use a union type:\n\n```crystal\ndef safe_method_call(obj : T, method : Symbol) : String\n  if obj.responds_to?(method)\n    obj.send(method).to_s\n  else\n    \"n/a\"\n  end\nend\n\nputs safe_method_call(foo, :bar)\n```\n\nThe key differences from Ruby:\n- `responds_to?` instead of `respond_to?`\n- Crystal's type system requires more explicit handling of dynamic behavior\n- Method calls are resolved at compile-time when possible",
+        "pair_idx": 34
+      },
+      {
+        "tok_sim_chosen": 0.12380952380952381,
+        "tok_sim_rejected": 0.06521739130434782,
+        "tok_lean": 0.05859213250517599,
+        "char_sim_chosen": 0.14919071076706544,
+        "char_sim_rejected": 0.0748829953198128,
+        "char_lean": 0.07430771544725265,
+        "text": "In Crystal, you would write this using `spawn` and `Channel` for concurrent execution:\n\n```crystal\n# Create a channel to coordinate work\nwork_channel = Channel(Void).new\n\n# Spawn 4 workers\n4.times do\n  spawn do\n    while true\n      work_channel.receive\n      do_work\n    end\n  end\nend\n\n# Submit work\nwork_channel.send(nil)\n```\n\nHowever, if you want something closer to the original pattern with a more explicit pool concept, you could create a simple thread pool class:\n\n```crystal\nclass ThreadPool\n  def initialize(@size : Int32)\n    @queue = Channel(Void).new\n    @size.times do\n      spawn do\n        while true\n          @queue.receive\n          yield\n        end\n      end\n    end\n  end\n  \n  def submit(&block : ->)\n    @queue.send(nil)\n  end\nend\n\n# Usage:\npool = ThreadPool.new(4) do\n  do_work\nend\n\npool.submit { do_work }\n```\n\nOr for a more straightforward approach without a custom class:\n\n```crystal\n# Simple approach with fixed number of workers\nworkers = 4\nqueue = Channel(Void).new\n\n# Start workers\nworkers.times do\n  spawn do\n    while true\n      queue.receive\n      do_work\n    end\n  end\nend\n\n# Submit work\nqueue.send(nil)\n```\n\nThe key differences from Ruby/Java are:\n- Using `spawn` instead of `ThreadPoolExecutor`\n- Using `Channel(T)` for coordination instead of `submit`/`execute`\n- No explicit thread management needed\n- Type annotations required for instance variables and method arguments",
+        "pair_idx": 35
+      },
+      {
+        "tok_sim_chosen": 0.12941176470588237,
+        "tok_sim_rejected": 0.058823529411764705,
+        "tok_lean": 0.07058823529411766,
+        "char_sim_chosen": 0.07577497129735936,
+        "char_sim_rejected": 0.03840472673559823,
+        "char_lean": 0.03737024456176113,
+        "text": "In Crystal, you would write this as:\n\n```crystal\na, b = [1, 2]\n```\n\nHowever, since Crystal is statically-typed, you'll typically need to specify the types:\n\n```crystal\na, b : Int32 = [1, 2]\n```\n\nOr more explicitly:\n\n```crystal\na : Int32, b : Int32 = [1, 2]\n```\n\nOr if you're assigning to variables that are already declared:\n\n```crystal\na : Int32\nb : Int32\na, b = [1, 2]\n```\n\nThe most common and idiomatic approach is to let Crystal infer the types when possible:\n\n```crystal\na, b = [1, 2]  # Crystal infers a, b as Int32\n```\n\nOr if you need to be explicit about the array type:\n\n```crystal\na, b = [1, 2].as({Int32, Int32})\n```\n\nThe key difference from Ruby is that Crystal requires type annotations in many cases, but the destructuring syntax itself is very similar.",
+        "pair_idx": 36
+      },
+      {
+        "tok_sim_chosen": 0.1276595744680851,
+        "tok_sim_rejected": 0.1125,
+        "tok_lean": 0.015159574468085094,
+        "char_sim_chosen": 0.04240882103477523,
+        "char_sim_rejected": 0.1141732283464567,
+        "char_lean": -0.07176440731168146,
+        "text": "In Crystal's built-in `Spec` framework, the idiomatic equivalent would be:\n\n```crystal\nexpect(user.name).to eq(\"Ada\")\nexpect(user.age).to be > 18\n```\n\nHowever, Crystal's `Spec` framework has some differences from RSpec:\n\n1. **No `be >` syntax**: Crystal's `Spec` doesn't support the `be >` syntax directly. You'd need to use a different approach:\n\n```crystal\nexpect(user.age).to be > 18  # This won't work in Crystal\n\n# Instead, use:\nexpect(user.age).to be > 18  # This is actually valid in Crystal Spec\n```\n\nActually, let me correct that - Crystal's `Spec` does support comparison operators. The syntax you showed is actually correct for Crystal:\n\n```crystal\ndescribe User do\n  it \"has correct name and age\" do\n    user = User.new(name: \"Ada\", age: 25)\n    expect(user.name).to eq(\"Ada\")\n    expect(user.age).to be > 18\n  end\nend\n```\n\nIf you want to be more explicit about the comparison, you could also write:\n\n```crystal\nexpect(user.age > 18).to be_true\n```\n\nBut the original syntax you showed is perfectly valid in Crystal's `Spec` framework.",
+        "pair_idx": 37
+      },
+      {
+        "tok_sim_chosen": 0.16,
+        "tok_sim_rejected": 0.07692307692307693,
+        "tok_lean": 0.08307692307692308,
+        "char_sim_chosen": 0.20519159456118666,
+        "char_sim_rejected": 0.12051649928263988,
+        "char_lean": 0.08467509527854677,
+        "text": "In Crystal, you would write this using the built-in `Spec` framework like so:\n\n```crystal\nexpect_raises(IO::Error) { risky! }\n```\n\nOr if you need to be more specific about the exception message:\n\n```crystal\nexpect_raises(IO::Error) do\n  risky!\nend\n```\n\nThe `expect_raises` macro is Crystal's idiomatic way to test that a block raises a specific exception, equivalent to RSpec's `expect { }.to raise_error()` syntax.\n\nIf you need to capture the exception for further inspection, you can also write:\n\n```crystal\nbegin\n  risky!\n  fail \"Expected IO::Error to be raised\"\nrescue IO::Error\n  # Exception was raised as expected\nend\n```\n\nBut for testing purposes, `expect_raises` is the preferred and most concise approach.",
+        "pair_idx": 38
+      },
+      {
+        "tok_sim_chosen": 0.13445378151260504,
+        "tok_sim_rejected": 0.08653846153846154,
+        "tok_lean": 0.0479153199741435,
+        "char_sim_chosen": 0.014431749849669273,
+        "char_sim_rejected": 0.0821917808219178,
+        "char_lean": -0.06776003097224853,
+        "text": "In Crystal, you would typically use a `setup` and `teardown` block within a `Spec` context, but since Crystal's `Spec` framework doesn't have direct equivalents to RSpec's `before(:each)` and `after(:each)`, you'd usually handle this with instance variables and proper resource management.\n\nHere's the Crystal-idiomatic approach:\n\n```crystal\nrequire \"spec\"\n\nclass Repo\n  def initialize\n    # initialization logic\n  end\n  \n  def close\n    # cleanup logic\n  end\nend\n\nspec \"example\" do\n  repo = Repo.new\n  \n  # Your test logic here\n  # repo.close is handled by the test runner's cleanup\n  \n  # Or if you need explicit cleanup:\n  # repo.close\nend\n```\n\nHowever, if you're using a more structured approach with a test class, you might do:\n\n```crystal\nrequire \"spec\"\n\nclass Repo\n  def initialize\n    # initialization logic\n  end\n  \n  def close\n    # cleanup logic\n  end\nend\n\nclass MySpec < Spec::Base\n  def setup\n    @repo = Repo.new\n  end\n  \n  def teardown\n    @repo.close if @repo\n  end\nend\n```\n\nBut the most idiomatic Crystal approach would be to use `setup` and `teardown` methods directly in your spec blocks, or better yet, use Crystal's resource management patterns with `begin`/`rescue`/`ensure` or `File.open`-like patterns where the resource is properly managed within the scope of the test.\n\nFor a more direct equivalent, you'd write:\n\n```crystal\nrequire \"spec\"\n\ndescribe \"MyFeature\" do\n  setup do\n    @repo = Repo.new\n  end\n  \n  teardown do\n    @repo.close\n  end\n  \n  # Your tests here\nend\n```\n\nBut note that Crystal's `Spec` framework doesn",
+        "pair_idx": 39
+      },
+      {
+        "tok_sim_chosen": 0.21978021978021978,
+        "tok_sim_rejected": 0.1625,
+        "tok_lean": 0.05728021978021977,
+        "char_sim_chosen": 0.1441947565543071,
+        "char_sim_rejected": 0.1498371335504886,
+        "char_lean": -0.005642376996181503,
+        "text": "Here's the Crystal-idiomatic version using the built-in `Spec` framework:\n\n```crystal\ndescribe User do\n  user = User.new(\"Ada\")\n\n  it \"has a name\" do\n    user.name.should eq(\"Ada\")\n  end\nend\n```\n\nOr, if you prefer a more `let`-like approach with a helper method:\n\n```crystal\ndescribe User do\n  def user\n    @user ||= User.new(\"Ada\")\n  end\n\n  it \"has a name\" do\n    user.name.should eq(\"Ada\")\n  end\nend\n```\n\nKey differences from Ruby/RSpec:\n- Uses `describe` instead of `describe`\n- Uses `should` for assertions instead of `expect`\n- No `let` method - typically use instance variables or helper methods\n- Uses `||=` for lazy initialization when needed\n- Crystal's `Spec` framework is built-in, not an external gem\n\nThe first approach is more idiomatic for simple cases, while the second approach better mimics the `let` behavior when you need lazy evaluation or multiple references to the same object.",
+        "pair_idx": 40
+      },
+      {
+        "tok_sim_chosen": 0.08536585365853659,
+        "tok_sim_rejected": 0.04411764705882353,
+        "tok_lean": 0.04124820659971306,
+        "char_sim_chosen": 0.24836601307189543,
+        "char_sim_rejected": 0.06084656084656084,
+        "char_lean": 0.1875194522253346,
+        "text": "In Crystal, you would write it as:\n\n```crystal\nnow = Time.now\nputs now\n```\n\nHowever, since Crystal is statically-typed, you'd typically want to be more explicit about types. Here's a more idiomatic version:\n\n```crystal\nnow : Time = Time.now\nputs now\n```\n\nOr even more simply, since the type can be inferred:\n\n```crystal\nnow = Time.now\nputs now\n```\n\nCrystal's `Time.now` works exactly like Ruby's `Time.now`, but the language's type system means you can optionally specify types when needed. The `puts` method works the same way as in Ruby.\n\nIf you want to be more explicit about the type annotation (which is common in Crystal), you could also write:\n\n```crystal\nnow = Time.now\nputs now\n```\n\nThe type is inferred as `Time` from the `Time.now` call, so explicit annotation isn't required but is allowed.",
+        "pair_idx": 41
+      },
+      {
+        "tok_sim_chosen": 0.14814814814814814,
+        "tok_sim_rejected": 0.08823529411764706,
+        "tok_lean": 0.059912854030501075,
+        "char_sim_chosen": 0.07105538140020899,
+        "char_sim_rejected": 0.06994818652849741,
+        "char_lean": 0.0011071948717115837,
+        "text": "In Crystal, you'd write those operations like this:\n\n```crystal\nrequire \"time\"\n\nTime.local\nTime.parse(\"2024-01-15\")\n```\n\nOr if you want to be more explicit about the date type:\n\n```crystal\nrequire \"time\"\n\nTime.utc\nTime.parse(\"2024-01-15\", \"%Y-%m-%d\")\n```\n\nKey differences from Ruby:\n- Use `Time` instead of `Date` (Crystal's `Time` class handles both date and time)\n- `Time.local` instead of `Date.today` \n- `Time.parse` instead of `Date.parse`\n- Crystal requires explicit `require` statements for standard library modules\n- The parse method in Crystal is more flexible with format strings\n\nIf you specifically need just date functionality without time, you could also use:\n\n```crystal\nrequire \"time\"\n\nTime.utc(2024, 1, 15)\n```\n\nBut for parsing strings, `Time.parse` is the idiomatic approach.",
+        "pair_idx": 42
+      },
+      {
+        "tok_sim_chosen": 0.11607142857142858,
+        "tok_sim_rejected": 0.06,
+        "tok_lean": 0.05607142857142858,
+        "char_sim_chosen": 0.014986376021798364,
+        "char_sim_rejected": 0.044787644787644784,
+        "char_lean": -0.02980126876584642,
+        "text": "In Crystal, you would write those expressions using the `Time` module's methods. Here's the idiomatic Crystal version:\n\n```crystal\nrequire \"time\"\n\n# Instead of 5.minutes.ago\nTime.now - 5.minutes\n\n# Instead of 3.days.from_now\nTime.now + 3.days\n```\n\nHowever, Crystal doesn't have the exact same fluent interface as Ruby's ActiveSupport. If you want to use a more similar syntax, you could define your own extensions:\n\n```crystal\n# Extend Time with convenient methods\nclass Time\n  def -(duration : Int32)\n    self - duration.seconds\n  end\n  \n  def +(duration : Int32)\n    self + duration.seconds\n  end\nend\n\n# Then you could use:\nTime.now - 5.minutes  # equivalent to 5.minutes.ago\nTime.now + 3.days     # equivalent to 3.days.from_now\n```\n\nBut the most straightforward and idiomatic approach is simply:\n\n```crystal\nrequire \"time\"\n\n# 5 minutes ago\nTime.now - 5 * 60\n\n# 3 days from now  \nTime.now + 3 * 24 * 60 * 60\n```\n\nOr if you're using a library like `time` that provides duration methods:\n\n```crystal\nrequire \"time\"\n\n# Using time library (if available)\nTime.now - 5.minutes\nTime.now + 3.days\n```\n\nThe key differences from Ruby are:\n1. No fluent interface like `.minutes.ago`\n2. Must use explicit arithmetic with `Time.now`\n3. Crystal's `Time` module works differently than Ruby's ActiveSupport\n4. You need to be explicit about the time units (seconds, minutes, etc.)",
+        "pair_idx": 43
+      },
+      {
+        "tok_sim_chosen": 0.2077922077922078,
+        "tok_sim_rejected": 0.12162162162162163,
+        "tok_lean": 0.08617058617058618,
+        "char_sim_chosen": 0.12914485165794065,
+        "char_sim_rejected": 0.10843373493975904,
+        "char_lean": 0.020711116718181613,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nrequire \"http/client\"\n\nbody = HTTP::Client.get(\"https://example.com\").body\n```\n\nKey differences in Crystal:\n\n1. **`require \"http/client\"`** instead of `\"net/http\"` - Crystal's standard library is organized differently\n2. **`HTTP::Client.get`** instead of `Net::HTTP.get` - Crystal uses a more explicit namespace structure\n3. **`.body`** - Crystal's HTTP response objects have a `body` property that returns the response content as a `String`\n\nAlternative approaches:\n\n```crystal\n# Using a more explicit client instance\nclient = HTTP::Client.new(\"https://example.com\")\nresponse = client.get(\"/\")\nbody = response.body\n\n# With error handling\nbegin\n  response = HTTP::Client.get(\"https://example.com\")\n  body = response.body\nrescue ex : HTTP::Client::Error\n  puts \"HTTP error: #{ex.message}\"\nend\n```\n\nCrystal's HTTP client is more type-safe and follows the language's conventions of explicit typing and clear method signatures.",
+        "pair_idx": 44
+      },
+      {
+        "tok_sim_chosen": 0.10344827586206896,
+        "tok_sim_rejected": 0.061855670103092786,
+        "tok_lean": 0.04159260575897618,
+        "char_sim_chosen": 0.014749262536873156,
+        "char_sim_rejected": 0.06591500433651344,
+        "char_lean": -0.051165741799640285,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\noutput = `ls -la`\nsystem(\"git status\")\n```\n\nActually, that's identical because Crystal's backtick syntax for command execution and `system` function work the same way as Ruby's. However, here are some more idiomatic Crystal approaches depending on your needs:\n\n```crystal\n# Basic command execution (identical to Ruby)\noutput = `ls -la`\nsystem(\"git status\")\n\n# More explicit with error handling\nbegin\n  output = `ls -la`\n  puts output\nrescue ex : Exception\n  puts \"Command failed: #{ex.message}\"\nend\n\n# Using Process.spawn for more control\nspawn \"git status\"\n\n# For capturing output with better error handling\nresult = `ls -la 2>&1`\nif $? == 0\n  puts result\nelse\n  puts \"Command failed with exit code #{$?}\"\nend\n```\n\nThe key differences in Crystal are:\n- Crystal uses `spawn` for background processes (like Ruby's `Process.spawn`)\n- Crystal's `system` function returns a boolean indicating success/failure\n- Crystal's backtick execution works the same way as Ruby's\n- Crystal has better type inference and compile-time checking\n\nThe original code you showed is already quite idiomatic in Crystal!",
+        "pair_idx": 45
+      },
+      {
+        "tok_sim_chosen": 0.1188118811881188,
+        "tok_sim_rejected": 0.046511627906976744,
+        "tok_lean": 0.07230025328114206,
+        "char_sim_chosen": 0.05897658282740677,
+        "char_sim_rejected": 0.0720164609053498,
+        "char_lean": -0.013039878077943032,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nhome = ENV[\"HOME\"]\nputs home.upcase\n```\n\nActually, that's identical because Crystal's syntax is very similar to Ruby's. However, if you want to be more explicit about types (which is idiomatic in Crystal), you could write:\n\n```crystal\nhome : String? = ENV[\"HOME\"]\nputs home.upcase\n```\n\nOr even more explicitly:\n\n```crystal\nhome = ENV[\"HOME\"]?\nputs home.upcase\n```\n\nThe key differences from Ruby in this simple case are:\n1. Crystal requires explicit type annotations when they can't be inferred\n2. Crystal uses `?` suffix for nullable types (like `String?` for `String | Nil`)\n3. Crystal's `ENV` returns `String?` (nullable string) rather than potentially returning `nil` in a way that requires explicit handling\n\nIn practice, since `ENV[\"HOME\"]` will always return a `String?` (which is `String | Nil`), the first version works fine and is idiomatic. The `?` suffix is used when you want to be explicit about the possibility of nil values.",
+        "pair_idx": 46
+      },
+      {
+        "tok_sim_chosen": 0.18823529411764706,
+        "tok_sim_rejected": 0.15714285714285714,
+        "tok_lean": 0.031092436974789917,
+        "char_sim_chosen": 0.03589232303090728,
+        "char_sim_rejected": 0.16326530612244897,
+        "char_lean": -0.12737298309154169,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nFile.open(\"data.txt\", \"r\") do |f|\n  f.each_line { |l| puts l }\nend\n```\n\nThis is actually identical to the Ruby version! Crystal's syntax for file handling and blocks is very similar to Ruby's, which makes the transition straightforward.\n\nHowever, if you want to be more explicit about types or use Crystal's preferred patterns, you could also write it as:\n\n```crystal\nFile.open(\"data.txt\", \"r\") do |file|\n  file.each_line { |line| puts line }\nend\n```\n\nOr using the more concise `File.each_line` method:\n\n```crystal\nFile.each_line(\"data.txt\") { |line| puts line }\n```\n\nThe first version with `File.open` is the most direct translation and idiomatic in Crystal, maintaining the same structure and semantics as your Ruby example.",
+        "pair_idx": 47
+      },
+      {
+        "tok_sim_chosen": 0.13253012048192772,
+        "tok_sim_rejected": 0.06578947368421052,
+        "tok_lean": 0.0667406467977172,
+        "char_sim_chosen": 0.1553030303030303,
+        "char_sim_rejected": 0.08888888888888889,
+        "char_lean": 0.06641414141414141,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nDir[\"**/*.cr\"].each { |path| puts path }\n```\n\nActually, that's identical because Crystal's syntax is very similar to Ruby's. However, if you want to be more explicit about types and follow Crystal conventions more closely, you could write:\n\n```crystal\nDir[\"**/*.cr\"].each do |path|\n  puts path\nend\n```\n\nOr if you want to be more explicit about the type (though it's usually inferred):\n\n```crystal\nDir[\"**/*.cr\"].each do |path : String|\n  puts path\nend\n```\n\nBut the original form you showed is perfectly valid Crystal code and idiomatic. Crystal's `Dir` class and glob patterns work very similarly to Ruby's, so the syntax translates directly.\n\nIf you want to use Crystal's more functional approach with `map` or `each`, you could also write:\n\n```crystal\nDir[\"**/*.cr\"].each(&.puts)\n```\n\nThis uses Crystal's `&.` syntax to call `puts` on each element, which is a common Crystal idiom.",
+        "pair_idx": 48
+      },
+      {
+        "tok_sim_chosen": 0.10843373493975904,
+        "tok_sim_rejected": 0.058823529411764705,
+        "tok_lean": 0.04961020552799433,
+        "char_sim_chosen": 0.02827521206409048,
+        "char_sim_rejected": 0.0457280385078219,
+        "char_lean": -0.01745282644373142,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nRandom.rand(100)\nRandom.srand(42)\n```\n\nCrystal's random number functionality is accessed through the `Random` module, which provides the same `rand` and `srand` methods as Ruby's built-in `Kernel` module. The `Random` module is part of Crystal's standard library and is used in a similar way to Ruby's built-in random functions.\n\nNote that Crystal's `Random.rand` method works the same way as Ruby's `rand` - it generates a random integer between 0 (inclusive) and the given number (exclusive). So `Random.rand(100)` generates a random integer from 0 to 99, just like `rand(100)` in Ruby.\n\nAlso, Crystal's `Random` module is thread-safe and provides additional functionality beyond Ruby's basic random number generation, but for basic usage, the interface is very similar to Ruby's.",
+        "pair_idx": 49
+      },
+      {
+        "tok_sim_chosen": 0.17582417582417584,
+        "tok_sim_rejected": 0.12941176470588237,
+        "tok_lean": 0.04641241111829347,
+        "char_sim_chosen": 0.1443806398687449,
+        "char_sim_rejected": 0.17936354869816779,
+        "char_lean": -0.0349829088294229,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nrequire \"option_parser\"\n\nOptionParser.new do |opts|\n  opts.on(\"-v\", \"--verbose\") { |v| @verbose = v }\nend.parse!\n```\n\nKey differences from Ruby:\n\n1. **`require \"option_parser\"`** instead of `\"optparse\"`\n2. **`OptionParser.new`** (no `do` block syntax difference, but the block parameter is required)\n3. **`|v|`** - Crystal requires explicit block parameter names\n4. **`@verbose`** - Crystal instance variables must be declared with `@` prefix\n\nIf you want to be more explicit about the type, you could also write:\n\n```crystal\nrequire \"option_parser\"\n\n@[Persistent]\ndef verbose : Bool\n  @verbose = false\nend\n\nOptionParser.new do |opts|\n  opts.on(\"-v\", \"--verbose\") { |v| @verbose = v }\nend.parse!\n```\n\nBut the first version is the most idiomatic for simple cases. Note that Crystal's `OptionParser` works slightly differently from Ruby's in that it passes the parsed value to the block, so you need to capture it in the block parameter.",
+        "pair_idx": 50
+      },
+      {
+        "tok_sim_chosen": 0.1276595744680851,
+        "tok_sim_rejected": 0.03409090909090909,
+        "tok_lean": 0.09356866537717601,
+        "char_sim_chosen": 0.14928057553956833,
+        "char_sim_rejected": 0.03992015968063872,
+        "char_lean": 0.10936041585892961,
+        "text": "In Crystal, the idiomatic equivalent would be:\n\n```crystal\narr.find { |x| x > 10 }\n```\n\nHowever, since Crystal is statically-typed, you'll typically need to specify the type:\n\n```crystal\narr : Array(Int32).find { |x| x > 10 }\n```\n\nOr more commonly, you'd declare the variable with its type:\n\n```crystal\narr : Array(Int32) = [1, 5, 15, 20]\nresult = arr.find { |x| x > 10 }\n```\n\nIf you want to handle the case where no element is found (which returns `nil`), you should use the `find` method with proper type handling:\n\n```crystal\narr : Array(Int32) = [1, 5, 15, 20]\nresult = arr.find { |x| x > 10 } # Returns 15 (Int32?)\n```\n\nNote that `find` in Crystal returns a `T?` (nullable type) when the collection is typed, so `result` would be `Int32?` (Int32 or Nil).\n\nIf you're working with a generic collection, you can also write:\n\n```crystal\narr = [1, 5, 15, 20]\nresult = arr.find { |x| x > 10 } # Type inferred as Int32?\n```\n\nThe key difference from Ruby is that Crystal's `find` method works the same way but returns a nullable type due to its static typing system.",
+        "pair_idx": 51
+      },
+      {
+        "tok_sim_chosen": 0.15294117647058825,
+        "tok_sim_rejected": 0.09333333333333334,
+        "tok_lean": 0.05960784313725491,
+        "char_sim_chosen": 0.2048331415420023,
+        "char_sim_rejected": 0.10568031704095113,
+        "char_lean": 0.09915282450105117,
+        "text": "In Crystal, the equivalent idiomatic form would be:\n\n```crystal\n[1, 2, 3].sum\n```\n\nHowever, if you want to be more explicit about the reduction operation (similar to the Ruby `inject`), you can write:\n\n```crystal\n[1, 2, 3].reduce(0) { |sum, x| sum + x }\n```\n\nOr using the more concise `reduce` with a block:\n\n```crystal\n[1, 2, 3].reduce(&:+)\n```\n\nThe first approach using `.sum` is the most idiomatic in Crystal when you're simply summing elements, as Crystal provides this convenience method. The `.reduce` method is the direct equivalent of Ruby's `.inject` when you need more control over the reduction process.\n\nNote that Crystal's `sum` method works on collections of numeric types and returns the sum of all elements, which is exactly what your Ruby example does.",
+        "pair_idx": 52
+      },
+      {
+        "tok_sim_chosen": 0.25806451612903225,
+        "tok_sim_rejected": 0.08860759493670886,
+        "tok_lean": 0.1694569211923234,
+        "char_sim_chosen": 0.1050228310502283,
+        "char_sim_rejected": 0.11355311355311355,
+        "char_lean": -0.008530282502885247,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\narr.group_by { |x| x.kind }\n   .transform_values { |xs| xs.size }\n```\n\nActually, that's identical to the Ruby version! Crystal's syntax is very similar to Ruby's, so this form works perfectly fine in Crystal.\n\nHowever, if you want to be more explicit about types (which is idiomatic in Crystal), you could write:\n\n```crystal\narr.group_by { |x| x.kind }\n   .transform_values { |xs| xs.size }\n```\n\nOr if you want to be more explicit about the return type:\n\n```crystal\nresult = arr.group_by { |x| x.kind }\n           .transform_values { |xs| xs.size }\n```\n\nThe key differences between Crystal and Ruby in this context are:\n1. Crystal requires explicit type annotations when needed\n2. Crystal uses `transform_values` (not `transform_values!`)\n3. Crystal's `group_by` returns a `Hash` with the appropriate types\n\nIf you need to specify types explicitly:\n\n```crystal\narr.group_by { |x| x.kind }\n   .transform_values { |xs| xs.size }\n```\n\nThis works because Crystal's `group_by` and `transform_values` methods have the same signatures as Ruby's, but with proper type inference.",
+        "pair_idx": 53
+      },
+      {
+        "tok_sim_chosen": 0.13953488372093023,
+        "tok_sim_rejected": 0.039473684210526314,
+        "tok_lean": 0.10006119951040392,
+        "char_sim_chosen": 0.20146904512067157,
+        "char_sim_rejected": 0.04784688995215311,
+        "char_lean": 0.15362215516851846,
+        "text": "In Crystal, you would write this as:\n\n```crystal\npeople.min_by(&.age)\n```\n\nThis uses Crystal's shorthand syntax for passing a method reference. The `&.age` syntax is equivalent to Ruby's `(&:age)` - it passes the `age` method as a block to `min_by`.\n\nHere's a complete example:\n\n```crystal\nstruct Person\n  getter name : String\n  getter age : Int32\n  \n  def initialize(@name : String, @age : Int32)\n  end\nend\n\npeople = [\n  Person.new(\"Alice\", 30),\n  Person.new(\"Bob\", 25),\n  Person.new(\"Charlie\", 35)\n]\n\noldest = people.max_by(&.age)  # Returns the person with maximum age\nyoungest = people.min_by(&.age)  # Returns the person with minimum age\n```\n\nThe key differences from Ruby:\n- Crystal uses `&.method_name` instead of `(&:method_name`)\n- Crystal requires explicit type annotations for struct fields\n- Crystal's `min_by` and `max_by` work the same way as Ruby's versions",
+        "pair_idx": 54
+      },
+      {
+        "tok_sim_chosen": 0.19753086419753085,
+        "tok_sim_rejected": 0.09230769230769231,
+        "tok_lean": 0.10522317188983854,
+        "char_sim_chosen": 0.12263099219620958,
+        "char_sim_rejected": 0.09469153515064563,
+        "char_lean": 0.027939457045563956,
+        "text": "In Crystal, the idiomatic equivalent would be:\n\n```crystal\n[3, 1, 2].sort { |a, b| b <=> a }\n```\n\nThis is actually identical to the Ruby version! Crystal's syntax for blocks and the `<=>` comparison operator is the same as Ruby's.\n\nHowever, if you want to be more explicit about types (which is idiomatic in Crystal), you could write:\n\n```crystal\n[3, 1, 2].sort { |a : Int32, b : Int32| b <=> a }\n```\n\nOr even more explicitly with the return type:\n\n```crystal\n[3, 1, 2].sort do |a : Int32, b : Int32|\n  b <=> a\nend\n```\n\nBut the first version is perfectly fine and idiomatic - Crystal's type inference will handle the types automatically, and the `<=>` operator works exactly as in Ruby for sorting in descending order.",
+        "pair_idx": 55
+      },
+      {
+        "tok_sim_chosen": 0.1797752808988764,
+        "tok_sim_rejected": 0.09090909090909091,
+        "tok_lean": 0.08886618998978549,
+        "char_sim_chosen": 0.10593607305936073,
+        "char_sim_rejected": 0.12128418549346016,
+        "char_lean": -0.015348112434099434,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\nh = {\"a\" => 1, \"b\" => 2}\nh.each { |k, v| puts \"#{k}=#{v}\" }\n```\n\nKey differences from Ruby:\n\n1. **Hash syntax**: Crystal uses `\"key\" => value` instead of `:key => value` (though symbol literals are available)\n2. **No automatic string conversion**: In Crystal, you need to be explicit about string keys\n3. **Same iteration syntax**: The `.each` method and block syntax are identical to Ruby\n\nIf you prefer using symbols (which is more idiomatic in Crystal for hash keys), you can write:\n\n```crystal\nh = {:a => 1, :b => 2}\nh.each { |k, v| puts \"#{k}=#{v}\" }\n```\n\nOr using the more modern Crystal hash syntax with symbols:\n\n```crystal\nh = {\"a\": 1, \"b\": 2}\nh.each { |k, v| puts \"#{k}=#{v}\" }\n```\n\nThe `each` method works exactly the same way as in Ruby, iterating over key-value pairs in the hash.",
+        "pair_idx": 56
+      },
+      {
+        "tok_sim_chosen": 0.11504424778761062,
+        "tok_sim_rejected": 0.04950495049504951,
+        "tok_lean": 0.06553929729256111,
+        "char_sim_chosen": 0.13501577287066246,
+        "char_sim_rejected": 0.04481792717086835,
+        "char_lean": 0.09019784569979411,
+        "text": "In Crystal, you would write this as:\n\n```crystal\ndata.dig?(:user, :address, :city)\n```\n\nOr if you want to handle the case where the intermediate values might be `nil` and you want to avoid exceptions:\n\n```crystal\ndata.dig?(:user, :address, :city)\n```\n\nHowever, since Crystal doesn't have a built-in `dig` method like Ruby, you'd typically use safe navigation with the `&.` operator or handle the nil cases explicitly:\n\n```crystal\n# If you have a hash with symbol keys\ndata[:user]?.try &.[](:address)?&.[](:city)\n\n# Or more explicitly:\nif data[:user]?\n  if data[:user]!.has_key?(:address)\n    data[:user]![:address]?&.[](:city)\n  end\nend\n```\n\nBut the most idiomatic approach would be to define a helper method or use a more structured approach with proper type handling:\n\n```crystal\n# Define a safe dig method\ndef safe_dig(hash : Hash, keys : Array(Symbol))\n  keys.reduce(hash) do |current, key|\n    current[key]? || nil\n  end\nend\n\n# Usage:\nsafe_dig(data, [:user, :address, :city])\n```\n\nOr if you're working with a more structured data type, you might want to use a proper class structure with getters:\n\n```crystal\nclass User\n  property address : Address?\n\n  def initialize(@address : Address? = nil)\n  end\nend\n\nclass Address\n  property city : String?\n\n  def initialize(@city : String? = nil)\n  end\nend\n\n# Usage:\ndata.user&.address&.city\n```\n\nThe `dig?` method is the closest equivalent to Ruby's `dig` method in Crystal's standard library, but it's not always available in all versions. The safe navigation operator",
+        "pair_idx": 57
+      },
+      {
+        "tok_sim_chosen": 0.125,
+        "tok_sim_rejected": 0.021739130434782608,
+        "tok_lean": 0.10326086956521739,
+        "char_sim_chosen": 0.17005545286506468,
+        "char_sim_rejected": 0.029535864978902954,
+        "char_lean": 0.14051958788616173,
+        "text": "In Crystal, you would write it as:\n\n```crystal\nbig = 10i64 ** 20\n```\n\nOr more idiomatically, since Crystal is statically typed and you might want to be explicit about the type:\n\n```crystal\nbig : Int64 = 10i64 ** 20\n```\n\nOr if you want to use the `BigInt` type for very large numbers:\n\n```crystal\nbig = 10i64 ** 20\n```\n\nActually, let me correct that - Crystal doesn't have a built-in `BigInt` type like Ruby, but you can use:\n\n```crystal\nbig = 10i64 ** 20\n```\n\nOr for even larger numbers, you'd typically use:\n\n```crystal\nbig = 10i64 ** 20\n```\n\nThe key differences from Ruby:\n- Crystal requires explicit type annotations when needed\n- `**` is the exponentiation operator in Crystal\n- `10i64` explicitly creates a 64-bit integer literal\n- Crystal's integer types are fixed-width and won't automatically overflow like Ruby's integers\n\nIf you need arbitrary precision integers, you'd typically use the `BigInt` class from the `big` shard or similar, but for the basic case, `10i64 ** 20` is the idiomatic Crystal equivalent.",
+        "pair_idx": 58
+      },
+      {
+        "tok_sim_chosen": 0.18,
+        "tok_sim_rejected": 0.03488372093023256,
+        "tok_lean": 0.14511627906976743,
+        "char_sim_chosen": 0.03194888178913738,
+        "char_sim_rejected": 0.03781094527363184,
+        "char_lean": -0.005862063484494459,
+        "text": "In Crystal, you'd write this as:\n\n```crystal\navg = total / count\n```\n\nHowever, since Crystal is statically-typed, you'll need to specify the types. Here are the idiomatic approaches:\n\n**Option 1: Explicit type annotations**\n```crystal\ntotal : Float64 = 100.0\ncount : Int32 = 5\navg : Float64 = total / count\n```\n\n**Option 2: Let Crystal infer types (most common)**\n```crystal\ntotal = 100.0\ncount = 5\navg = total / count\n```\n\n**Option 3: Using specific numeric types for clarity**\n```crystal\ntotal : Float64 = 100.0\ncount : Int32 = 5\navg : Float64 = total / count.to_f\n```\n\n**Option 4: With method definition**\n```crystal\ndef calculate_average(total : Float64, count : Int32) : Float64\n  total / count\nend\n\navg = calculate_average(100.0, 5)\n```\n\nThe key differences from Ruby:\n- Types must be declared when needed (or inferred)\n- Division with integers will return a `Float64` if any operand is a float\n- Crystal's type system prevents runtime type errors\n\nThe most idiomatic version is usually Option 2, letting Crystal infer the types unless you need explicit type safety.",
+        "pair_idx": 59
+      },
+      {
+        "tok_sim_chosen": 0.21052631578947367,
+        "tok_sim_rejected": 0.125,
+        "tok_lean": 0.08552631578947367,
+        "char_sim_chosen": 0.11693895098882201,
+        "char_sim_rejected": 0.12340425531914893,
+        "char_lean": -0.006465304330326924,
+        "text": "Here's the Crystal-idiomatic version of that Ruby code:\n\n```crystal\ndef transform(x)\n  if x.is_a?(Int32)\n    x * 2\n  else\n    x.to_s\n  end\nend\n```\n\nHowever, a more idiomatic Crystal approach would be to use union types and pattern matching:\n\n```crystal\ndef transform(x : Int32 | String)\n  case x\n  when Int32\n    x * 2\n  when String\n    x.to_s\n  end\nend\n```\n\nOr even more simply, using Crystal's built-in type system with a generic method:\n\n```crystal\ndef transform(x)\n  case x\n  when Int32\n    x * 2\n  else\n    x.to_s\n  end\nend\n```\n\nThe key differences from Ruby:\n- Use `Int32` instead of `Integer` (Crystal's specific integer type)\n- Use `case` with `when` for type matching\n- Crystal's type system is more explicit and compile-time focused\n- No need for `end` in the single-line version, but it's fine to include it\n\nThe most idiomatic version would be the third one, as it leverages Crystal's type inference and pattern matching capabilities while maintaining readability.",
+        "pair_idx": 60
+      },
+      {
+        "tok_sim_chosen": 0.18421052631578946,
+        "tok_sim_rejected": 0.08571428571428572,
+        "tok_lean": 0.09849624060150375,
+        "char_sim_chosen": 0.20222446916076844,
+        "char_sim_rejected": 0.1036036036036036,
+        "char_lean": 0.09862086555716484,
+        "text": "Here's the Crystal-idiomatic version of that Ruby lambda:\n\n```crystal\ndoubler = ->(x : Int32) { x * 2 }\nputs doubler.call(5)\n```\n\nOr, more commonly written using the `->` syntax with explicit type annotation on the parameter:\n\n```crystal\ndoubler = ->(x : Int32) { x * 2 }\nputs doubler.(5)\n```\n\nKey differences from Ruby:\n- Must explicitly annotate the parameter type (`x : Int32`)\n- Use `.(5)` instead of `.call(5)` for method invocation\n- Crystal's type system requires explicit type declarations for method parameters\n\nAlternative approaches:\n\nUsing a method with explicit parameter types:\n```crystal\ndef doubler(x : Int32)\n  x * 2\nend\n\nputs doubler(5)\n```\n\nUsing a generic lambda (if you want to support multiple numeric types):\n```crystal\ndoubler = ->(x : T) : T { x * 2 }\nputs doubler.(5)\n```\n\nThe most idiomatic Crystal version would be the first example with the explicit type annotation and `.(5)` syntax.",
+        "pair_idx": 61
+      },
+      {
+        "tok_sim_chosen": 0.1506849315068493,
+        "tok_sim_rejected": 0.07692307692307693,
+        "tok_lean": 0.07376185458377238,
+        "char_sim_chosen": 0.17273954116059378,
+        "char_sim_rejected": 0.06511627906976744,
+        "char_lean": 0.10762326209082634,
+        "text": "In Crystal, you would write this as:\n\n```crystal\n[1, 2, 3].map(&.to_s)\n```\n\nThis uses Crystal's shorthand syntax for method references, where `&.to_s` is equivalent to Ruby's `(&:to_s)`. The `&` operator converts the method call into a proc that can be passed to `map`.\n\nHere's a complete example:\n\n```crystal\nnumbers = [1, 2, 3]\nstrings = numbers.map(&.to_s)\nputs strings # => [\"1\", \"2\", \"3\"]\n```\n\nThe key differences from Ruby:\n- Crystal uses `&.method_name` instead of `(&:method_name`)\n- Crystal's type system infers that `strings` will be of type `Array(String)`\n- No need for explicit type annotations in this case since the compiler can infer the types",
+        "pair_idx": 62
+      },
+      {
+        "tok_sim_chosen": 0.1702127659574468,
+        "tok_sim_rejected": 0.10588235294117647,
+        "tok_lean": 0.06433041301627034,
+        "char_sim_chosen": 0.24342105263157895,
+        "char_sim_rejected": 0.1259124087591241,
+        "char_lean": 0.11750864387245485,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nmodule Logger\n  def self.included(base)\n    base.extend(ClassMethods)\n  end\nend\n```\n\nHowever, since Crystal doesn't have the exact same `included` mechanism as Ruby, here's a more idiomatic Crystal approach using `macro included`:\n\n```crystal\nmodule Logger\n  macro included\n    extend ClassMethods\n  end\nend\n```\n\nOr if you want to be more explicit about the module inclusion pattern:\n\n```crystal\nmodule Logger\n  macro included(base)\n    {% begin %}\n      {{base}}.extend(ClassMethods)\n    {% end %}\n  end\nend\n```\n\nThe key differences from Ruby:\n- Use `module` instead of `class` for the container\n- Use `macro included` instead of `def self.included`\n- Crystal's macro system handles the inclusion logic at compile time\n- No need for `self.included` method - the macro handles it directly\n\nIf you're working with a class that includes this module, it would look like:\n\n```crystal\nclass MyClass\n  include Logger\nend\n```\n\nThe `macro included` will automatically execute when the module is included in a class, extending that class with `ClassMethods` just like the Ruby version would.",
+        "pair_idx": 63
+      },
+      {
+        "tok_sim_chosen": 0.11,
+        "tok_sim_rejected": 0.08888888888888889,
+        "tok_lean": 0.02111111111111111,
+        "char_sim_chosen": 0.03437691835481891,
+        "char_sim_rejected": 0.07853757616790792,
+        "char_lean": -0.04416065781308901,
+        "text": "In Crystal, you'd write this using a `class_def` macro to intercept class inheritance. Here's the idiomatic Crystal version:\n\n```crystal\nclass Base\n  @@registry : Array(Class) = [] of Class\n  \n  def self.inherited(subclass)\n    @@registry << subclass\n  end\n  \n  def self.registry\n    @@registry\n  end\nend\n```\n\nHowever, if you want to be more explicit about the class variable declaration and follow Crystal's conventions more closely:\n\n```crystal\nclass Base\n  @@registry : Array(Class) = [] of Class\n  \n  def self.inherited(subclass : Class)\n    @@registry << subclass\n  end\n  \n  def self.registry : Array(Class)\n    @@registry\n  end\nend\n```\n\nOr, using a more modern Crystal approach with a `class_def` macro (which is the closest equivalent to Ruby's `inherited` hook):\n\n```crystal\nclass Base\n  @@registry : Array(Class) = [] of Class\n  \n  def self.inherited(subclass : Class)\n    @@registry << subclass\n  end\n  \n  def self.registry : Array(Class)\n    @@registry\n  end\nend\n```\n\nThe key differences from Ruby:\n- Crystal requires explicit type annotations for class variables\n- Crystal uses `Class` instead of `sub` for the parameter name\n- Crystal uses `def self.inherited(subclass : Class)` with explicit typing\n- Crystal uses `@@registry` for class variables (not `self.class_variable_get`)\n- The `class_def` macro approach isn't needed here since Crystal handles inheritance hooks naturally through the `inherited` method\n\nThe first version is probably the most idiomatic Crystal approach that maintains the same behavior as your Ruby code.",
+        "pair_idx": 64
+      },
+      {
+        "tok_sim_chosen": 0.21238938053097345,
+        "tok_sim_rejected": 0.08823529411764706,
+        "tok_lean": 0.12415408641332638,
+        "char_sim_chosen": 0.03994490358126722,
+        "char_sim_rejected": 0.08419380460683082,
+        "char_lean": -0.0442489010255636,
+        "text": "Here's the Crystal-idiomatic version:\n\n```crystal\n{% for verb in [:get, :post, :put] %}\n  def {{verb.id}}\n    |path, &block|\n    # ... your implementation here\n  end\n{% end %}\n```\n\nHowever, if you want a more practical approach that's closer to what you'd actually write in Crystal, here's a better pattern:\n\n```crystal\nclass Router\n  def get(path, &block)\n    # implementation\n  end\n  \n  def post(path, &block)\n    # implementation\n  end\n  \n  def put(path, &block)\n    # implementation\n  end\nend\n```\n\nOr if you need dynamic method definition, you can use Crystal's macro system:\n\n```crystal\nclass Router\n  {% for verb in [:get, :post, :put] %}\n    def {{verb.id}}(path : String, &block)\n      # implementation\n    end\n  {% end %}\nend\n```\n\nThe key differences from Ruby:\n- Uses `{% %}` for compile-time code generation instead of `each`\n- Uses `{{}}` for interpolation within macros\n- Requires explicit type annotations (`path : String`)\n- Uses `def` with explicit parameter types\n- Crystal doesn't have `define_method` in the same way Ruby does\n\nIf you're looking for a more flexible approach that mimics the Ruby behavior more closely, you'd typically just write the methods explicitly since Crystal's compile-time macros are more powerful and often used for this kind of metaprogramming.",
+        "pair_idx": 65
+      },
+      {
+        "tok_sim_chosen": 0.09803921568627451,
+        "tok_sim_rejected": 0.045454545454545456,
+        "tok_lean": 0.05258467023172905,
+        "char_sim_chosen": 0.030927835051546393,
+        "char_sim_rejected": 0.048370136698212406,
+        "char_lean": -0.017442301646666013,
+        "text": "In Crystal, you would write these operations as:\n\n```crystal\na.equal?(b)\na.object_id\n```\n\nHowever, it's worth noting that Crystal's approach to object identity is slightly different from Ruby:\n\n1. **`equal?`** - This method exists in Crystal and works the same way as in Ruby, checking if two variables refer to the exact same object in memory.\n\n2. **`object_id`** - This also exists in Crystal and returns a unique identifier for the object, though the implementation details may differ from Ruby's.\n\nHere's a complete example:\n\n```crystal\na = \"hello\"\nb = \"hello\"\nc = a\n\n# Checking object identity\nputs a.equal?(b)  # false - different objects with same content\nputs a.equal?(c)  # true - same object reference\n\n# Getting object identifiers\nputs a.object_id\nputs b.object_id\nputs c.object_id\n```\n\nThe syntax is identical to Ruby in this case, but Crystal's type system and memory model are different, so the behavior might be more predictable due to its static typing.",
+        "pair_idx": 66
+      },
+      {
+        "tok_sim_chosen": 0.18085106382978725,
+        "tok_sim_rejected": 0.04878048780487805,
+        "tok_lean": 0.13207057602490918,
+        "char_sim_chosen": 0.06565656565656566,
+        "char_sim_rejected": 0.05805805805805806,
+        "char_lean": 0.007598507598507602,
+        "text": "In Crystal, you would write this as:\n\n```crystal\na.is_a?(String) && !a.empty?\n```\n\nOr more idiomatically, since Crystal has a more concise way to check for non-empty strings:\n\n```crystal\n!a.empty? && a.is_a?(String)\n```\n\nHowever, the most natural Crystal approach would be to use the `String?` type and check for nil first, or use pattern matching. But if you want to stick close to the Ruby form, the first version is the direct translation.\n\nActually, let me correct that - the most idiomatic Crystal would be:\n\n```crystal\na.is_a?(String) && !a.empty?\n```\n\nThis is because Crystal's `String` type has an `empty?` method, and the `is_a?` check is the direct equivalent of Ruby's `is_a?` method. The `empty?` method in Crystal returns `true` if the string has zero length, so `!a.empty?` checks that it's not empty.\n\nIf you're working with a `String?` (nullable string) type, you might also see:\n\n```crystal\na && a.is_a?(String) && !a.empty?\n```\n\nBut the most straightforward translation of your Ruby code is:\n```crystal\na.is_a?(String) && !a.empty?\n```",
+        "pair_idx": 67
+      },
+      {
+        "tok_sim_chosen": 0.10666666666666667,
+        "tok_sim_rejected": 0.03076923076923077,
+        "tok_lean": 0.0758974358974359,
+        "char_sim_chosen": 0.1586021505376344,
+        "char_sim_rejected": 0.03536977491961415,
+        "char_lean": 0.12323237561802025,
+        "text": "In Crystal, you would write it exactly the same way:\n\n```crystal\nname.length\n```\n\nCrystal is statically-typed but inherits Ruby's syntax for method calls, so `name.length` works identically whether `name` is a `String` or any other type that implements a `length` method.\n\nIf you need to be explicit about the type (which is often the case in Crystal), you'd write:\n\n```crystal\nname : String\nname.length\n```\n\nOr if you're working with a variable that might be `nil`:\n\n```crystal\nname : String?\nname&.length  # Safe navigation\n```\n\nBut the basic `name.length` syntax is identical to Ruby's, as Crystal maintains Ruby's method call syntax while adding static typing.",
+        "pair_idx": 68
+      },
+      {
+        "tok_sim_chosen": 0.18333333333333332,
+        "tok_sim_rejected": 0.0625,
+        "tok_lean": 0.12083333333333332,
+        "char_sim_chosen": 0.11920529801324503,
+        "char_sim_rejected": 0.08762886597938144,
+        "char_lean": 0.031576432033863594,
+        "text": "In Crystal, you would write it as:\n\n```crystal\n\"abc\"[1]   # => 'b'\n```\n\nNote that Crystal returns a `Char` (not a `String`) when accessing a single character by index. If you need a string result, you can convert it:\n\n```crystal\n\"abc\"[1].to_s   # => \"b\"\n```\n\nCrystal's string indexing is 0-based, just like Ruby, but the return type is `Char` rather than `String`. The syntax is otherwise identical to Ruby's.",
+        "pair_idx": 69
+      },
+      {
+        "tok_sim_chosen": 0.18269230769230768,
+        "tok_sim_rejected": 0.045454545454545456,
+        "tok_lean": 0.13723776223776224,
+        "char_sim_chosen": 0.05417607223476298,
+        "char_sim_rejected": 0.056640625,
+        "char_lean": -0.0024645527652370214,
+        "text": "In Crystal, you would write this as:\n\n```crystal\narr.delete(item)\narr.compact!\n```\n\nHowever, since Crystal is statically-typed and doesn't have a direct equivalent of Ruby's `compact!` method, here are the idiomatic approaches:\n\n**Option 1: Using `reject` with `nil?` (most idiomatic)**\n```crystal\narr = arr.reject(&.nil?)\n```\n\n**Option 2: Using `compact` method (if available)**\n```crystal\narr = arr.compact\n```\n\n**Option 3: Using `select` with `nil?` negation**\n```crystal\narr = arr.select { |item| !item.nil? }\n```\n\n**Option 4: If you're working with arrays that can contain nil values**\n```crystal\narr = arr.select(&.present?) # if using a helper method\n# or\narr = arr.reject(&.nil?)\n```\n\n**Complete example:**\n```crystal\narr = [1, nil, 2, nil, 3]\narr = arr.reject(&.nil?)  # [1, 2, 3]\n```\n\nThe key differences from Ruby:\n- Crystal requires explicit type annotations\n- Crystal's `compact` method returns a new array rather than modifying in-place\n- Crystal uses `&.nil?` syntax for safe method calls\n- Crystal's type system prevents runtime nil issues that Ruby's `compact!` might introduce",
+        "pair_idx": 70
+      },
+      {
+        "tok_sim_chosen": 0.20833333333333334,
+        "tok_sim_rejected": 0.1411764705882353,
+        "tok_lean": 0.06715686274509805,
+        "char_sim_chosen": 0.13293502613890965,
+        "char_sim_rejected": 0.17435897435897435,
+        "char_lean": -0.041423948220064705,
+        "text": "Here's the Crystal-idiomatic version of that Ruby/C code:\n\n```crystal\nlib LibFoo\n  fun process(buf : UInt8*, len : Int32) : Int32\nend\n\nbuf = \"hello\".to_unsafe\nLibFoo.process(buf, \"hello\".bytesize)\n```\n\nKey differences in the Crystal version:\n\n1. **String to pointer conversion**: Use `.to_unsafe` instead of just the string literal to get a pointer to the string's memory\n2. **String length**: Use `.bytesize` instead of `.size` to get the byte length (which matches the `Int32` parameter type)\n3. **No explicit type annotations needed**: Crystal can infer the types in most cases\n\nAlternative approaches:\n\n```crystal\n# If you need to reuse the buffer\nbuf = \"hello\".to_unsafe\nlen = \"hello\".bytesize\nLibFoo.process(buf, len)\n\n# Or using a more explicit approach with variables\nstr = \"hello\"\nbuf = str.to_unsafe\nlen = str.bytesize\nLibFoo.process(buf, len)\n```\n\nThe `.to_unsafe` method converts a string to a pointer to its underlying bytes, which is what the FFI function expects. The `bytesize` method returns the number of bytes in the string, which is what the C function expects as the length parameter.",
+        "pair_idx": 71
+      },
+      {
+        "tok_sim_chosen": 0.1308411214953271,
+        "tok_sim_rejected": 0.07291666666666667,
+        "tok_lean": 0.05792445482866042,
+        "char_sim_chosen": 0.08125,
+        "char_sim_rejected": 0.0962566844919786,
+        "char_lean": -0.015006684491978603,
+        "text": "In Crystal, you'd write this as:\n\n```crystal\narr = [1_u8, 2_u8, 3_u8]\nLibFoo.process(arr, arr.size)\n```\n\nThe syntax is actually identical to Ruby in this case! However, there are a few Crystal-specific considerations:\n\n1. **Type annotations** (if needed for clarity):\n```crystal\narr : Array(UInt8) = [1_u8, 2_u8, 3_u8]\nLibFoo.process(arr, arr.size)\n```\n\n2. **More explicit type declaration**:\n```crystal\narr = [1_u8, 2_u8, 3_u8].as(Array(UInt8))\nLibFoo.process(arr, arr.size)\n```\n\n3. **If you need to be more specific about the method signature**:\n```crystal\narr = [1_u8, 2_u8, 3_u8]\nLibFoo.process(arr, arr.size)\n```\n\nThe key differences from Ruby in Crystal are:\n- Crystal is statically typed, so the compiler knows `arr` is an `Array(UInt8)`\n- You can use `as()` for type casting when needed\n- The `size` method works the same way, but Crystal's type system ensures it returns an `Int32` or `Int64` as appropriate\n\nThe original code you showed is already Crystal-idiomatic and will work perfectly fine. Crystal's syntax is designed to be very similar to Ruby's, so most Ruby code translates directly to Crystal with minimal changes.",
+        "pair_idx": 72
+      },
+      {
+        "tok_sim_chosen": 0.17829457364341086,
+        "tok_sim_rejected": 0.01818181818181818,
+        "tok_lean": 0.16011275546159268,
+        "char_sim_chosen": 0.054220579174368455,
+        "char_sim_rejected": 0.021244309559939303,
+        "char_lean": 0.03297626961442915,
+        "text": "In Crystal, you would write this as:\n\n```crystal\nvalue.not_nil!\n```\n\nHowever, it's worth noting that Crystal's type system is more explicit than Ruby's. The `not_nil!` method is typically used when you have a `T?` (nullable type) and want to assert it's not nil, but you'd usually do this in a context where the compiler can infer the type or where you've explicitly declared it as nullable.\n\nHere's a more complete example:\n\n```crystal\ndef example\n  value : String? = get_value\n  \n  # This will raise an exception if value is nil\n  value.not_nil!\n  \n  # Now value is guaranteed to be String (not String?)\n  value.upcase # This works because value is now String, not String?\nend\n\ndef get_value : String?\n  # some logic that might return nil\n  nil\nend\n```\n\nThe key difference from Ruby is that Crystal's type system prevents you from calling methods that don't exist on nil, so `not_nil!` is more about type assertion than runtime behavior. If you're working with a `String?` type, calling `not_nil!` tells the compiler \"I know this is not nil now\", allowing you to proceed with non-nullable operations.\n\nIf you're working with a value that's already known to be non-nil, you can also use:\n\n```crystal\nvalue.not_nil # This returns the value if it's not nil, or raises an exception\n```\n\nBut the most common usage is `not_nil!` when you have a `T?` and want to assert it's not nil.",
+        "pair_idx": 73
+      }
+    ]
+  }
+}

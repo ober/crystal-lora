@@ -1,0 +1,338 @@
+{
+  "totals": {
+    "jaimef/crystal-qwen3.6-30b": 11,
+    "qwen3-coder:30b": 11
+  },
+  "results": {
+    "jaimef/crystal-qwen3.6-30b": {
+      "getter_setter": {
+        "score": 0,
+        "detail": {
+          "have_hits": [],
+          "have_miss": [
+            "property name"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "attr_accessor",
+            "attr_reader",
+            "attr_writer"
+          ]
+        },
+        "text": "Here's the implementation from `samples/person.cr`:\n\n```crystal\nclass Person\n  getter name : String\n\n  def initialize(@name : String)\n  end\nend\n```"
+      },
+      "generics_paren": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "class Stack(T)"
+          ],
+          "have_miss": [
+            "Array(T)"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "Stack<T>",
+            "Array<T>"
+          ]
+        },
+        "text": "Here's the implementation from `samples/stack.cr`:\n\n```crystal\nclass Stack(T)\n  def initialize\n    @stack = [] of T\n  end\n\n  def push(x : T) : Nil\n    @stack.push x\n  end\n\n  def pop : T\n    @stack.pop\n  end\n\n  def peek : T?\n    @stack.last?\n  end\nend\n```"
+      },
+      "union_type": {
+        "score": 0,
+        "detail": {
+          "have_hits": [],
+          "have_miss": [
+            "User?"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "Optional",
+            "Maybe"
+          ]
+        },
+        "text": "Here's the implementation from `samples/find_user.cr`:\n\n```crystal\ndef find_user(id : Int32)\n  if user = User.find_by_id(id)\n    user\n  end\nend\n```"
+      },
+      "concurrency_spawn": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "spawn",
+            "Channel"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "Thread.new",
+            "Thread.start",
+            "Mutex.new"
+          ]
+        },
+        "text": "```crystal\nchannel = Channel(String).new\n\nspawn do\n  sleep 100.milliseconds\n  channel.send(\"A\")\nend\n\nspawn do\n  sleep 100.milliseconds\n  channel.send(\"B\")\nend\n\nspawn do\n  sleep 100.milliseconds\n  channel.send(\"C\")\nend\n\n3.times do\n  puts channel.receive\nend\n```"
+      },
+      "spec_framework": {
+        "score": 3,
+        "detail": {
+          "have_hits": [
+            "require \"spec\"",
+            "describe",
+            "it "
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "require \"rspec\"",
+            "RSpec.describe",
+            "expect("
+          ]
+        },
+        "text": "```crystal\nrequire \"spec\"\nrequire \"./my_math\"\n\ndescribe add do\n  it \"adds\" do\n    add(1, 2).should eq 3\n  end\n\n  it \"subtracts\" do\n    add(4, -2).should eq 2\n  end\nend\n```"
+      },
+      "hash_literal_typed": {
+        "score": 0,
+        "detail": {
+          "have_hits": [],
+          "have_miss": [
+            "Hash(String, Int32)"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "Hash<String, Int32>",
+            "Hash<String,Int32>"
+          ]
+        },
+        "text": "Here's the implementation from `samples/hash.cr`:\n\n```crystal\nh = {} of String => Int32\nh[\"one\"] = 1\nh[\"two\"] = 2\nh[\"three\"] = 3\nh.size # => 3\n```"
+      },
+      "block_yield": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "yield"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "&block",
+            "block.call",
+            "block_given?",
+            "Proc.new"
+          ]
+        },
+        "text": "Here's the implementation from `samples/each_squared.cr`:\n\n```crystal\ndef each_squared(arr : Array(Int32))\n  i = 0\n  while i < arr.size\n    yield arr[i] * arr[i]\n    i += 1\n  end\nend\n\neach_squared([1, 2, 3]) { |square| puts square }\n```"
+      },
+      "exception_class": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "class ParseError < Exception",
+            "raise ParseError"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "StandardError",
+            "RuntimeError.new"
+          ]
+        },
+        "text": "```crystal\nclass ParseError < Exception\nend\n\ndef parse!(string : String) : Int32\n  raise ParseError.new(\"Not a number: #{string}\")\nend\n```"
+      },
+      "no_method_missing": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "macro",
+            "compile time"
+          ],
+          "have_miss": [],
+          "not_hits": [
+            "method_missing"
+          ],
+          "not_clean": []
+        },
+        "text": "Crystal doesn't have `method_missing`, but you can use macros for compile-t\ncompile-time dispatch or union types with `is_a?`/`as` for runtime dispatch\ndispatch. For example, `foo.is_a?(Int32) ? foo + 1 : foo.to_s` or a macro l\nlike `macro define_proxy(*names) {% names.each do |name| def {{name.id}}; @\n@inner.{{name.id}}; end {% end %} end` to forward methods at compile time."
+      },
+      "instance_var_typed": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "@count : Int32"
+          ],
+          "have_miss": [
+            "@count = 0"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "@count = nil",
+            "attr_"
+          ]
+        },
+        "text": "Here's the implementation from `samples/counter.cr`:\n\n```crystal\nclass Counter\n  @count : Int32 = 0\n\n  def increment\n    @count += 1\n  end\nend\n```"
+      }
+    },
+    "qwen3-coder:30b": {
+      "getter_setter": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "property name"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "attr_accessor",
+            "attr_reader",
+            "attr_writer"
+          ]
+        },
+        "text": "```crystal\nclass Person\n  property name : String\nend\n```"
+      },
+      "generics_paren": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "class Stack(T)",
+            "Array(T)"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "Stack<T>",
+            "Array<T>"
+          ]
+        },
+        "text": "```crystal\nclass Stack(T)\n  def initialize\n    @items = Array(T).new\n  end\n\n  def push(item : T)\n    @items << item\n  end\n\n  def pop : T\n    @items.pop\n  end\n\n  def peek : T\n    @items.last\n  end\nend\n```"
+      },
+      "union_type": {
+        "score": 0,
+        "detail": {
+          "have_hits": [],
+          "have_miss": [
+            "User?"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "Optional",
+            "Maybe"
+          ]
+        },
+        "text": "```crystal\ndef find_user(id : Int32)\n  # Stub body - replace with actual implementation\n  nil\nend\n```\n\nThis method signature specifies:\n- `find_user` as the method name\n- `id : Int32` as a required parameter of type Int32\n- Returns either a `User` instance or `nil` (using Crystal's union type sys\nsystem)\n\nThe stub body simply returns `nil` - you would replace this with actual log\nlogic to find and return a User instance based on the provided ID, or retur\nreturn `nil` if no user is found."
+      },
+      "concurrency_spawn": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "spawn",
+            "Channel"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "Thread.new",
+            "Thread.start",
+            "Mutex.new"
+          ]
+        },
+        "text": "```crystal\nrequire \"channel\"\n\ndef compute_something(id)\n  sleep(rand(1..3))\n  id * id\nend\n\nchannel = Channel(Int32).new\n\nspawn do\n  channel.send(compute_something(1))\nend\n\nspawn do\n  channel.send(compute_something(2))\nend\n\nspawn do\n  channel.send(compute_something(3))\nend\n\nresults = [] of Int32\n3.times do\n  results << channel.receive\nend\n\nputs results\n```"
+      },
+      "spec_framework": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "require \"spec\"",
+            "it "
+          ],
+          "have_miss": [
+            "describe"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "require \"rspec\"",
+            "RSpec.describe",
+            "expect("
+          ]
+        },
+        "text": "```crystal\nrequire \"spec\"\n\ndef add(a, b)\n  a + b\nend\n\nspec \"add\" do\n  it \"adds two positive numbers\" do\n    add(2, 3).should eq(5)\n  end\n\n  it \"adds two negative numbers\" do\n    add(-2, -3).should eq(-5)\n  end\n\n  it \"adds positive and negative numbers\" do\n    add(5, -3).should eq(2)\n  end\n\n  it \"adds zero\" do\n    add(0, 5).should eq(5)\n    add(5, 0).should eq(5)\n  end\n\n  it \"adds decimals\" do\n    add(1.5, 2.5).should eq(4.0)\n  end\nend\n```"
+      },
+      "hash_literal_typed": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "Hash(String, Int32)"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "Hash<String, Int32>",
+            "Hash<String,Int32>"
+          ]
+        },
+        "text": "Here's how you can create an empty Hash mapping String to Int32 and add thr\nthree entries in Crystal:\n\n```crystal\n# Create an empty Hash mapping String to Int32\nhash = {} of String => Int32\n\n# Add three entries\nhash[\"apple\"] = 5\nhash[\"banana\"] = 3\nhash[\"orange\"] = 8\n\n# Print the hash to verify\nputs hash\n# Output: {\"apple\"=>5, \"banana\"=>3, \"orange\"=>8}\n```\n\nAlternatively, you can also write it more concisely:\n\n```crystal\n# Create and populate in one go\nhash = {\n  \"apple\"  => 5,\n  \"banana\" => 3,\n  \"orange\" => 8\n} of String => Int32\n\nputs hash\n```\n\nOr if you prefer to declare the type explicitly and then add entries:\n\n```crystal\n# Declare the type and create empty hash\nhash : Hash(String, Int32) = {} of String => Int32\n\n# Add entries\nhash[\"cat\"] = 2\nhash[\"dog\"] = 1\nhash[\"bird\"] = 4\n\nputs hash\n# Output: {\"cat\"=>2, \"dog\"=>1, \"bird\"=>4}\n```"
+      },
+      "block_yield": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "yield"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "&block",
+            "block.call",
+            "block_given?",
+            "Proc.new"
+          ]
+        },
+        "text": "Here's a Crystal method that yields each element's square using block synta\nsyntax:\n\n```crystal\ndef each_squared(arr : Array(Int32))\n  arr.each do |element|\n    yield element * element\n  end\nend\n\n# Example usage:\nnumbers = [1, 2, 3, 4, 5]\neach_squared(numbers) do |square|\n  puts square\nend\n# Output:\n# 1\n# 4\n# 9\n# 16\n# 25\n```\n\nAlternatively, you can write it more concisely:\n\n```crystal\ndef each_squared(arr : Array(Int32))\n  arr.each { |element| yield element * element }\nend\n```\n\nThe method works by:\n1. Taking an `Array(Int32)` parameter\n2. Iterating through each element using `arr.each`\n3. Squaring each element (`element * element`)\n4. Yielding the squared value to the block provided by the caller\n\nYou can use it with any array of integers and the block will receive each s\nsquared value."
+      },
+      "exception_class": {
+        "score": 2,
+        "detail": {
+          "have_hits": [
+            "class ParseError < Exception",
+            "raise ParseError"
+          ],
+          "have_miss": [],
+          "not_hits": [],
+          "not_clean": [
+            "StandardError",
+            "RuntimeError.new"
+          ]
+        },
+        "text": "```crystal\nclass ParseError < Exception\nend\n\ndef parse_string(str : String)\n  if str.empty?\n    raise ParseError.new(\"Cannot parse empty string\")\n  end\n  # parsing logic here\nend\n```"
+      },
+      "no_method_missing": {
+        "score": -1,
+        "detail": {
+          "have_hits": [],
+          "have_miss": [
+            "macro",
+            "compile time"
+          ],
+          "not_hits": [
+            "method_missing"
+          ],
+          "not_clean": []
+        },
+        "text": "In Crystal, you can implement dynamic method dispatch similar to Ruby's `me\n`method_missing` using the `method_missing` hook, but with a key difference\ndifference: Crystal requires you to explicitly declare the method signature\nsignature in your class definition. You define `method_missing` with a `Str\n`String` parameter and a `NamedTuple` for arguments, like `def method_missi\nmethod_missing(name : String, args : NamedTuple)`, and Crystal will automat\nautomatically call this method when an undefined method is invoked, allowin\nallowing you to handle dynamic method calls at runtime. However, unlike Rub\nRuby, Crystal's approach is more type-safe and requires explicit handling o\nof the method name and arguments, making it a more controlled form of dynam\ndynamic dispatch that still enables flexible method resolution patterns."
+      },
+      "instance_var_typed": {
+        "score": 1,
+        "detail": {
+          "have_hits": [
+            "@count : Int32"
+          ],
+          "have_miss": [
+            "@count = 0"
+          ],
+          "not_hits": [],
+          "not_clean": [
+            "@count = nil",
+            "attr_"
+          ]
+        },
+        "text": "```crystal\nclass Counter\n  @count : Int32 = 0\n  \n  def increment\n    @count += 1\n  end\nend\n```"
+      }
+    }
+  }
+}

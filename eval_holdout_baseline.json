@@ -1,0 +1,1091 @@
+{
+  "totals": {
+    "jaimef/crystal-qwen3.6-30b": {
+      "idiom": 11,
+      "compile": 25,
+      "total": 36,
+      "compile_pass": 5,
+      "compile_attempts": 7,
+      "had_code": 7
+    },
+    "qwen3-coder:30b": {
+      "idiom": 4,
+      "compile": 5,
+      "total": 9,
+      "compile_pass": 1,
+      "compile_attempts": 2,
+      "had_code": 2
+    }
+  },
+  "results": {
+    "jaimef/crystal-qwen3.6-30b": [
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "property name",
+          "property quantity",
+          "property description",
+          " : Int32",
+          " : String",
+          "String?"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_inventory_class"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "spawn",
+          "Channel",
+          "HTTP::Client"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_concurrent_downloads"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "Hash(String, Int32)",
+          "def word_count"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_word_count"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "class",
+          "(T)",
+          "Array(T)",
+          "T?"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_generic_queue"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "require \"spec\"",
+          "describe",
+          "it ",
+          ".should"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_spec_calculator"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "JSON::Serializable",
+          "include JSON::Serializable",
+          "from_json"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_json_parse"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "class DatabaseError < Exception",
+          "class ConnectionError < DatabaseError",
+          "class QueryError < DatabaseError",
+          "raise QueryError"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_exception_chain"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "Int32?",
+          "&."
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_nilable_dig"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "macro define_constant",
+          "{{name",
+          "{{value"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_macro_getter"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "struct Point",
+          "property x",
+          "property y",
+          " : Float64",
+          "def distance_to"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_struct_point"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "enum OrderStatus",
+          "case ",
+          "when "
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_enum_status"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "NamedTuple",
+          "x:",
+          "y:"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_named_tuple"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "yield",
+          "Time.monotonic"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_block_yield_typed"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "record Money",
+          "Int64",
+          "String"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_record"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "select",
+          "when ",
+          ".receive"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_fiber_select"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "typeof"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_typeof"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def initialize(@name : String",
+          "@email : String"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_initialize_typed"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          ".select",
+          ".map"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_array_filter_map"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "File.",
+          "each_line"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_io_read_lines"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "module Greetable",
+          "abstract def name",
+          "include Greetable"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_module_mixin"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "sprintf",
+          "%"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_string_format"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def greet(name : String, greeting : String = "
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_optional_arg"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def sum(*nums : Int32)",
+          ".sum"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_splat"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [
+          "puts"
+        ],
+        "have_miss": [
+          "if ",
+          ".empty?"
+        ],
+        "not_hits": [
+          "unless errors.any?"
+        ],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:18\n\n 1 | puts \"OK\" unless errors.any?\n                      ^-----\nError: undefined local variable or method 'errors' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nputs \"OK\" unless errors.any?\n```",
+        "question": "task_unless_postfix"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 0,
+        "total_score": 1,
+        "have_hits": [
+          "responds_to?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:2:27\n\n 2 | {% if type.responds_to?(method) %}\n                             ^\nError: unexpected token: \"method\" (expected symbol)\n",
+        "had_code_block": true,
+        "text": "Use `macro check` with a `responds_to?` guard:\n\n```crystal\nmacro check_responds_to(type, method)\n  {% if type.responds_to?(method) %}\n    puts \"\u2713 #{type} responds to `#{method}`\"\n  {% else %}\n    puts \"\u2717 #{type} does not respond to `#{method}`\"\n  {% end %}\nend\n\ncheck_responds_to(Int32, :to_s)     # => \u2713 Int32 responds to `to_s`\ncheck_responds_to(Int32, :non_existent) # => \u2717 Int32 does not respond to `non_existent`\n```",
+        "question": "task_responds_to"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Pointer(Int32).malloc",
+          "10"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nptr = Pointer(Int32).malloc(10) { |i| i + 1 }\n```",
+        "question": "task_pointer_basics"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [],
+        "have_miss": [
+          "def process(x : Int32)",
+          "def process(x : String)"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef process(value : Int32)\n  value * 2\nend\n\ndef process(value : String)\n  value.upcase\nend\n```",
+        "question": "task_overload"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "def self.instance",
+          "@@",
+          "class Logger"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/logger.cr`:\n\n```crystal\nclass Logger\n  @@instance = Logger.new\n\n  def self.instance\n    @@instance\n  end\n\n  def info(message)\n    puts message\n  end\nend\n```",
+        "question": "task_class_method"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "* 2"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/times_two_each.cr`:\n\n```crystal\ndef times_two_each(arr : Array(Int32))\n  arr.each { |x| yield x * 2 }\nend\n\na = [1, 2, 3]\ntimes_two_each(a) { |x| puts x }\n```",
+        "question": "task_yield_with_value"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "&",
+          "0",
+          "!= 0"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Use `value & 4 != 0`.\n\n```crystal\nvalue = 0b1011_u8  # 11\nvalue & 4 != 0     # => true\n```",
+        "question": "task_bit_field"
+      }
+    ],
+    "qwen3-coder:30b": [
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "property name",
+          "property quantity",
+          "property description",
+          " : Int32",
+          " : String",
+          "String?"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_inventory_class"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "spawn",
+          "Channel",
+          "HTTP::Client"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_concurrent_downloads"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "Hash(String, Int32)",
+          "def word_count"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_word_count"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "class",
+          "(T)",
+          "Array(T)",
+          "T?"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_generic_queue"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "require \"spec\"",
+          "describe",
+          "it ",
+          ".should"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_spec_calculator"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "JSON::Serializable",
+          "include JSON::Serializable",
+          "from_json"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_json_parse"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "class DatabaseError < Exception",
+          "class ConnectionError < DatabaseError",
+          "class QueryError < DatabaseError",
+          "raise QueryError"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_exception_chain"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "Int32?",
+          "&."
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_nilable_dig"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "macro define_constant",
+          "{{name",
+          "{{value"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_macro_getter"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "struct Point",
+          "property x",
+          "property y",
+          " : Float64",
+          "def distance_to"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_struct_point"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "enum OrderStatus",
+          "case ",
+          "when "
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_enum_status"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "NamedTuple",
+          "x:",
+          "y:"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_named_tuple"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "yield",
+          "Time.monotonic"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_block_yield_typed"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "record Money",
+          "Int64",
+          "String"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_record"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "select",
+          "when ",
+          ".receive"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_fiber_select"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "typeof"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_typeof"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def initialize(@name : String",
+          "@email : String"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_initialize_typed"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          ".select",
+          ".map"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_array_filter_map"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "File.",
+          "each_line"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_io_read_lines"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "module Greetable",
+          "abstract def name",
+          "include Greetable"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_module_mixin"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "sprintf",
+          "%"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_string_format"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def greet(name : String, greeting : String = "
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_optional_arg"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def sum(*nums : Int32)",
+          ".sum"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_splat"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "puts",
+          "if ",
+          ".empty?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:14\n\n 1 | puts \"OK\" if errors.empty?\n                  ^-----\nError: undefined local variable or method 'errors' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nputs \"OK\" if errors.empty?\n```",
+        "question": "task_unless_postfix"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "responds_to?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "In Crystal, you can use the `{{type}}.responds_to?` macro to check at compile time whether a type responds to a particular method. Here's a one-line example:\n\n```crystal\n{{String}}.responds_to?(:upcase) # => true\n```\n\nThis macro returns a compile-time boolean value indicating whether the specified type responds to the given method. You can also use it in conditional compilation:\n\n```crystal\nif {{String}}.responds_to?(:upcase)\n  # This code block will be compiled since String responds to upcase\nend\n```\n\nThe `responds_to?` macro is particularly useful for writing generic code that needs to work with different types, allowing you to conditionally compile code based on method availability.",
+        "question": "task_responds_to"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "Pointer(Int32).malloc",
+          "10"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_pointer_basics"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def process(x : Int32)",
+          "def process(x : String)"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_overload"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "def self.instance",
+          "@@",
+          "class Logger"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_class_method"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "yield",
+          "* 2"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_yield_with_value"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "&",
+          "0",
+          "!= 0"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": false,
+        "text": "<PARSE_ERROR 'response'>",
+        "question": "task_bit_field"
+      }
+    ]
+  }
+}

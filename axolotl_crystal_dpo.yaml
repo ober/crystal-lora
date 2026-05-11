@@ -33,8 +33,9 @@ dataset_processes: 8
 
 sequence_len: 2048
 
-lora_r: 16
-lora_alpha: 32
+# v2: r=64/α=128 (was 16/32) — 4× larger delta survives Q4_K_M
+lora_r: 64
+lora_alpha: 128
 lora_dropout: 0
 lora_target_modules:
   - q_proj
@@ -48,12 +49,13 @@ lora_target_parameters:
   - experts.gate_up_proj
   - experts.down_proj
 
+# v2: lr=5e-6 (10× higher than 5e-7), epochs=3 (was 1) — DPO stage was a no-op
 gradient_accumulation_steps: 4
 micro_batch_size: 1
-num_epochs: 1
+num_epochs: 3
 optimizer: paged_adamw_8bit
 lr_scheduler: cosine
-learning_rate: 5.0e-7
+learning_rate: 5.0e-6
 warmup_ratio: 0.1
 weight_decay: 0.0
 max_grad_norm: 1.0

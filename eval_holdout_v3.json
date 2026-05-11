@@ -1,0 +1,1654 @@
+{
+  "totals": {
+    "crystal-qwen-v3": {
+      "idiom": 76,
+      "compile": 130,
+      "total": 206,
+      "compile_pass": 26,
+      "compile_attempts": 28,
+      "had_code": 30
+    },
+    "jaimef/crystal-qwen3.6-30b": {
+      "idiom": 67,
+      "compile": 105,
+      "total": 172,
+      "compile_pass": 21,
+      "compile_attempts": 28,
+      "had_code": 30
+    },
+    "qwen3-coder:30b": {
+      "idiom": 71,
+      "compile": 105,
+      "total": 176,
+      "compile_pass": 21,
+      "compile_attempts": 28,
+      "had_code": 30
+    }
+  },
+  "results": {
+    "crystal-qwen-v3": [
+      {
+        "idiom_score": 6,
+        "compile_score": 5,
+        "total_score": 11,
+        "have_hits": [
+          "property name",
+          "property quantity",
+          "property description",
+          " : Int32",
+          " : String",
+          "String?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Item\n  property name : String\n  property quantity : Int32\n  property description : String?\n\n  def initialize(@name : String, @quantity : Int32, @description : String? = nil)\n  end\nend\n```",
+        "question": "task_inventory_class"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "spawn",
+          "Channel",
+          "HTTP::Client"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"http/client\"\n\nurls = [\"https://httpbin.org/digest-auth/auth/admin/passwd/MD5\",\n        \"https://httpbin.org/digest-auth/auth/admin/passwd/SHA-256\",\n        \"https://httpbin.org/digest-auth/auth/admin/passwd/SHA-512\"]\n\nchannel = Channel(String).new\n\nurls.each do |url|\n  spawn do\n    response = HTTP::Client.get(url)\n    channel.send(\"Status: #{response.status_code} for #{url}\")\n  end\nend\n\nurls.size.times do\n  puts channel.receive\nend\n```",
+        "question": "task_concurrent_downloads"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Hash(String, Int32)",
+          "def word_count"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef word_count(text : String) : Hash(String, Int32)\n  counts = Hash(String, Int32).new(0)\n  text.downcase.scan(/\\w+/) do |match|\n    counts[match[0]] += 1\n  end\n  counts\nend\n```",
+        "question": "task_word_count"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class",
+          "(T)",
+          "Array(T)",
+          "T?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass BoundedQueue(T)\n  @capacity : Int32\n  @queue : Array(T)\n\n  def initialize(@capacity : Int32)\n    @queue = Array(T).new\n  end\n\n  def enqueue(item : T) : Nil\n    if @queue.size < @capacity\n      @queue << item\n    end\n  end\n\n  def dequeue : T?\n    @queue.shift?\n  end\n\n  def size : Int32\n    @queue.size\n  end\nend\n```",
+        "question": "task_generic_queue"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "require \"spec\"",
+          "describe",
+          "it ",
+          ".should"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"spec\"\n\nclass Calculator\n  def add(a : Int32, b : Int32) : Int32\n    a + b\n  end\n\n  def divide(a : Int32, b : Int32) : Float64\n    if b == 0\n      raise \"Division by zero\"\n    end\n    a.to_f / b.to_f\n  end\nend\n\ndescribe \"Calculator\" do\n  describe \"#add\" do\n    it \"adds two positive numbers\" do\n      calc = Calculator.new\n      calc.add(2, 3).should eq(5)\n    end\n\n    it \"adds negative numbers\" do\n      calc = Calculator.new\n      calc.add(-2, -3).should eq(-5)\n    end\n  end\n\n  describe \"#divide\" do\n    it \"divides two numbers\" do\n      calc = Calculator.new\n      calc.divide(10, 2).should eq(5.0)\n    end\n\n    it \"raises on division by zero\" do\n      calc = Calculator.new\n      expect_raises(Exception, \"Division by zero\") do\n        calc.divide(10, 0)\n      end\n    end\n  end\nend\n```",
+        "question": "task_spec_calculator"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "JSON::Serializable",
+          "include JSON::Serializable",
+          "from_json"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"json\"\n\nstruct Person\n  include JSON::Serializable\n\n  property name : String\n  property age : Int32\nend\n\njson = %({\"name\":\"Alice\",\"age\":30})\nperson = Person.from_json(json)\nputs person.name\n```",
+        "question": "task_json_parse"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class DatabaseError < Exception",
+          "class ConnectionError < DatabaseError",
+          "class QueryError < DatabaseError",
+          "raise QueryError"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass DatabaseError < Exception\nend\n\nclass ConnectionError < DatabaseError\nend\n\nclass QueryError < DatabaseError\nend\n\ndef query(sql : String) : Nil\n  raise QueryError.new(\"Invalid syntax: #{sql}\")\nend\n```",
+        "question": "task_exception_chain"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "Int32?"
+        ],
+        "have_miss": [
+          "&."
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef lookup_nested(data : Hash(String, Hash(String, Int32)), outer_key : String, inner_key : String) : Int32?\n  if inner_hash = data[outer_key]?\n    inner_hash[inner_key]?\n  else\n    nil\n  end\nend\n```",
+        "question": "task_nilable_dig"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "macro define_constant",
+          "{{name",
+          "{{value"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/define_constant.cr`:\n\n```crystal\nmacro define_constant(name, value)\n  {{name.id.upcase}} = {{value}}\nend\n\ndefine_constant pi, 3.14159\ndefine_constant e,  2.71828\n\nputs PI\nputs E\n```",
+        "question": "task_macro_getter"
+      },
+      {
+        "idiom_score": 5,
+        "compile_score": 5,
+        "total_score": 10,
+        "have_hits": [
+          "struct Point",
+          "property x",
+          "property y",
+          " : Float64",
+          "def distance_to"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nstruct Point\n  property x : Float64\n  property y : Float64\n\n  def initialize(@x : Float64, @y : Float64)\n  end\n\n  def distance_to(other : Point) : Float64\n    Math.sqrt((@x - other.x)**2 + (@y - other.y)**2)\n  end\nend\n```",
+        "question": "task_struct_point"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "enum OrderStatus",
+          "case ",
+          "when "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nenum OrderStatus\n  Pending\n  Shipped\n  Delivered\n  Cancelled\nend\n\nstatus = OrderStatus::Shipped\n\ncase status\nwhen .pending?\n  puts \"Order is pending\"\nwhen .shipped?\n  puts \"Order is shipped\"\nwhen .delivered?\n  puts \"Order delivered\"\nwhen .cancelled?\n  puts \"Order cancelled\"\nend\n```",
+        "question": "task_enum_status"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 0,
+        "total_score": 2,
+        "have_hits": [
+          "x:",
+          "y:"
+        ],
+        "have_miss": [
+          "NamedTuple"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\npoint = {x: 10, y: 20}\nputs point[:x]\nputs point[:y]\n```",
+        "question": "task_named_tuple"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "Time.monotonic"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef with_timing(&block)\n  start = Time.monotonic\n  value = yield\n  elapsed = Time.monotonic - start\n  puts \"Elapsed: #{elapsed}\"\n  value\nend\n```",
+        "question": "task_block_yield_typed"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "record Money",
+          "Int64",
+          "String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrecord Money, amount : Int64, currency : String\n```",
+        "question": "task_record"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "select",
+          "when ",
+          ".receive"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nch1 = Channel(Int32).new\nch2 = Channel(Int32).new\n\nspawn do\n  sleep 0.1\n  ch1.send 42\nend\n\nspawn do\n  sleep 0.2\n  ch2.send 99\nend\n\nselect\nwhen x = ch1.receive\n  puts \"ch1: #{x}\"\nwhen y = ch2.receive\n  puts \"ch2: #{y}\"\nend\n```",
+        "question": "task_fiber_select"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "typeof"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Use the `typeof` keyword to get the compile-time type of an expression. This is useful for debugging or when you need to pass a type as an argument. The result is a type object, not a value.\n\n```crystal\na = 42\nb = \"hello\"\nc = typeof(a)  # c has type Int32.class\nd = typeof(b)  # d has type String.class\n\nputs c  # => Int32\nputs d  # => String\n```",
+        "question": "task_typeof"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def initialize(@name : String",
+          "@email : String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass User\n  def initialize(@name : String, @email : String)\n  end\nend\n```",
+        "question": "task_initialize_typed"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 0,
+        "total_score": 2,
+        "have_hits": [
+          ".select",
+          ".map"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nnumbers.select(&.even?).map { |n| n * n }\n```",
+        "question": "task_array_filter_map"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "File.",
+          "each_line"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nFile.each_line(\"/etc/hosts\") do |line|\n  puts line\nend\n```",
+        "question": "task_io_read_lines"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "module Greetable",
+          "abstract def name",
+          "include Greetable"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nmodule Greetable\n  abstract def name : String\n\n  def greet\n    \"Hello, I am #{name}\"\n  end\nend\n\nclass Person\n  include Greetable\n\n  def initialize(@name : String)\n  end\n\n  def name : String\n    @name\n  end\nend\n```",
+        "question": "task_module_mixin"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [
+          "sprintf",
+          "%"
+        ],
+        "have_miss": [],
+        "not_hits": [
+          "printf",
+          ".format("
+        ],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\n# sprintf style\nresult1 = String::Builder.build do |io|\n  io.printf(\"Total: $%.2f\", 1234.5)\nend\n\n# interpolation with format\nresult2 = \"Total: $#{1234.5.format(\"%0.2f\")}\"\n\nputs result1\nputs result2\n```",
+        "question": "task_string_format"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "def greet(name : String, greeting : String = "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef greet(name : String, greeting : String = \"Hello\") : String\n  \"#{greeting}, #{name}!\"\nend\n\nputs greet(\"Alice\")\nputs greet(\"Bob\", \"Hi\")\n```",
+        "question": "task_optional_arg"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def sum(*nums : Int32)",
+          ".sum"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef sum(*nums : Int32) : Int32\n  nums.sum\nend\n```",
+        "question": "task_splat"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "puts",
+          "if ",
+          ".empty?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:14\n\n 1 | puts \"OK\" if errors.empty?\n                  ^-----\nError: undefined local variable or method 'errors' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nputs \"OK\" if errors.empty?\n```",
+        "question": "task_unless_postfix"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [],
+        "have_miss": [
+          "responds_to?"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:10:10\n\n 10 | def test(T)\n               ^\nError: unexpected token: \"T\"\n",
+        "had_code_block": true,
+        "text": "Use `{% if T.methods.map(&.name).includes?(:foo) %}` to check if a type `T` has a method named `foo`. This is evaluated at compile time.\n\n```crystal\nclass Foo\n  def bar\n    42\n  end\nend\n\nclass Bar\nend\n\ndef test(T)\n  {% if T.methods.map(&.name).includes?(:bar) %}\n    puts \"Type has bar method\"\n  {% else %}\n    puts \"Type does not have bar method\"\n  {% end %}\nend\n\ntest(Foo)  # => Type has bar method\ntest(Bar)  # => Type does not have bar method\n```",
+        "question": "task_responds_to"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Pointer(Int32).malloc",
+          "10"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nbuffer = Pointer(Int32).malloc(10)\n```",
+        "question": "task_pointer_basics"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def process(x : Int32)",
+          "def process(x : String)"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Handler\n  def process(x : Int32)\n    puts \"Processing int: #{x}\"\n  end\n\n  def process(x : String)\n    puts \"Processing string: #{x}\"\n  end\nend\n\nhandler = Handler.new\nhandler.process(42)\nhandler.process(\"hello\")\n```",
+        "question": "task_overload"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "def self.instance",
+          "@@",
+          "class Logger"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Logger\n  @@instance : Logger? = nil\n\n  def self.instance : Logger\n    @@instance ||= new\n  end\n\n  private def initialize\n  end\nend\n```",
+        "question": "task_class_method"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "* 2"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef times_two_each(arr : Array(Int32))\n  arr.each { |e| yield e * 2 }\nend\n```",
+        "question": "task_yield_with_value"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "&",
+          "0",
+          "!= 0"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Use the bitwise AND operator `&` with a mask value of 4, then compare with 0:\n\n```crystal\nflags : UInt8 = 5_u8  # binary: 101\nif (flags & 4) != 0\n  puts \"Third bit is set\"\nend\n```\n\nThe expression `(flags & 4) != 0` returns `true` if the third bit is set. The `&` operator performs bitwise AND, and only bits that are 1 in both operands remain 1 in the result.",
+        "question": "task_bit_field"
+      }
+    ],
+    "jaimef/crystal-qwen3.6-30b": [
+      {
+        "idiom_score": 6,
+        "compile_score": 5,
+        "total_score": 11,
+        "have_hits": [
+          "property name",
+          "property quantity",
+          "property description",
+          " : Int32",
+          " : String",
+          "String?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/inventory.cr`:\n\n```crystal\nclass Item\n  property name : String\n  property quantity : Int32\n  property description : String?\n\n  def initialize(@name : String, @quantity : Int32, @description = nil)\n  end\nend\n```",
+        "question": "task_inventory_class"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "spawn",
+          "Channel",
+          "HTTP::Client"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "ay.cr:665\n\n        @buffer[index]\n               ^\n\n  /opt/homebrew/Cellar/crystal/1.20.1/share/crystal/src/pointer.cr:132\n\n      def [](offset)\n          ^~\n\n  /opt/homebrew/Cellar/crystal/1.20.1/share/crystal/src/pointer.cr:133\n\n        (self + offset).value\n                        ^~~~~\n\n  /opt/homebrew/Cellar/crystal/1.20.1/share/crystal/src/primitives.cr:296\n\n      def value : T\n          ^~~~~\n\n  /opt/homebrew/Cellar/crystal/1.20.1/share/crystal/src/primitives.cr:296\n\n      def value : T\n\n",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"http/client\"\n\nurls = [\n  \"https://crystal-lang.org\",\n  \"https://github.com\",\n  \"https://stackoverflow.com\",\n]\n\nchannels = Array.new(urls.size) { Channel(HTTP::Client::Response).new }\n\nurls.each_with_index do |url, i|\n  spawn do\n    client = HTTP::Client.new URI.parse(url)\n    channels[i] << client.get(\"/\")\n  end\nend\n\nchannels.each do |channel|\n  response = channel.receive\n  puts \"#{response.status_code} #{response.request.url}\"\nend\n```",
+        "question": "task_concurrent_downloads"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Hash(String, Int32)",
+          "def word_count"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/word_count.cr`:\n\n```crystal\ndef word_count(text : String) : Hash(String, Int32)\n  hash = Hash(String, Int32).new(0)\n  text.scan(/\\w+/) do |match|\n    word = match[0].downcase\n    hash[word] = hash[word]? ? hash[word] + 1 : 1\n  end\n  hash\nend\n```",
+        "question": "task_word_count"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class",
+          "(T)",
+          "Array(T)",
+          "T?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/bounded-queue.cr`:\n\n```crystal\nclass BoundedQueue(T)\n  @queue = Array(T).new\n\n  def initialize(@capacity : Int32)\n  end\n\n  def enqueue(item : T) : Bool\n    if @queue.size < @capacity\n      @queue.push item\n      true\n    else\n      false\n    end\n  end\n\n  def dequeue : T?\n    @queue.shift\n  end\n\n  def size : Int32\n    @queue.size\n  end\nend\n```",
+        "question": "task_generic_queue"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "describe",
+          "it ",
+          ".should"
+        ],
+        "have_miss": [
+          "require \"spec\""
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:1\n\n 1 | require \"./spec_helper\"\n     ^\nError: can't find file './spec_helper' relative to '/tmp/eval.cr'\n\n\n",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"./spec_helper\"\n\ndescribe Calculator do\n  describe \"#add\" do\n    it \"adds two integers\" do\n      calc = Calculator.new\n      calc.add(2, 3).should eq(5)\n    end\n  end\n\n  describe \"#divide\" do\n    it \"divides two integers\" do\n      calc = Calculator.new\n      calc.divide(6, 2).should eq(3)\n    end\n\n    it \"raises on division by zero\" do\n      calc = Calculator.new\n      expect_raises(ArgumentError, \"Cannot divide by zero\") do\n        calc.divide(6, 0)\n      end\n    end\n  end\nend\n```",
+        "question": "task_spec_calculator"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "JSON::Serializable",
+          "include JSON::Serializable",
+          "from_json"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"json\"\n\nstruct User\n  include JSON::Serializable\n\n  property name : String\n  property age : Int32\nend\n\njson = %({\"name\":\"Alice\",\"age\":30})\nuser = User.from_json(json)\nputs user.name  # => \"Alice\"\n```",
+        "question": "task_json_parse"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class DatabaseError < Exception",
+          "class ConnectionError < DatabaseError",
+          "class QueryError < DatabaseError",
+          "raise QueryError"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass DatabaseError < Exception\nend\n\nclass ConnectionError < DatabaseError\nend\n\nclass QueryError < DatabaseError\nend\n\ndef query(sql)\n  raise QueryError.new(\"Invalid query: #{sql}\")\nend\n```",
+        "question": "task_exception_chain"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "Int32?"
+        ],
+        "have_miss": [
+          "&."
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/hash-nested-lookup.cr`:\n\n```crystal\ndef lookup(hash : Hash(String, Hash(String, Int32)), outer_key : String, inner_key : String) : Int32?\n  if inner_hash = hash[outer_key]?\n    inner_hash[inner_key]?\n  end\nend\n```",
+        "question": "task_nilable_dig"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "macro define_constant",
+          "{{name",
+          "{{value"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/define_constant.cr`:\n\n```crystal\nmacro define_constant(name, value)\n  {{name.id.upcase}} = {{value}}\nend\n\ndefine_constant pi, 3.14159\ndefine_constant e, 2.71828\n\nputs PI\nputs E\n```",
+        "question": "task_macro_getter"
+      },
+      {
+        "idiom_score": 5,
+        "compile_score": 5,
+        "total_score": 10,
+        "have_hits": [
+          "struct Point",
+          "property x",
+          "property y",
+          " : Float64",
+          "def distance_to"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/point.cr`:\n\n```crystal\nstruct Point\n  property x : Float64\n  property y : Float64\n\n  def initialize(@x : Float64, @y : Float64)\n  end\n\n  def distance_to(other : Point) : Float64\n    Math.sqrt((@x - other.x)**2 + (@y - other.y)**2)\n  end\nend\n```",
+        "question": "task_struct_point"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "enum OrderStatus",
+          "case ",
+          "when "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nenum OrderStatus\n  Pending\n  Shipped\n  Delivered\n  Cancelled\nend\n\ndef process_status(status : OrderStatus)\n  case status\n  when .pending?   then puts \"Order is pending\"\n  when .shipped?   then puts \"Order is shipped\"\n  when .delivered? then puts \"Order is delivered\"\n  when .cancelled? then puts \"Order is cancelled\"\n  end\nend\n```",
+        "question": "task_enum_status"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 0,
+        "total_score": 2,
+        "have_hits": [
+          "x:",
+          "y:"
+        ],
+        "have_miss": [
+          "NamedTuple"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\npoint = {x: 1, y: 2}\nputs point[:x]  # => 1\nputs point[:y]  # => 2\n```",
+        "question": "task_named_tuple"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "Time.monotonic"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/timer.cr`:\n\n```crystal\ndef with_timing(&block)\n  start = Time.monotonic\n  value = yield\n  puts \"Elapsed: #{Time.monotonic - start}\"\n  value\nend\n```",
+        "question": "task_block_yield_typed"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "record Money",
+          "Int64",
+          "String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/money.cr`:\n\n```crystal\nrecord Money, amount : Int64, currency : String\n```",
+        "question": "task_record"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "select",
+          "when ",
+          ".receive"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:2:14\n\n 2 | when value = channel1.receive\n                  ^-------\nError: undefined local variable or method 'channel1' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nselect\nwhen value = channel1.receive\n  puts \"Received from channel1: #{value}\"\nwhen value = channel2.receive\n  puts \"Received from channel2: #{value}\"\nend\n```",
+        "question": "task_fiber_select"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "typeof"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Use the `typeof` method, which returns a `Type` object representing the compile-time type of the expression. For example, `typeof(1)` returns `Int32`.\n\n```\ntypeof(1)   # => Int32\ntypeof(\"foo\") # => String\n```",
+        "question": "task_typeof"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def initialize(@name : String",
+          "@email : String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass User\n  def initialize(@name : String, @email : String)\n  end\nend\n```",
+        "question": "task_initialize_typed"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 0,
+        "total_score": 1,
+        "have_hits": [
+          ".select"
+        ],
+        "have_miss": [
+          ".map"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nnumbers.select &.even?.then { |n| n * n }\n```",
+        "question": "task_array_filter_map"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [
+          "File."
+        ],
+        "have_miss": [
+          "each_line"
+        ],
+        "not_hits": [
+          "File.foreach"
+        ],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:6\n\n 1 | File.foreach(\"/etc/hosts\") do |line, lineno|\n          ^------\nError: undefined method 'foreach' for File.class\n\nFile.class trace:\n\n  /tmp/eval.cr:1\n\n    File.foreach(\"/etc/hosts\") do |line, lineno|\n\n",
+        "had_code_block": true,
+        "text": "```crystal\nFile.foreach(\"/etc/hosts\") do |line, lineno|\n  puts \"#{lineno}: #{line}\"\nend\n```",
+        "question": "task_io_read_lines"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "module Greetable",
+          "abstract def name",
+          "include Greetable"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:9:1\n\n 9 | class Person\n     ^\nError: abstract `def Greetable#name()` must be implemented by Person\n",
+        "had_code_block": true,
+        "text": "```crystal\nmodule Greetable\n  abstract def name : String\n\n  def greet\n    \"Hello, #{name}!\"\n  end\nend\n\nclass Person\n  include Greetable\n\n  def initialize(@name : String)\n  end\nend\n```",
+        "question": "task_module_mixin"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [
+          "%"
+        ],
+        "have_miss": [
+          "sprintf"
+        ],
+        "not_hits": [
+          ".format("
+        ],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\n\"Total: $%.2f\" % 1234.5\n\"Total: $#{1234.5.format(\"%.2f\")}\"\n```",
+        "question": "task_string_format"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "def greet(name : String, greeting : String = "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef greet(name : String, greeting : String = \"Hello\") : String\n  \"#{greeting}, #{name}!\"\nend\n\ngreet(\"World\") # => \"Hello, World!\"\n```",
+        "question": "task_optional_arg"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "def sum(*nums : Int32)"
+        ],
+        "have_miss": [
+          ".sum"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/sum.cr`:\n\n```crystal\ndef sum(*nums : Int32) : Int32\n  s = 0\n  nums.each { |n| s += n }\n  s\nend\n```",
+        "question": "task_splat"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 0,
+        "total_score": 0,
+        "have_hits": [
+          "puts"
+        ],
+        "have_miss": [
+          "if ",
+          ".empty?"
+        ],
+        "not_hits": [
+          "unless errors.any?"
+        ],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:18\n\n 1 | puts \"OK\" unless errors.any?\n                      ^-----\nError: undefined local variable or method 'errors' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nputs \"OK\" unless errors.any?\n```",
+        "question": "task_unless_postfix"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 0,
+        "total_score": 1,
+        "have_hits": [
+          "responds_to?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:2:27\n\n 2 | {% if type.responds_to?(method) %}\n                             ^\nError: unexpected token: \"method\" (expected symbol)\n",
+        "had_code_block": true,
+        "text": "Use `macro check` with a `responds_to?` guard:\n\n```crystal\nmacro check_responds_to(type, method)\n  {% if type.responds_to?(method) %}\n    puts \"\u2713 #{type} responds to `#{method}`\"\n  {% else %}\n    puts \"\u2717 #{type} does not respond to `#{method}`\"\n  {% end %}\nend\n\ncheck_responds_to(Int32, :to_s)     # => \u2713 Int32 responds to `to_s`\ncheck_responds_to(Int32, :non_existent) # => \u2717 Int32 does not respond to `non_existent`\n```",
+        "question": "task_responds_to"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Pointer(Int32).malloc",
+          "10"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nptr = Pointer(Int32).malloc(10) { |i| i + 1 }\n```",
+        "question": "task_pointer_basics"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [],
+        "have_miss": [
+          "def process(x : Int32)",
+          "def process(x : String)"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef process(value : Int32)\n  value * 2\nend\n\ndef process(value : String)\n  value.upcase\nend\n```",
+        "question": "task_overload"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "def self.instance",
+          "@@",
+          "class Logger"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/logger.cr`:\n\n```crystal\nclass Logger\n  @@instance = Logger.new\n\n  def self.instance\n    @@instance\n  end\n\n  def info(message)\n    puts message\n  end\nend\n```",
+        "question": "task_class_method"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "* 2"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Here's the implementation from `samples/times_two_each.cr`:\n\n```crystal\ndef times_two_each(arr : Array(Int32))\n  arr.each { |x| yield x * 2 }\nend\n\na = [1, 2, 3]\ntimes_two_each(a) { |x| puts x }\n```",
+        "question": "task_yield_with_value"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "&",
+          "0",
+          "!= 0"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "Use `value & 4 != 0`.\n\n```crystal\nvalue = 0b1011_u8  # 11\nvalue & 4 != 0     # => true\n```",
+        "question": "task_bit_field"
+      }
+    ],
+    "qwen3-coder:30b": [
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          " : Int32",
+          " : String",
+          "String?"
+        ],
+        "have_miss": [
+          "property name",
+          "property quantity",
+          "property description"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Item\n  @name : String\n  @quantity : Int32\n  @description : String?\n\n  def initialize(@name : String, @quantity : Int32, @description : String? = nil)\n  end\n\n  def name : String\n    @name\n  end\n\n  def name=(name : String) : String\n    @name = name\n  end\n\n  def quantity : Int32\n    @quantity\n  end\n\n  def quantity=(quantity : Int32) : Int32\n    @quantity = quantity\n  end\n\n  def description : String?\n    @description\n  end\n\n  def description=(description : String?) : String?\n    @description = description\n  end\nend\n```",
+        "question": "task_inventory_class"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "spawn",
+          "Channel",
+          "HTTP::Client"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:2:1\n\n 2 | require \"spawn\"\n     ^\nError: can't find file 'spawn'\n\nIf you're trying to require a shard:\n- Did you remember to run `shards install`?\n- Did you make sure you're running the compiler in the same directory as your shard.yml?\n",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"http/client\"\nrequire \"spawn\"\n\nurls = [\n  \"https://httpbin.org/delay/1\",\n  \"https://httpbin.org/delay/2\",\n  \"https://httpbin.org/status/200\"\n]\n\nchannel = Channel({String, Int32}).new\n\nurls.each do |url|\n  spawn do\n    response = HTTP::Client.get(url)\n    channel.send({url, response.status_code})\n  end\nend\n\nurls.size.times do\n  url, status_code = channel.receive\n  puts \"URL: #{url} - Status Code: #{status_code}\"\nend\n```",
+        "question": "task_concurrent_downloads"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Hash(String, Int32)",
+          "def word_count"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef word_count(text : String) : Hash(String, Int32)\n  counts = Hash(String, Int32).new(0)\n  text.downcase.split.each do |word|\n    counts[word] += 1\n  end\n  counts\nend\n```",
+        "question": "task_word_count"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class",
+          "(T)",
+          "Array(T)",
+          "T?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass BoundedQueue(T)\n  def initialize(@capacity : Int32)\n    @queue = Array(T).new\n  end\n\n  def enqueue(item : T) : Nil\n    if @queue.size < @capacity\n      @queue << item\n    end\n  end\n\n  def dequeue : T?\n    @queue.empty? ? nil : @queue.shift\n  end\n\n  def size : Int32\n    @queue.size\n  end\nend\n```",
+        "question": "task_generic_queue"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 0,
+        "total_score": 4,
+        "have_hits": [
+          "require \"spec\"",
+          "describe",
+          "it ",
+          ".should"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:16:1\n\n 16 | spec \"Calculator\" do\n      ^---\nError: undefined method 'spec' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"spec\"\n\nclass Calculator\n  def add(a, b)\n    a + b\n  end\n\n  def divide(a, b)\n    if b == 0\n      raise ArgumentError.new(\"Cannot divide by zero\")\n    end\n    a / b\n  end\nend\n\nspec \"Calculator\" do\n  describe \"#add\" do\n    it \"adds two positive numbers\" do\n      calc = Calculator.new\n      result = calc.add(2, 3)\n      result.should eq(5)\n    end\n\n    it \"adds negative numbers\" do\n      calc = Calculator.new\n      result = calc.add(-2, -3)\n      result.should eq(-5)\n    end\n\n    it \"adds positive and negative numbers\" do\n      calc = Calculator.new\n      result = calc.add(5, -3)\n      result.should eq(2)\n    end\n  end\n\n  describe \"#divide\" do\n    it \"divides two positive numbers\" do\n      calc = Calculator.new\n      result = calc.divide(10, 2)\n      result.should eq(5)\n    end\n\n    it \"divides with negative numbers\" do\n      calc = Calculator.new\n      result = calc.divide(-10, 2)\n      result.should eq(-5)\n    end\n\n    it \"raises ArgumentError when dividing by zero\" do\n      calc = Calculator.new\n      expect_raises(ArgumentError) do\n        calc.divide(10, 0)\n      end\n    end\n  end\nend\n```",
+        "question": "task_spec_calculator"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "JSON::Serializable",
+          "include JSON::Serializable",
+          "from_json"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrequire \"json\"\n\nstruct Person\n  include JSON::Serializable\n  \n  property name : String\n  property age : Int32\nend\n\njson = %({\"name\":\"Alice\",\"age\":30})\nperson = Person.from_json(json)\nputs person.name # => \"Alice\"\nputs person.age  # => 30\n```",
+        "question": "task_json_parse"
+      },
+      {
+        "idiom_score": 4,
+        "compile_score": 5,
+        "total_score": 9,
+        "have_hits": [
+          "class DatabaseError < Exception",
+          "class ConnectionError < DatabaseError",
+          "class QueryError < DatabaseError",
+          "raise QueryError"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass DatabaseError < Exception\nend\n\nclass ConnectionError < DatabaseError\nend\n\nclass QueryError < DatabaseError\nend\n\ndef query(sql : String)\n  raise QueryError.new(\"Failed to execute query: #{sql}\")\nend\n```",
+        "question": "task_exception_chain"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [],
+        "have_miss": [
+          "Int32?",
+          "&."
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef lookup(data : Hash(String, Hash(String, Int32)), outer_key : String, inner_key : String)\n  outer = data[outer_key]? \n  return nil unless outer\n  \n  outer[inner_key]?\nend\n```",
+        "question": "task_nilable_dig"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "macro define_constant",
+          "{{name",
+          "{{value"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:12:6\n\n 12 | puts PI\n           ^-\nError: undefined constant PI\n",
+        "had_code_block": true,
+        "text": "```crystal\n# Define a macro that creates compile-time constants\nmacro define_constant(name, value)\n  CONST_{{name.id}} = {{value}}\nend\n\n# Example usage\ndefine_constant(PI, 3.14159)\ndefine_constant(MAX_USERS, 1000)\ndefine_constant(APP_NAME, \"MyApp\")\n\n# Using the constants\nputs PI\nputs MAX_USERS\nputs APP_NAME\n\n# You can also use it with more complex values\ndefine_constant(VERSION, \"1.0.0\")\ndefine_constant(ENABLE_DEBUG, true)\ndefine_constant(DEFAULT_TIMEOUT, 30)\n\nputs VERSION\nputs ENABLE_DEBUG\nputs DEFAULT_TIMEOUT\n```\n\nThis macro uses Crystal's macro system to generate constant definitions at compile time. The `{{name.id}}` syntax extracts the identifier name, and `{{value}}` inserts the value expression. The macro expands to actual constant definitions that are available at runtime.\n\nThe macro is simple and idiomatic, following Crystal conventions:\n- Uses `macro` keyword for macro definition\n- Uses `{{}}` for macro interpolation\n- Creates constants with proper naming convention (UPPER_CASE)\n- Works with any compile-time evaluatable value\n\nWhen compiled, this macro will generate code equivalent to:\n```crystal\nCONST_PI = 3.14159\nCONST_MAX_USERS = 1000\nCONST_APP_NAME = \"MyApp\"\n```\n\nThe constants are then available for use throughout your program with proper type inference and compile-time checking.",
+        "question": "task_macro_getter"
+      },
+      {
+        "idiom_score": 5,
+        "compile_score": 5,
+        "total_score": 10,
+        "have_hits": [
+          "struct Point",
+          "property x",
+          "property y",
+          " : Float64",
+          "def distance_to"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nstruct Point\n  property x : Float64\n  property y : Float64\n\n  def initialize(@x : Float64, @y : Float64)\n  end\n\n  def distance_to(other : Point) : Float64\n    Math.sqrt(((other.x - x) ** 2) + ((other.y - y) ** 2))\n  end\nend\n```",
+        "question": "task_struct_point"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "enum OrderStatus",
+          "case ",
+          "when "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nenum OrderStatus\n  Pending\n  Shipped\n  Delivered\n  Cancelled\nend\n\ndef process_order(status : OrderStatus)\n  case status\n  when .pending?\n    puts \"Order is pending\"\n  when .shipped?\n    puts \"Order is shipped\"\n  when .delivered?\n    puts \"Order is delivered\"\n  when .cancelled?\n    puts \"Order is cancelled\"\n  end\nend\n```",
+        "question": "task_enum_status"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 0,
+        "total_score": 2,
+        "have_hits": [
+          "x:",
+          "y:"
+        ],
+        "have_miss": [
+          "NamedTuple"
+        ],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\npoint : {x: Int32, y: Int32} = {x: 10, y: 20}\n\nputs point[:x]  # => 10\nputs point[:y]  # => 20\n```",
+        "question": "task_named_tuple"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "Time.monotonic"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef with_timing(&block)\n  start = Time.monotonic\n  value = yield\n  elapsed = Time.monotonic - start\n  puts \"Elapsed time: #{elapsed} seconds\"\n  value\nend\n```",
+        "question": "task_block_yield_typed"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "record Money",
+          "Int64",
+          "String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nrecord Money, amount : Int64, currency : String\n```",
+        "question": "task_record"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "select",
+          "when ",
+          ".receive"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nchannel1 = Channel(Int32).new\nchannel2 = Channel(Int32).new\n\nspawn do\n  channel1.send(42)\nend\n\nspawn do\n  channel2.send(24)\nend\n\nselect\nwhen value = channel1.receive\n  puts \"Received from channel1: #{value}\"\nwhen value = channel2.receive\n  puts \"Received from channel2: #{value}\"\nend\n```",
+        "question": "task_fiber_select"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 0,
+        "total_score": 1,
+        "have_hits": [
+          "typeof"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:8:6\n\n 8 | puts process_value(42)  # => 52\n          ^------------\nError: instantiating 'process_value(Int32)'\n\n\nIn /tmp/eval.cr:4:27\n\n 4 | def process_value(value : typeof(x))\n                               ^\nError: can't use typeof in type restrictions\n",
+        "had_code_block": true,
+        "text": "In Crystal, you can get the compile-time type of an expression using the `typeof` macro, which returns the type of a given expression at compile time. This is particularly useful for generic programming and type introspection. For example, if you have a variable `x = 42`, you can determine its type with `typeof(x)` which would return `Int32`, and you can use this in generic contexts like `def method(arg : typeof(x))` to create type-safe generic methods.\n\n```crystal\nx = 42\nputs typeof(x)  # => Int32\n\ndef process_value(value : typeof(x))\n  value + 10\nend\n\nputs process_value(42)  # => 52\n```",
+        "question": "task_typeof"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def initialize(@name : String",
+          "@email : String"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass User\n  def initialize(@name : String, @email : String)\n  end\nend\n```",
+        "question": "task_initialize_typed"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 0,
+        "total_score": 2,
+        "have_hits": [
+          ".select",
+          ".map"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": false,
+        "compile_ok": false,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nnumbers.select(&.even?).map(&.**2)\n```",
+        "question": "task_array_filter_map"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "File.",
+          "each_line"
+        ],
+        "have_miss": [],
+        "not_hits": [
+          "open("
+        ],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nFile.open(\"/etc/hosts\") do |file|\n  file.each_line.with_index(1) do |line, index|\n    puts \"#{index}: #{line}\"\n  end\nend\n```",
+        "question": "task_io_read_lines"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "module Greetable",
+          "abstract def name",
+          "include Greetable"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nmodule Greetable\n  abstract def name : String\n  \n  def greet\n    \"Hello, #{name}!\"\n  end\nend\n\nclass Person\n  include Greetable\n  \n  @name : String\n  \n  def initialize(@name : String)\n  end\n  \n  def name : String\n    @name\n  end\nend\n```",
+        "question": "task_module_mixin"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 0,
+        "total_score": 1,
+        "have_hits": [
+          "sprintf",
+          "%"
+        ],
+        "have_miss": [],
+        "not_hits": [
+          "printf"
+        ],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:5:30\n\n 5 | formatted = \"Total: $#{1234.5:.2f}\"\n                                  ^\nError: unexpected token: \":\"\n",
+        "had_code_block": true,
+        "text": "```crystal\n# sprintf-style\nformatted = sprintf(\"Total: $%.2f\", 1234.5)\n\n# string interpolation with format\nformatted = \"Total: $#{1234.5:.2f}\"\n```",
+        "question": "task_string_format"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "def greet(name : String, greeting : String = "
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef greet(name : String, greeting : String = \"Hello\")\n  \"#{greeting}, #{name}!\"\nend\n\nputs greet(\"World\")\n# Output: Hello, World!\n```",
+        "question": "task_optional_arg"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "def sum(*nums : Int32)",
+          ".sum"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef sum(*nums : Int32) : Int32\n  nums.sum\nend\n```",
+        "question": "task_splat"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "puts",
+          "if ",
+          ".empty?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:14\n\n 1 | puts \"OK\" if errors.empty?\n                  ^-----\nError: undefined local variable or method 'errors' for top-level\n",
+        "had_code_block": true,
+        "text": "```crystal\nputs \"OK\" if errors.empty?\n```",
+        "question": "task_unless_postfix"
+      },
+      {
+        "idiom_score": 1,
+        "compile_score": 5,
+        "total_score": 6,
+        "have_hits": [
+          "responds_to?"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "In Crystal, you can use the `{{type}}.responds_to?` macro to check at compile time whether a type responds to a particular method. Here's a one-line example:\n\n```crystal\n{{String}}.responds_to?(:upcase) # => true\n```\n\nThis macro returns a compile-time boolean value indicating whether the specified type responds to the given method. You can also use it in conditional compilation:\n\n```crystal\nif {{String}}.responds_to?(:upcase)\n  # This code block will be compiled since String responds to upcase\nend\n```\n\nThe `responds_to?` macro is particularly useful for writing generic code that needs to work with different types, allowing you to conditionally compile code based on method availability.",
+        "question": "task_responds_to"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "Pointer(Int32).malloc",
+          "10"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nbuffer = Pointer(Int32).malloc(10)\n```",
+        "question": "task_pointer_basics"
+      },
+      {
+        "idiom_score": 0,
+        "compile_score": 5,
+        "total_score": 5,
+        "have_hits": [],
+        "have_miss": [
+          "def process(x : Int32)",
+          "def process(x : String)"
+        ],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Processor\n  def process(value : Int32)\n    \"Processing integer: #{value}\"\n  end\n  \n  def process(value : String)\n    \"Processing string: #{value}\"\n  end\nend\n\nprocessor = Processor.new\nputs processor.process(42)     # => \"Processing integer: 42\"\nputs processor.process(\"hello\") # => \"Processing string: hello\"\n```",
+        "question": "task_overload"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 5,
+        "total_score": 8,
+        "have_hits": [
+          "def self.instance",
+          "@@",
+          "class Logger"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\nclass Logger\n  @@instance : Logger?\n\n  def self.instance : Logger\n    @@instance ||= new\n  end\n\n  private def initialize\n  end\nend\n```",
+        "question": "task_class_method"
+      },
+      {
+        "idiom_score": 2,
+        "compile_score": 5,
+        "total_score": 7,
+        "have_hits": [
+          "yield",
+          "* 2"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": true,
+        "compile_err": "",
+        "had_code_block": true,
+        "text": "```crystal\ndef times_two_each(arr : Array(Int32))\n  arr.each { |element| yield element * 2 }\nend\n```",
+        "question": "task_yield_with_value"
+      },
+      {
+        "idiom_score": 3,
+        "compile_score": 0,
+        "total_score": 3,
+        "have_hits": [
+          "&",
+          "0",
+          "!= 0"
+        ],
+        "have_miss": [],
+        "not_hits": [],
+        "compile_attempted": true,
+        "compile_ok": false,
+        "compile_err": "In /tmp/eval.cr:1:3\n\n 1 | ( value & 4u8 ) != 0\n       ^----\nError: undefined local variable or method 'value' for top-level\n",
+        "had_code_block": true,
+        "text": "In Crystal, you can check if the third bit (value 4) is set in a `UInt8` using the bitwise AND operator:\n\n```crystal\n( value & 4u8 ) != 0\n```\n\nThis expression performs a bitwise AND between the value and 4 (which is `100` in binary), then checks if the result is non-zero. If the third bit is set, the result will be 4 (non-zero), otherwise it will be 0 (zero).\n\nAlternative one-liners:\n```crystal\nvalue & 4u8 != 0\n```\n\nOr using the more explicit approach:\n```crystal\n( value & 4u8 ) > 0\n```\n\nThe `u8` suffix ensures we're working with an 8-bit unsigned integer literal for the mask.",
+        "question": "task_bit_field"
+      }
+    ]
+  }
+}

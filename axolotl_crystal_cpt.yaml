@@ -33,8 +33,9 @@ sequence_len: 2048
 sample_packing: true
 pad_to_sequence_len: true
 
-lora_r: 16
-lora_alpha: 32
+# v2: r=64/α=128 (was 16/32)
+lora_r: 64
+lora_alpha: 128
 lora_dropout: 0
 lora_target_modules:
   - q_proj
@@ -48,12 +49,14 @@ lora_target_parameters:
   - experts.gate_up_proj
   - experts.down_proj
 
-gradient_accumulation_steps: 4
-micro_batch_size: 2
-num_epochs: 1
+# v2: lr=2e-5 (4× higher), epochs=2 (was 1) — CPT was undertraining
+# v3 OOM fix: micro_batch 2→1, grad_accum 4→8 (same effective batch=8) to free ~2 GB activation memory
+gradient_accumulation_steps: 8
+micro_batch_size: 1
+num_epochs: 2
 optimizer: paged_adamw_8bit
 lr_scheduler: cosine
-learning_rate: 5.0e-6
+learning_rate: 2.0e-5
 warmup_ratio: 0.05
 weight_decay: 0.0
 
