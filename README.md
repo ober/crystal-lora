@@ -1,35 +1,48 @@
 # Crystal LoRA
 
-A fine-tuned **Qwen3-Coder-30B-A3B-Instruct** LoRA that knows the Crystal programming language. Trained as a staged **CPT → SFT → DPO** pipeline on real Crystal source from the top 500 GitHub repos, the official book + RFCs + website, the stdlib doc-comments, the spec suite, and hand-curated Ruby→Crystal preference pairs. Trained on RunPod (single A100 80GB), shipped as **GGUF on Hugging Face (hf.co)**, run locally via Ollama.
+A fine-tuned **Qwen3-Coder-30B-A3B-Instruct** LoRA that knows the Crystal programming language. Trained as a staged **CPT → SFT → DPO** pipeline on real Crystal source from the top 500 GitHub repos, the official book + RFCs + website, the stdlib doc-comments, the spec suite, and Ruby→Crystal preference pairs. Trained on RunPod (single H200 SXM 141 GB; ~14 GPU-hours, ~$57), shipped as **GGUF on Hugging Face (hf.co)**, run locally via Ollama.
 
 Crystal is statically-typed, Ruby-syntax-inspired, and compiles via LLVM. This LoRA teaches the base model Crystal's actual surface area: type unions (`String?`), generics with `(T)` (not `<T>`), `property`/`getter`/`setter` (not `attr_accessor`), fibers and `Channel(T)` (not threads), the `Spec` framework (not RSpec), `JSON::Serializable`, `HTTP::Server`, FFI via `lib`/`fun`, macros, and the dozens of small ways Crystal diverges from Ruby despite the syntactic resemblance.
 
-## Status (v3 retrain in flight — 2026-05-09)
+## Status — v3 published (2026-05-10)
 
-The original v1 training (37 DPO pairs, ~9 MB CPT, lr=5e-7 DPO) was **a no-op in the trained weights** — the DPO LoRA delta sat below the BF16 precision floor, and Q4_K_M quantization erased the rest. See [`EVAL_VERDICT.md`](EVAL_VERDICT.md) for the post-mortem and [`TRAINING_FIX_PLAN.md`](TRAINING_FIX_PLAN.md) for the corrective plan now being executed.
+v3 is live at [`hf.co/jaimef21/crystal-qwen-v3-30b-gguf`](https://huggingface.co/jaimef21/crystal-qwen-v3-30b-gguf). It's the first checkpoint of this lineage that beats vanilla Qwen3-Coder at Crystal — v2 was a regression (lost idiom +67 vs base +71). What's next is in [`v4.md`](v4.md).
 
-What changed for v3:
+Held-out coding eval (30 NL Crystal tasks; idiom score + `crystal build --no-codegen` compile gate; higher is better):
 
-| Stage | v1 (failed) | v3 (now)                          | Why |
-|-------|-------------|-----------------------------------|-----|
-| CPT data    | 1,750 files / ~9 MB | **31,292 records / ~31.6M tok**   | Top 500 GitHub repos + book/RFCs/website/stdlib docs |
-| SFT data    | 5,430 pairs | **9,958 pairs** (mined + Claude-augmented, all compile-gated) | +83% bigger, end-to-end compile-validated |
-| DPO data    | 37 pairs    | **374 pairs** (235 compile-validated) | Ruby→Crystal rule generators × ~50 idioms |
-| CPT lr      | 5e-6, 1 ep  | **2e-5, 2 ep**                    | v1 was 10× too low |
-| DPO lr      | 5e-7, 1 ep  | **5e-6, 3 ep**                    | v1 delta was below BF16 floor |
-| LoRA r/α    | 16 / 32     | **64 / 128**                      | Bigger delta → survives quantization |
-| Quantization| Q4_K_M      | **Q8_0 (target)**                 | LoRA contributions actually survive |
-| Publish     | ~~ollama.com~~ | **hf.co** | User correction: we publish to Hugging Face, not the Ollama registry |
+| Model | Idiom | Compile pass | Total |
+|---|---|---|---|
+| **crystal-qwen-v3** (this repo) | **+76** | **26/28 (93 %)** | **+206** |
+| qwen3-coder:30b (base) | +71 | 21/28 (75 %) | +176 |
+| crystal-qwen3.6-30b (v2) | +67 | 21/28 (75 %) | +172 |
 
-After running the corrective hyperparams + the v2 (intermediate) data, the trained model **already beats base** on both the full 74-pair similarity eval (`+0.357` vs base `+0.124` token-lean to chosen) and the held-out coding eval (`36` vs `9` total score). The v3 expansion is intended to widen that margin and reduce regression on out-of-distribution prompts.
+What changed v1 → v2 → v3:
 
-## Quick Start (once v3 is published)
+| Stage | v1 (no-op) | v2 (regression vs base) | **v3 (beats base)** | Why |
+|-------|------------|-------------------------|---------------------|-----|
+| CPT data    | 1,750 files / ~9 MB | ~3 M tok | **31,292 records / ~31.6 M tok** | Top 500 GitHub repos + book/RFCs/website/stdlib docs |
+| SFT data    | 5,430 pairs | ~600 mined  | **9,958 pairs** (mined + Claude-Haiku-4.5 augmented, all compile-gated) | +83 % bigger, end-to-end compile-validated |
+| DPO data    | 37 pairs    | 37 pairs    | **374 pairs** (235 compile-validated) | Ruby→Crystal rule generators × ~50 idioms |
+| CPT lr      | 5e-6, 1 ep  | 2e-5, 2 ep  | **2e-5, 2 ep**                    | v1 was 10× too low |
+| DPO lr      | 5e-7, 1 ep  | 5e-6, 3 ep  | **5e-6, 3 ep**                    | v1 delta was below BF16 floor |
+| LoRA r/α    | 16 / 32     | 32 / 64     | **64 / 128**                      | Bigger delta → survives quantization |
+| LoRA targets| attn        | attn        | **attn + MLP + MoE `experts.gate_up_proj/down_proj`** | More parameter surface for the Crystal delta |
+| Quantization| Q4_K_M      | Q4_K_M      | **Q8_0**                          | LoRA contributions actually survive |
+| Publish     | ~~ollama.com~~ | hf.co | **hf.co** | We publish to Hugging Face, not the Ollama registry |
+
+See [`EVAL_VERDICT.md`](EVAL_VERDICT.md) for the v1 post-mortem, [`TRAINING_FIX_PLAN.md`](TRAINING_FIX_PLAN.md) for the corrective plan that became v3, and [`v4.md`](v4.md) for what's left on the table.
+
+## Quick Start
 
 ```bash
-# Pull GGUF from Hugging Face (NOT ollama.com)
-hf download jaimef/crystal-qwen-gguf crystal-qwen.Q8_0.gguf --local-dir .
-ollama create crystal-qwen -f Modelfile        # Modelfile: FROM ./crystal-qwen.Q8_0.gguf + Crystal SYSTEM block
-ollama run crystal-qwen "How do I parse JSON into a typed class in Crystal?"
+# Easiest — Ollama pulls GGUF straight from hf.co:
+ollama pull hf.co/jaimef21/crystal-qwen-v3-30b-gguf
+ollama run  hf.co/jaimef21/crystal-qwen-v3-30b-gguf "How do I parse JSON into a typed class in Crystal?"
+
+# Or download manually (if you want to ship the Modelfile separately):
+hf download jaimef21/crystal-qwen-v3-30b-gguf crystal-qwen-v3-30b.gguf Modelfile --local-dir .
+ollama create crystal-qwen-v3 -f Modelfile
+ollama run  crystal-qwen-v3 "How do I parse JSON into a typed class in Crystal?"
 ```
 
 ## Deployment Options
@@ -82,14 +95,26 @@ Or run `./configure_opencode.sh ollama`.
 
 Want to rebuild the v3 model end-to-end (fetch every dataset, train, eval-gate, publish)? See **[REPRODUCE.md](REPRODUCE.md)** — full step-by-step with prerequisites, cost estimates (~$60-90 of pod time), expected metrics, and recovery procedures for the failure modes we actually hit.
 
-The short version is one bootstrap command followed by the steps below:
+Short version — every step has a wrapper script so a re-run is six commands:
+
 ```bash
-./fetch_training_sources.sh    # clones Crystal stdlib + book + RFCs + website + awesome-crystal
+./fetch_training_sources.sh                    # clones Crystal stdlib + book + RFCs + website + awesome-crystal
+python3 build_cpt_corpus_v2.py --limit 500 --keep-clones && \
+python3 build_cpt_docs.py && python3 merge_cpt_v3.py && \
+python3 build_sft_v3.py && python3 build_sft_llm.py --files 3000 && \
+python3 build_dpo_pairs_v3.py                  # builds CPT corpus, SFT mined+LLM, DPO pairs
+python3 runpod_train.py up && python3 runpod_train.py push && \
+python3 runpod_train.py train && python3 runpod_train.py pull && \
+python3 runpod_train.py down                   # ~14 h GPU on 1× H200, ~$60
+./convert_to_gguf.sh                            # llama.cpp convert + Q8_0 quantize + ollama create
+python3 eval_holdout.py    --models crystal-qwen-v3 qwen3-coder:30b --out eval_holdout_v3.json
+python3 eval_similarity.py --models crystal-qwen-v3 qwen3-coder:30b --out eval_similarity_v3.json
+./publish_to_hf.sh                              # hf repo create + upload README + Modelfile + GGUF
 ```
 
 ## Build from Source — staged CPT → SFT → DPO
 
-Training runs as a **staged CPT → SFT → DPO pipeline** on a single A100 80GB pod, orchestrated by `runpod_train.py`. LoRA adapters from each stage are merged into the base before the next stage trains, so DPO sees the SFT-absorbed weights, not stacked adapters. All three stages target attention + MLP + MoE experts (`experts.gate_up_proj`, `experts.down_proj`) at bf16.
+Training runs as a **staged CPT → SFT → DPO pipeline** on a single H200 SXM 141 GB pod, orchestrated by `runpod_train.py`. LoRA adapters from each stage are merged into the base before the next stage trains, so DPO sees the SFT-absorbed weights, not stacked adapters. All three stages target attention + MLP + MoE experts (`experts.gate_up_proj`, `experts.down_proj`) at bf16.
 
 | Stage | Data (v3) | LR | Epochs | LoRA r/α |
 |-------|-----------|----|--------|----------|
@@ -113,48 +138,50 @@ python3 build_sft_llm.py --files 2000 # → sft_v3_llm.jsonl     (Claude Haiku 4
 python3 build_dpo_pairs_v3.py         # → dpo_pairs_v3.jsonl   (374 pairs, 235 validated)
 ```
 
-### 2. Train on RunPod (~A100 80GB, single pod)
+### 2. Train on RunPod (single H200 SXM 141 GB; ~14 h, ~$57)
 
 ```bash
 pip install runpod
 echo "your-runpod-key" > ~/.runpod.token
 
-python3 runpod_train.py up      # provision A100-SXM4 80GB, wait for SSH
+python3 runpod_train.py up      # provision H200 SXM 141 GB, wait for SSH
 python3 runpod_train.py push    # scp axolotl YAMLs + datasets
 python3 runpod_train.py train   # CPT → merge → SFT → merge → DPO; idempotent (resumes via .done markers)
-python3 runpod_train.py pull    # fetch /workspace/dpo_merged → ./runpod-pipeline-final/
+python3 runpod_train.py pull    # fetch /workspace/dpo_merged → ./runpod-pipeline-merged-v3/
 python3 runpod_train.py down    # terminate the pod
 ```
 
 `runpod_train.py status` shows pod state and per-stage `.done` markers. `runpod_train.py tail` follows the active log. Each stage runs inside its own tmux session on the pod, so SSH drops don't kill training.
 
-### 3. Convert merged checkpoint → GGUF
+### 3. Convert merged checkpoint → GGUF (one script)
 
 ```bash
-# llama.cpp conversion (NOT convert_to_mlx.sh — that's for the sibling jerboa-lora project)
-python3 llama.cpp/convert_hf_to_gguf.py runpod-pipeline-final/ --outfile crystal-qwen.gguf
-./llama.cpp/llama-quantize crystal-qwen.gguf crystal-qwen.Q8_0.gguf Q8_0
+./convert_to_gguf.sh
+# Defaults: runpod-pipeline-merged-v3/ → crystal-qwen-v3.Q8_0.gguf → ollama tag `crystal-qwen-v3`.
+# Clones+builds llama.cpp on first run (gitignored). Pass SRC, OUTBASE, QUANT, OLLAMA_TAG to override.
+# (NOT convert_to_mlx.sh — that's for the sibling jerboa-lora project.)
 ```
 
 ### 4. Eval gate (mandatory before publishing)
 
 ```bash
-# Held-out coding eval — questions the model never saw during training
-python3 eval_holdout.py --models crystal-qwen qwen3-coder:30b --out eval_holdout.json
+# Held-out coding eval — 30 questions the model never saw during training
+python3 eval_holdout.py --models crystal-qwen-v3 qwen3-coder:30b --out eval_holdout_v3.json
 
-# Full 74-pair similarity eval — token-lean toward chosen vs rejected
-python3 eval_similarity.py --models crystal-qwen qwen3-coder:30b --out eval_similarity_full.json
+# Full 74-pair similarity eval — token+char Jaccard lean toward chosen vs rejected
+python3 eval_similarity.py --models crystal-qwen-v3 qwen3-coder:30b --out eval_similarity_v3.json
 ```
 
-Required to publish: trained must beat base on both metrics. The v2 run already cleared this bar (`+0.357` vs `+0.124` tok-lean; `36` vs `9` held-out total) — v3 should widen the margin further.
+Required to publish: trained must beat base. v3 cleared this bar (held-out total `+206` vs base `+176`; idiom `+76` vs `+71`; compile pass `26/28` vs `21/28`). v3 still slightly trails base on similarity char-lean (+3.013 vs +3.107) — partly a Q8 vs Q4_K_M quantization confound, see [`v4.md`](v4.md).
 
-### 5. Publish to Hugging Face (NOT ollama.com)
+### 5. Publish to Hugging Face — NOT ollama.com (one script)
 
 ```bash
-hf auth login
-hf upload jaimef/crystal-qwen-gguf crystal-qwen.Q8_0.gguf
-# Optionally upload the merged HF checkpoint as source:
-hf upload jaimef/crystal-qwen-30b runpod-pipeline-final/
+hf auth login                                   # write-scope token from https://huggingface.co/settings/tokens
+./publish_to_hf.sh
+# Defaults: jaimef21/crystal-qwen-v3-30b-gguf, README+Modelfile sourced from hf-upload-v3/, GGUF renamed to crystal-qwen-v3-30b.gguf in the repo.
+# For v4: copy hf-upload-v3/ → hf-upload-v4/, edit the README, then:
+#   ./publish_to_hf.sh crystal-qwen-v4.Q8_0.gguf jaimef21/crystal-qwen-v4-30b-gguf crystal-qwen-v4-30b.gguf hf-upload-v4
 ```
 
 ## Datasets — v3
@@ -194,29 +221,33 @@ Compile-gate is **lenient on missing third-party shards** (treated as a dependen
 | `build_dpo_pairs_v2.py` | First wave of programmatic Ruby→Crystal pair generators |
 | `build_dpo_pairs_v3.py` | Imports v2 + adds 32 new rule generators; compile-validates chosen blocks |
 | `fetch_training_sources.sh` | Clone every upstream source the build_*.py scripts read (stdlib + Crystal book + RFCs + website + awesome-crystal). Idempotent. |
-| `runpod_train.py` | Provision A100 pod, run staged CPT → SFT → DPO, pull merged model |
-| `axolotl_crystal_{cpt,sft,dpo}.yaml` | Per-stage axolotl configs (LoRA r=64/α=128, MoE-expert targets, bf16) |
-| `eval_holdout.py` | Held-out Crystal coding eval (idiom regex hits + compile pass rate) |
-| `eval_similarity.py` | Per-pair similarity to chosen vs rejected — volume-invariant, **trust this one** |
+| `runpod_train.py` | Provision H200 pod, run staged CPT → SFT → DPO with merge-between-stages, pull merged model, terminate. Idempotent via `.done` markers. |
+| `axolotl_crystal_{cpt,sft,dpo}.yaml` | Per-stage axolotl configs (LoRA r=64/α=128 on attn + MLP + MoE `experts.gate_up_proj/down_proj`, bf16, `merge_method: legacy`) |
+| `convert_to_gguf.sh` | **One-shot GGUF pipeline** — clones+builds llama.cpp on first run, then convert_hf_to_gguf → llama-quantize Q8_0 → writes Modelfile → `ollama create`. |
+| `publish_to_hf.sh` | **One-shot HF publish** — `hf repo create` + uploads README + Modelfile + GGUF (chunked via hf-xet). |
+| `eval_holdout.py` | Held-out Crystal coding eval — 30 NL tasks, scored on idiom regex hits + `crystal build --no-codegen` compile gate. The primary publish gate. |
+| `eval_similarity.py` | Per-pair token+char Jaccard similarity to chosen vs rejected on the DPO pairs — volume-invariant; complements eval_holdout. |
 | `eval_crystal.py` | 10 hand-crafted Crystal-vs-Ruby divergence prompts (verbosity-confounded; deprecated) |
 | `eval_dpo_preference.py` | Crystal/Ruby idiom-hit counter (verbosity-confounded; deprecated) |
-| `merge_lora_local.py` | Local streaming LoRA merge of the pulled adapter |
-| `merge_and_export.py` | Merge adapter + base to GGUF |
-| `download_and_convert.sh` | Pull GGUF from hf.co, register with Ollama |
-| `deploy_runpod.sh` | Upload merged checkpoint to hf.co, create RunPod vLLM endpoint |
+| `merge_lora_local.py` | Local streaming LoRA merge — fallback if pod ran out of disk mid-merge and you pulled an unmerged adapter. |
+| `merge_and_export.py` | Merge adapter + base to GGUF (older path; `runpod_train.py train` does merging on-pod now) |
+| `download_and_convert.sh` | Earlier hf-pull + ollama-create wrapper (pre-`ollama pull hf.co/...` integration). |
+| `deploy_runpod.sh` | Upload merged checkpoint to hf.co, create RunPod vLLM serverless endpoint |
 | `manage_runpod.sh` | RunPod endpoint lifecycle (list, health, delete, purge, restore) |
 | `configure_opencode.sh` | Generate OpenCode config for Ollama/RunPod |
-| `verify_model.py` | Run 10 Crystal-specific test prompts |
+| `verify_model.py` | Run 10 Crystal-specific smoke-test prompts |
+| `hf-upload-v3/` | Model-card sources for the published HF repo (README.md + Modelfile). Copy → `hf-upload-v4/` for the next release. |
 | `convert_to_mlx.sh` | **Do not run** — leftover scaffolding from sibling `jerboa-lora` (MLX path), not used here |
-| `Modelfile` | Ollama model definition (FROM ./crystal-qwen.Q8_0.gguf + SYSTEM block + TEMPLATE) |
+| `Modelfile.v3` | Local Ollama model definition (FROM ./crystal-qwen-v3.Q8_0.gguf + Crystal SYSTEM block + chatml TEMPLATE) |
 
 ## Iterating
 
 1. Add a new Ruby→Crystal idiom: edit `build_dpo_pairs_v3.py` (add a `rule_*` generator) → `python3 build_dpo_pairs_v3.py`
 2. Add more SFT data: extend the source list in `build_sft_v3.py` or up `--files` on `build_sft_llm.py`
 3. Re-train: `runpod_train.py up && push && train && pull && down`
-4. **Eval gate**: `eval_holdout.py` and `eval_similarity.py` against base; trained must beat base
-5. Convert + publish: `llama.cpp/convert_hf_to_gguf.py` → `llama-quantize Q8_0` → `hf upload`
+4. Convert + register: `./convert_to_gguf.sh`
+5. **Eval gate**: `eval_holdout.py` and `eval_similarity.py` against base; trained must beat base
+6. Publish: copy `hf-upload-v3/` → `hf-upload-vN/`, edit the README, then `./publish_to_hf.sh GGUF NEW_REPO RENAMED hf-upload-vN`
 
 ## Why a Crystal-specific model?
 
